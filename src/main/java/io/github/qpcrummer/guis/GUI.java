@@ -1,4 +1,4 @@
-package io.github.qpcrummer.GUIs;
+package io.github.qpcrummer.guis;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -9,8 +9,7 @@ import java.io.IOException;
 import java.net.URL;
 
 public class GUI {
-
-
+    
     private Image logo;{
         try {
             logo = ImageIO.read(new URL("https://github.com/QPCrummer/TaterLauncherResources/blob/main/TaterLauncher.png?raw=true"));
@@ -41,10 +40,6 @@ public class GUI {
     private JTextField password = new JTextField();
     private JLabel user = new JLabel("Insert MineCraft Username");
     private JLabel pass = new JLabel("Insert MineCraft Password");
-
-    public static void main(String[] args) {
-        new GUI();
-    }
 
     public GUI() {
         panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
