@@ -11,6 +11,3 @@ repositories {
 
 dependencies {
 }
-
-test {
-}

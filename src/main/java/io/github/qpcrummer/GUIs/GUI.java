@@ -37,6 +37,10 @@ public class GUI {
     private JFrame versionframe = new JFrame();
     private JFrame settingframe = new JFrame();
     private JPanel settingpanel = new JPanel();
+    private JTextField username = new JTextField();
+    private JTextField password = new JTextField();
+    private JLabel user = new JLabel("Insert MineCraft Username");
+    private JLabel pass = new JLabel("Insert MineCraft Password");
 
     public static void main(String[] args) {
         new GUI();
@@ -75,6 +79,7 @@ public class GUI {
         settingframe.setVisible(false);
         settingframe.setMinimumSize(new Dimension(500,500));
         settingframe.setIconImage(icon);
+        settingframe.setLayout(null);
 
         //Window reopener
         versionframe.addWindowListener(new WindowAdapter() {
@@ -134,5 +139,14 @@ public class GUI {
             }
         });
 
+        //Settings Fill-in Blanks
+        settingframe.add(username);
+        username.setBounds(200, 30, 400, 40);
+        settingframe.add(password);
+        password.setBounds(200, 80, 400, 40);
+        settingframe.add(user);
+        settingframe.add(pass);
+        user.setBounds(20, 30,180,40);
+        pass.setBounds(20,80,180,40);
     }
 }
