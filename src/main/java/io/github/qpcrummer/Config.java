@@ -1,5 +1,7 @@
 package io.github.qpcrummer;
 
+import io.github.qpcrummer.guis.GUI;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -14,7 +16,6 @@ import static io.github.qpcrummer.guis.GUI.username;
 public class Config {
     static String launcher1 = "path";
     static String minecraft1 = "path";
-    static String password1 = "1234";
 
     public static void folder() throws IOException {
         try {
@@ -23,7 +24,7 @@ public class Config {
         }
     }
 
-    public static void initializeconfig() {
+    public static void initializeConfig() {
         try (OutputStream output = new FileOutputStream("TaterLauncher/config.properties")) {
 
             Properties prop = new Properties();
@@ -31,8 +32,8 @@ public class Config {
              //set the properties value
             prop.setProperty("LauncherPath", launcher1);
             prop.setProperty("MineCraftPath", minecraft1);
-            prop.setProperty("Username", username1);
-            prop.setProperty("Password", password1);
+            prop.setProperty("Username", GUI.userVar); // Get the username from the GUI class
+            prop.setProperty("Password", GUI.passVar); // Get the password from the GUI class
 
             // save properties to project root folder
             prop.store(output, null);
