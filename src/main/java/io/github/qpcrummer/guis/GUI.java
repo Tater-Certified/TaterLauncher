@@ -1,10 +1,13 @@
 package io.github.qpcrummer.guis;
 
+import io.github.qpcrummer.Config;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 
@@ -35,8 +38,8 @@ public class GUI {
     private static final JLabel pass = new JLabel("Insert MineCraft Password");
 
     // Public Variable for storing the username and password
-    public static String userVar;
-    public static String passVar;
+    public static String usernameVar;
+    public static String passwordVar;
 
     public static void initializeGui() {
 
@@ -88,6 +91,7 @@ public class GUI {
 
             @Override
             public void windowClosing(WindowEvent e) {
+                //Config.storeConfig();
                 System.out.println("Setting is closing");
                 frame.setVisible(true);
             }
@@ -135,5 +139,13 @@ public class GUI {
         settingframe.add(pass);
         user.setBounds(20, 30,180,40);
         pass.setBounds(20,80,180,40);
+
+        username.addActionListener(e -> {
+            System.out.println("Username Inserted");
+            usernameVar = username.getText();
+        });
+        password.addActionListener(e -> passwordVar = password.getText());
+
+
     }
 }

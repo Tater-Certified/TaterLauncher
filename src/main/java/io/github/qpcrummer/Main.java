@@ -6,8 +6,8 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        Config.initializeConfig();
         Config.folder();
         GUI.initializeGui();
+        Config.loadConfig();
     }
 }
