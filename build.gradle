@@ -5,6 +5,8 @@ plugins {
 group 'io.github.qpcrummer'
 version '1.0-SNAPSHOT'
 
+sourceCompatibility = targetCompatibility = JavaVersion.VERSION_17
+
 repositories {
     mavenCentral()
 }

@@ -34,7 +34,11 @@ public class GUI {
     public static final JLabel user = new JLabel("Insert MineCraft Username");
     private static final JLabel pass = new JLabel("Insert MineCraft Password");
 
-    public static void initializegui() {
+    // Public Variable for storing the username and password
+    public static String userVar;
+    public static String passVar;
+
+    public static void initializeGui() {
 
         panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         frame.add(panel, BorderLayout.CENTER);
@@ -47,7 +51,7 @@ public class GUI {
         frame.setExtendedState(frame.getExtendedState() | JFrame.MAXIMIZED_BOTH);
         frame.setIconImage(icon);
 
-//Version Frame
+        //Version Frame
         versionpanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         versionpanel.setBackground(new Color(98, 184, 245));
         versionframe.add(versionpanel, BorderLayout.CENTER);
@@ -89,7 +93,7 @@ public class GUI {
             }
         });
 
-//start button settings
+        //start button settings
         startbutton.setMaximumSize(new Dimension(300,80));
         panel.add(startbutton);
         startbutton.addActionListener(e -> {
@@ -104,7 +108,7 @@ public class GUI {
             }
             System.exit(0);
         });
-//settings button settings
+        //settings button settings
         startbutton.setMaximumSize(new Dimension(300,80));
         panel.add(settingsbutton);
         settingsbutton.addActionListener(e -> {
