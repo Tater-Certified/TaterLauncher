@@ -29,9 +29,9 @@ public class GUI {
     private static final JFrame versionframe = new JFrame();
     private static final JFrame settingframe = new JFrame();
     private static final JPanel settingpanel = new JPanel();
-    private static final JTextField username = new JTextField();
+    public static final JTextField username = new JTextField();
     private static final JTextField password = new JTextField();
-    private static final JLabel user = new JLabel("Insert MineCraft Username");
+    public static final JLabel user = new JLabel("Insert MineCraft Username");
     private static final JLabel pass = new JLabel("Insert MineCraft Password");
 
     public static void initializegui() {
