@@ -11,17 +11,16 @@ import java.util.Properties;
 public class Config {
     static String launcher1 = "path";
     static String minecraft1 = "path";
+    static Properties prop = new Properties();
 
-
-    public static void folder() throws IOException {
+    public static void folder() {
         try {
             Files.createDirectory(Paths.get("TaterLauncher"));
-        } catch (IOException e) {
+        } catch (IOException ignored) {
         }
     }
 
     public static void loadConfig() {
-        Properties prop = new Properties();
         try (InputStream input = new FileInputStream("TaterLauncher/config.properties")) {
             prop.load(input);
 
@@ -39,16 +38,16 @@ public class Config {
         System.out.println("Config was loaded");
     }
     public static void storeConfig() {
-        Properties prop = new Properties();
+
         try (OutputStream output = new FileOutputStream("TaterLauncher/config.properties")) {
 
+            prop.store(output, null);
             //set the properties value
             prop.setProperty("LauncherPath", launcher1);
             prop.setProperty("MineCraftPath", minecraft1);
             prop.setProperty("Username", GUI.usernameVar); // Get the username from the GUI class
             prop.setProperty("Password", GUI.passwordVar); // Get the password from the GUI class
             // save properties to project root folder
-            prop.store(output, null);
 
             System.out.println(prop);
 
