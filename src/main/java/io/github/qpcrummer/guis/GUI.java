@@ -32,13 +32,14 @@ public class GUI {
     private static final JFrame settingframe = new JFrame();
     private static final JPanel settingpanel = new JPanel();
     public static final JTextField username = new JTextField();
-    private static final JTextField password = new JTextField();
+    public static final JTextField password = new JTextField();
     public static final JLabel user = new JLabel("Insert MineCraft Username");
     private static final JLabel pass = new JLabel("Insert MineCraft Password");
 
     // Public Variable for storing the username and password
-    public static String usernameVar;
-    public static String passwordVar;
+
+    public static String usernameVar = username.getText();
+    public static String passwordVar = password.getText();
 
     public static void initializeGui() {
         //Main Frame
@@ -75,10 +76,6 @@ public class GUI {
         settingframe.setMinimumSize(new Dimension(500,500));
         settingframe.setIconImage(icon);
         settingframe.setLayout(null);
-
-        //Set Vars
-        usernameVar = username.getText();
-        passwordVar = password.getText();
 
         //Window reopener
         versionframe.addWindowListener(new WindowAdapter() {
@@ -119,7 +116,7 @@ public class GUI {
         startbutton.setMaximumSize(new Dimension(300,80));
         panel.add(settingsbutton);
         settingsbutton.addActionListener(e -> {
-            System.out.println("Button Was Pressed");
+            System.out.println("Settings Was Pressed");
             settingframe.setVisible(true);
             frame.setVisible(false);
         });
