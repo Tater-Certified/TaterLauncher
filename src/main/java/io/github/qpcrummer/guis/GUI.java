@@ -8,6 +8,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 
 public class GUI {
@@ -20,6 +21,7 @@ public class GUI {
             e.printStackTrace();
         }
     }
+    public static ImageIcon background = new ImageIcon("https://github.com/QPCrummer/TaterLauncherResources/blob/main/TaterMC%20V3%20RC4.png?raw=true");
 
     private static final JFrame frame = new JFrame();
     private static final JPanel panel = new JPanel();
@@ -35,6 +37,7 @@ public class GUI {
     public static final JTextField password = new JTextField();
     public static final JLabel user = new JLabel("Insert MineCraft Username");
     private static final JLabel pass = new JLabel("Insert MineCraft Password");
+    private static final JLabel menupic = new JLabel();
 
     // Public Variable for storing the username and password
 
@@ -96,6 +99,11 @@ public class GUI {
                 frame.setVisible(true);
             }
         });
+
+        //Background
+        frame.add(menupic, BorderLayout.CENTER);
+        menupic.setVisible(true);
+        menupic.setIcon(background);
 
         //start button settings
         startbutton.setMaximumSize(new Dimension(300,80));
