@@ -12,6 +12,7 @@ import static io.github.qpcrummer.guis.ConfigGUI.settingframe;
 import static io.github.qpcrummer.guis.JavaGUI.javaframe;
 import static io.github.qpcrummer.guis.UtilGUI.utilframe;
 import static io.github.qpcrummer.guis.VersionGUI.versionframe;
+import static javax.swing.SwingConstants.BOTTOM;
 
 public class GUI {
 
@@ -32,6 +33,24 @@ public class GUI {
             e.printStackTrace();
         }
     }
+    public static ImageIcon utilitater;
+
+    static {
+        try {
+            utilitater = new ImageIcon(new URL("https://github.com/QPCrummer/TaterLauncherResources/blob/main/Utilitater.png?raw=true"));
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+    }
+    public static ImageIcon settingtater;
+
+    static {
+        try {
+            settingtater = new ImageIcon(new URL("https://github.com/QPCrummer/TaterLauncherResources/blob/main/SettingsTater.png?raw=true"));
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+    }
 
     //Frames
     public static final JFrame frame = new JFrame();
@@ -44,9 +63,9 @@ public class GUI {
     private static final JPanel topsubpanel = new JPanel();
     //Buttons
     private static final JButton startbutton = new JButton("Start Minecraft");
-    private static final JButton settingsbutton = new JButton("Settings");
+    private static final JButton settingsbutton = new JButton("Settings",settingtater);
     private static final JButton versionbutton = new JButton("Version");
-    private static final JButton utilsbutton = new JButton();
+    private static final JButton utilsbutton = new JButton("Utils",utilitater);
     private static final JButton javabutton = new JButton("Java Configuration");
     //Labels
     private static final JLabel menupic = new JLabel(background);
