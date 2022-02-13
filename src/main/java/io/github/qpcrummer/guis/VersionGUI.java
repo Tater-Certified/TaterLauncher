@@ -9,13 +9,14 @@ import static io.github.qpcrummer.guis.GUI.frame;
 import static io.github.qpcrummer.guis.GUI.icon;
 
 public class VersionGUI {
+    //Frames
     public static final JFrame versionframe = new JFrame();
+    //Panels
     private static final JPanel versionpanel = new JPanel();
 
     public static void initializever() {
         //Version Frame
         versionpanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        versionpanel.setBackground(new Color(98, 184, 245));
         versionframe.add(versionpanel);
         versionframe.setTitle("Version Selector");
         versionframe.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
