@@ -21,34 +21,32 @@ public class VersionGUI {
     //Frames
     public static final JFrame versionframe = new JFrame();
     //Panels
-    private static final JPanel masterpanel = new JPanel();
-    private static final JPanel versionpanel = new JPanel();
-    private static final JPanel newverpanel = new JPanel();
+    public static final JPanel masterpanel = new JPanel();
+    public static final JPanel versionpanel = new JPanel();
+    public static final JPanel newverpanel = new JPanel();
     //Labels
-    public static final JLabel verlabel = new JLabel("Select Your Version");
+    public static final JLabel verlabel = new JLabel("   Select Your Version");
     public static final JLabel newverlabel = new JLabel("Create A New Version");
     //Butons
     public static final JButton createver = new JButton("Create");
     //Text Boxes
     public static final JTextField namever = new JTextField("Name");
     //Profile Panels
-    private static final JPanel profile0 = new JPanel();
-    private static final JPanel profile1 = new JPanel();
+    public static final JPanel profile0 = new JPanel();
+    public static final JPanel profile1 = new JPanel();
     //Profile Names
-    private static final JLabel label0 = new JLabel(name0);
-    private static final JLabel label1 = new JLabel(name1);
+    public static final JLabel label0 = new JLabel(name0);
+    public static final JLabel label1 = new JLabel(name1);
     //DropDown Ver
     public static final JComboBox<String> ver0 = new JComboBox<>(versionoptions);
     public static final JComboBox<String> ver1 = new JComboBox<>(versionoptions);
     //Text Box Dir
-    public static final JTextField dir0 = new JTextField();
-    public static final JTextField dir1 = new JTextField();
+    public static final JTextField dir0 = new JTextField("Insert Directory");
+    public static final JTextField dir1 = new JTextField("Insert Directory");
     //Text Box Java
     public static final JComboBox<String> java0 = new JComboBox<>(javaoptions);
     public static final JComboBox<String> java1 = new JComboBox<>(javaoptions);
     //Profile Button
-    public static final JButton probutton0 = new JButton("Edit");
-    public static final JButton probutton1 = new JButton("Edit");
     public static final JButton select0 = new JButton("Select");
     public static final JButton select1 = new JButton("Select");
     //Loader DropDown
@@ -61,9 +59,9 @@ public class VersionGUI {
         //Version Frame
         versionframe.setTitle("Version Selector");
         versionframe.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        versionframe.pack();
         versionframe.setMinimumSize(new Dimension(500,500));
         versionframe.setIconImage(icon);
+        JFrame.setDefaultLookAndFeelDecorated(false);
 
         versionframe.add(masterpanel);
 
@@ -89,12 +87,12 @@ public class VersionGUI {
         newverpanel.add(namever, BorderLayout.LINE_START);
         newverpanel.add(createver, BorderLayout.CENTER);
 
-
         //Profile configurations
         profile0.add(label0);
         profile0.add(select0);
         profile0.add(ver0);
         profile0.add(dir0);
+        dir0.setPreferredSize(new Dimension(200,25));
         profile0.add(java0);
         profile0.add(loader0);
 
@@ -102,6 +100,7 @@ public class VersionGUI {
         profile1.add(select1);
         profile1.add(ver1);
         profile1.add(dir1);
+        dir1.setPreferredSize(new Dimension(200,25));
         profile1.add(java1);
         profile1.add(loader1);
 
@@ -112,6 +111,11 @@ public class VersionGUI {
         //Label Config
         verlabel.setFont(new Font("Serif", Font.HANGING_BASELINE, 20));
         newverlabel.setFont(new Font("Serif", Font.HANGING_BASELINE, 18));
+        newverlabel.setPreferredSize(new Dimension(200,60));
+
+
+        //Text Box Config
+        namever.setPreferredSize(new Dimension(300,30));
 
         versionframe.addWindowListener(new WindowAdapter() {
 
@@ -121,6 +125,6 @@ public class VersionGUI {
                 frame.setVisible(true);
             }
         });
-
+        versionframe.pack();
     }
 }

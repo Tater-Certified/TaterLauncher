@@ -18,7 +18,7 @@ public class UtilGUI {
     public static final JCheckBox  tatercape = new JCheckBox("TaterCape - Enables a Tater-styled cape");
     public static final JCheckBox tatershoulder = new JCheckBox("TaterPet - Enables a tater that sits on your shoulder");
     public static final JCheckBox resourceusage = new JCheckBox("Resource Graph - Enables a resource usage graph");
-    public static final JCheckBox tatertube = new JCheckBox("TaterTube - Enables an ingame Youtube client");
+    public static final JCheckBox tatertube = new JCheckBox("TaterTube - Enables an in-game Youtube client");
     //Labels
     public static final JLabel toggles = new JLabel("Toggles");
     public static final JLabel apps = new JLabel("Applications");
@@ -31,9 +31,9 @@ public class UtilGUI {
         utilframe.getContentPane().setLayout(new GridLayout(1, 1));
         utilframe.setTitle("Utilities");
         utilframe.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        utilframe.pack();
         utilframe.setMinimumSize(new Dimension(500,500));
         utilframe.setIconImage(icon);
+        JFrame.setDefaultLookAndFeelDecorated(false);
 
         //Add tabs
         tabs.addTab("Toggles",togglespanel);
@@ -70,6 +70,6 @@ public class UtilGUI {
                 frame.setVisible(true);
             }
         });
-
+        utilframe.pack();
     }
 }

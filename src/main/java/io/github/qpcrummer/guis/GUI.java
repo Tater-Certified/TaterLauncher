@@ -55,63 +55,57 @@ public class GUI {
     //Frames
     public static final JFrame frame = new JFrame();
     //Panels
-    private static final JPanel panel = new JPanel(new BorderLayout());
+    public static final JPanel panel = new JPanel();
     //Sub Panels
-    private static final JPanel buttonsubpanel = new JPanel();
-    private static final JPanel leftsubpanel = new JPanel();
-    private static final JPanel rightsubpanel = new JPanel();
-    private static final JPanel topsubpanel = new JPanel();
+    public static final JPanel buttonsubpanel = new JPanel();
+    public static final JPanel topsubpanel = new JPanel();
+    public static final JPanel leftsubpanel = new JPanel();
+    public static final JPanel rightsubpanel = new JPanel();
     //Buttons
-    private static final JButton startbutton = new JButton("Start Minecraft");
-    private static final JButton settingsbutton = new JButton("Settings",settingtater);
-    private static final JButton versionbutton = new JButton("Version");
-    private static final JButton utilsbutton = new JButton("Utils",utilitater);
-    private static final JButton javabutton = new JButton("Java Configuration");
+    public static final JButton startbutton = new JButton("Start Minecraft");
+    public static final JButton settingsbutton = new JButton("Settings",settingtater);
+    public static final JButton versionbutton = new JButton("Version");
+    public static final JButton utilsbutton = new JButton("Utils",utilitater);
+    public static final JButton javabutton = new JButton("Java Configuration");
     //Labels
     private static final JLabel menupic = new JLabel(background);
-    private static final JLabel launchername = new JLabel("Tater Launcher");
+    public static final JLabel launchername = new JLabel("Tater Launcher");
 
     public static void initializeGui() {
 
         //Main Frame
-        frame.add(panel);
-
+        frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("Tater Launcher");
-        frame.pack();
-        frame.setVisible(true);
         frame.setMinimumSize(new Dimension(510,510));
         frame.setExtendedState(frame.getExtendedState() | JFrame.MAXIMIZED_BOTH);
         frame.setIconImage(icon);
+        frame.getContentPane().add(panel);
+        JFrame.setDefaultLookAndFeelDecorated(false);
 
         //Panel Settings
-        panel.add(menupic);
-        panel.setBackground(new Color(153, 170, 181));
-
-        buttonsubpanel.add(versionbutton);
-        buttonsubpanel.add(startbutton);
-        buttonsubpanel.add(javabutton);
-        topsubpanel.add(settingsbutton);
-        topsubpanel.add(launchername);
-        topsubpanel.add(utilsbutton);
-
+        panel.setLayout(new BorderLayout());
+        panel.add(menupic, BorderLayout.CENTER);
         panel.add(buttonsubpanel, BorderLayout.PAGE_END);
         panel.add(leftsubpanel, BorderLayout.LINE_START);
         panel.add(rightsubpanel, BorderLayout.LINE_END);
         panel.add(topsubpanel, BorderLayout.PAGE_START);
 
-        buttonsubpanel.setBackground(new Color(44, 47, 51));
-        leftsubpanel.setBackground(new Color(35, 39, 42));
-        rightsubpanel.setBackground(new Color(35, 39, 42));
-        topsubpanel.setBackground(new Color(35, 39, 42));
+
+        buttonsubpanel.add(versionbutton);
+        buttonsubpanel.add(startbutton);
+        buttonsubpanel.add(javabutton);
+
+        topsubpanel.add(settingsbutton);
+        topsubpanel.add(launchername);
+        topsubpanel.add(utilsbutton);
+
+
         //Label settings
         launchername.setFont(new Font("Serif", Font.BOLD, 40));
-        launchername.setForeground(new Color(153, 170, 181));
 
         //start button settings
         startbutton.setPreferredSize(new Dimension(150,50));
-        startbutton.setForeground(Color.WHITE);
-        startbutton.setBackground(new Color(0, 140, 0));
         startbutton.addActionListener(e -> {
             startbutton.setText("Minecraft is starting!");
             MinecraftLaunch.launchmc();
@@ -138,7 +132,17 @@ public class GUI {
         javabutton.addActionListener(e -> {
             javaframe.setVisible(true);
             System.out.println("Java Button Was Pressed");
-            JavaGUI.initializejavaui();
+            try {
+                JavaGUI.initializejavaui();
+            } catch (UnsupportedLookAndFeelException ex) {
+                ex.printStackTrace();
+            } catch (ClassNotFoundException ex) {
+                ex.printStackTrace();
+            } catch (InstantiationException ex) {
+                ex.printStackTrace();
+            } catch (IllegalAccessException ex) {
+                ex.printStackTrace();
+            }
         });
 
         //Util button settings
@@ -149,5 +153,6 @@ public class GUI {
             System.out.println("Util Button Was Pressed");
             UtilGUI.initializeutil();
         });
+        frame.pack();
     }
 }

@@ -1,9 +1,11 @@
 package io.github.qpcrummer.guis;
 
 import javax.swing.*;
+import javax.swing.filechooser.FileFilter;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
 
 import static io.github.qpcrummer.guis.GUI.icon;
 
@@ -16,6 +18,7 @@ public class JavaGUI {
     public static final JPanel path = new JPanel();
     public static final JPanel ram = new JPanel();
     public static final JPanel flags = new JPanel();
+    public static final JPanel newprocombo = new JPanel();
     //Tabs
     public static final JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 
@@ -49,17 +52,31 @@ public class JavaGUI {
     public static final JCheckBox largepagescheck = new JCheckBox("UseLargePages");
     public static final JCheckBox utf8check = new JCheckBox("Dfile.encoding=UTF-8 - Fast Encoder");
     //DropDownMenus
-    static String[] optionsToChoose = {"Parallel", "G1", "Z", "Shenandoah"};
+    static String[] optionsToChoose = {"Parallel", "G1", "Z", "Shenandoah", "Other"};
     public static final JComboBox<String> gcselect = new JComboBox<>(optionsToChoose);
 
-    public static void initializejavaui() {
+    public static void initializejavaui() throws UnsupportedLookAndFeelException, ClassNotFoundException, InstantiationException, IllegalAccessException {
         //Java Frame
         javaframe.getContentPane().setLayout(new GridLayout(1, 1));
         javaframe.setTitle("Java Settings");
         javaframe.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        javaframe.pack();
         javaframe.setMinimumSize(new Dimension(555, 500));
         javaframe.setIconImage(icon);
+
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        javafinder.updateUI();
+        profilefinder.updateUI();
+
         //Add Tabs
         tabbedPane.addTab("Select Profile", profiles);
         tabbedPane.addTab("New Profile", newpro);
@@ -74,19 +91,40 @@ public class JavaGUI {
         profiles.setLayout(new BoxLayout(profiles, BoxLayout.PAGE_AXIS));
         profiles.add(finderlabel);
         profiles.add(profilefinder);
+        profilefinder.setApproveButtonText("Select Profile");
+
+
+        profilefinder.setFileFilter(new FileFilter()
+        {
+            @Override
+            public boolean accept(File file)
+            {
+                return file.getName().equalsIgnoreCase(".JSON");
+            }
+
+            @Override
+            public String getDescription()
+            {
+                return ".json files";
+            }
+        });
 
         //New Profiles
         newpro.setBorder(BorderFactory.createEmptyBorder(10, 10, 30, 10));
-        newpro.setLayout(new BoxLayout(newpro, BoxLayout.PAGE_AXIS));
+        newpro.setLayout(new BoxLayout(newpro, BoxLayout.Y_AXIS));
         newpro.add(newprolabel);
-        newpro.add(newproname);
-        newpro.add(newprofile);
+        newpro.add(newprocombo);
+        newprocombo.setLayout(new GridLayout(1,2));
+        newprocombo.add(newproname);
+        newprocombo.add(newprofile);
+        newprocombo.setBorder(BorderFactory.createEmptyBorder(200, 10, 100, 10));
 
         //Java Paths
         path.setBorder(BorderFactory.createEmptyBorder(10, 10, 30, 10));
         path.setLayout(new BoxLayout(path, BoxLayout.PAGE_AXIS));
         path.add(javalabel);
         path.add(javafinder);
+
 
         //Ram
         ram.setBorder(BorderFactory.createEmptyBorder(10, 10, 30, 10));
@@ -119,17 +157,17 @@ public class JavaGUI {
 
         //Label configs
         finderlabel.setFont(new Font("Serif", Font.HANGING_BASELINE, 30));
-        javalabel.setFont(new Font("Serif", Font.HANGING_BASELINE, 20));
-        ramlabel.setFont(new Font("Serif", Font.HANGING_BASELINE, 20));
-        minjavalabel.setFont(new Font("Serif", Font.BOLD, 15));
-        maxjavalabel.setFont(new Font("Serif", Font.BOLD, 15));
+        javalabel.setFont(new Font("Serif", Font.HANGING_BASELINE, 30));
+        ramlabel.setFont(new Font("Serif", Font.HANGING_BASELINE, 30));
+        minjavalabel.setFont(new Font("Serif", Font.BOLD, 20));
+        maxjavalabel.setFont(new Font("Serif", Font.BOLD, 20));
         flagslabel.setFont(new Font("Serif", Font.HANGING_BASELINE, 20));
         gclabel.setFont(new Font("Serif", Font.BOLD, 18));
         jvmflaglabel.setFont(new Font("Serif", Font.BOLD, 18));
         gcthreadlabel.setFont(new Font("Serif", Font.BOLD, 12));
         largepage.setFont(new Font("Serif", Font.BOLD, 12));
         otherargslabel.setFont(new Font("Serif", Font.BOLD, 18));
-        newprolabel.setFont(new Font("Serif", Font.HANGING_BASELINE, 20));
+        newprolabel.setFont(new Font("Serif", Font.HANGING_BASELINE, 30));
 
         javaframe.addWindowListener(new WindowAdapter() {
             @Override
@@ -137,5 +175,7 @@ public class JavaGUI {
                 System.out.println("Java Frame is closing");
             }
         });
+
+        javaframe.pack();
     }
 }
