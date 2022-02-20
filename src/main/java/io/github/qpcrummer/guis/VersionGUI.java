@@ -145,7 +145,7 @@ public class VersionGUI {
         versionframe.pack();
     }
 
-    class VersionHelpers {
+    static class VersionHelpers {
         public static Object[] getVersions() throws IOException {
             Gson gson = new Gson();
             ArrayList<String> out = new ArrayList<String>();
@@ -153,8 +153,7 @@ public class VersionGUI {
             for (VersionFromJsonButInAClass.Version v: versionMetaFromJson.versions) {
                 out.add(v.id);
             }
-            Object[] outArr = out.toArray();
-            return outArr;
+            return out.toArray();
         }
 
         public static String getVersionsFromMojank() throws IOException {
@@ -163,7 +162,7 @@ public class VersionGUI {
             return jsonScanner.hasNext() ? jsonScanner.next() : "";
         }
 
-        class VersionFromJsonButInAClass {
+        static class VersionFromJsonButInAClass {
             Latest latest;
             Version[] versions;
 
@@ -172,7 +171,7 @@ public class VersionGUI {
                 versions = b;
             }
 
-            class Latest {
+            static class Latest {
                 String release;
                 String snapshot;
 
@@ -185,7 +184,7 @@ public class VersionGUI {
                 }
             }
 
-            class Version {
+            static class Version {
                 String id;
                 String type;
                 URL url;
