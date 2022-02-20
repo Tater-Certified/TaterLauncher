@@ -21,7 +21,6 @@ public class VersionGUI {
     public static String name1 = "This is a test";
 
     //Strings
-//    static String[] versionoptions = {"1.18.1", "outdated"};
     static String[] javaoptions = {"Grab Java Profiles"};
     static String[] loaderoptions = {"Vanilla","Fabric","Fabric Performance","Fabric Cinematic","Forge","Optifine"};
 
