@@ -1,9 +1,16 @@
 package io.github.qpcrummer.guis;
 
+import com.google.gson.Gson;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 import static io.github.qpcrummer.guis.GUI.frame;
 import static io.github.qpcrummer.guis.GUI.icon;
@@ -14,7 +21,7 @@ public class VersionGUI {
     public static String name1 = "This is a test";
 
     //Strings
-    static String[] versionoptions = {"1.18.1", "outdated"};
+//    static String[] versionoptions = {"1.18.1", "outdated"};
     static String[] javaoptions = {"Grab Java Profiles"};
     static String[] loaderoptions = {"Vanilla","Fabric","Fabric Performance","Fabric Cinematic","Forge","Optifine"};
 
@@ -38,8 +45,19 @@ public class VersionGUI {
     public static final JLabel label0 = new JLabel(name0);
     public static final JLabel label1 = new JLabel(name1);
     //DropDown Ver
-    public static final JComboBox<String> ver0 = new JComboBox<>(versionoptions);
-    public static final JComboBox<String> ver1 = new JComboBox<>(versionoptions);
+    public static JComboBox<Object> ver0;
+    public static JComboBox<Object> ver1;
+
+    static {
+        try {
+            ver0 = new JComboBox<>(VersionHelpers.getVersions());
+
+            ver1 = new JComboBox<>(VersionHelpers.getVersions());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     //Text Box Dir
     public static final JTextField dir0 = new JTextField("Insert Directory");
     public static final JTextField dir1 = new JTextField("Insert Directory");
@@ -126,5 +144,75 @@ public class VersionGUI {
             }
         });
         versionframe.pack();
+    }
+
+    class VersionHelpers {
+        public static Object[] getVersions() throws IOException {
+            Gson gson = new Gson();
+            ArrayList<String> out = new ArrayList<String>();
+            VersionFromJsonButInAClass versionMetaFromJson = gson.fromJson(getVersionsFromMojank(), VersionFromJsonButInAClass.class);
+            for (VersionFromJsonButInAClass.Version v: versionMetaFromJson.versions) {
+                out.add(v.id);
+            }
+            Object[] outArr = out.toArray();
+            return outArr;
+        }
+
+        public static String getVersionsFromMojank() throws IOException {
+            InputStream in = new URL("https://launchermeta.mojang.com/mc/game/version_manifest.json").openConnection().getInputStream();
+            Scanner jsonScanner = new Scanner(in).useDelimiter("\\A");
+            return jsonScanner.hasNext() ? jsonScanner.next() : "";
+        }
+
+        class VersionFromJsonButInAClass {
+            Latest latest;
+            Version[] versions;
+
+            public VersionFromJsonButInAClass(Latest a, Version[] b) {
+                latest = a;
+                versions = b;
+            }
+
+            class Latest {
+                String release;
+                String snapshot;
+
+                public String getRelease() {
+                    return release;
+                }
+
+                public String getSnapshot() {
+                    return snapshot;
+                }
+            }
+
+            class Version {
+                String id;
+                String type;
+                URL url;
+                String time;
+                String releaseTime;
+
+                public String getId() {
+                    return id;
+                }
+
+                public String getReleaseTime() {
+                    return releaseTime;
+                }
+
+                public  String getTime() {
+                    return time;
+                }
+
+                public String getType() {
+                    return type;
+                }
+
+                public URL getUrl() {
+                    return url;
+                }
+            }
+        }
     }
 }
