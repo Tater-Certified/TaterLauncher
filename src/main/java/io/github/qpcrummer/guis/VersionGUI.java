@@ -57,9 +57,9 @@ public class VersionGUI {
         }
     }
 
-    //Text Box Dir
-    public static final JTextField dir0 = new JTextField("Insert Directory");
-    public static final JTextField dir1 = new JTextField("Insert Directory");
+    //Directories
+    public static final JButton dir0 = new JButton("Choose Path");
+    public static final JButton dir1 = new JButton("Choose Path");
     //Text Box Java
     public static final JComboBox<String> java0 = new JComboBox<>(javaoptions);
     public static final JComboBox<String> java1 = new JComboBox<>(javaoptions);
@@ -90,7 +90,6 @@ public class VersionGUI {
 
         //Version Panel
         versionpanel.setLayout(new BoxLayout(versionpanel, BoxLayout.PAGE_AXIS));
-        versionpanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 0, 10));
 
         //Add Profiles
         versionpanel.add(profile0);
@@ -105,19 +104,25 @@ public class VersionGUI {
         newverpanel.add(createver, BorderLayout.CENTER);
 
         //Profile configurations
+        profile0.setPreferredSize(new Dimension(800,35));
         profile0.add(label0);
         profile0.add(select0);
         profile0.add(ver0);
         profile0.add(dir0);
-        dir0.setPreferredSize(new Dimension(200,25));
+        dir0.addActionListener(ae -> {
+        });
+        dir0.setPreferredSize(new Dimension(300,25));
         profile0.add(java0);
         profile0.add(loader0);
 
+        profile1.setPreferredSize(new Dimension(800,35));
         profile1.add(label1);
         profile1.add(select1);
         profile1.add(ver1);
         profile1.add(dir1);
-        dir1.setPreferredSize(new Dimension(200,25));
+        dir1.addActionListener(ae -> {
+        });
+        dir1.setPreferredSize(new Dimension(300,25));
         profile1.add(java1);
         profile1.add(loader1);
 
@@ -145,10 +150,12 @@ public class VersionGUI {
         versionframe.pack();
     }
 
+    //Version code I don't understand
+
     static class VersionHelpers {
         public static Object[] getVersions() throws IOException {
             Gson gson = new Gson();
-            ArrayList<String> out = new ArrayList<String>();
+            ArrayList<String> out = new ArrayList<>();
             VersionFromJsonButInAClass versionMetaFromJson = gson.fromJson(getVersionsFromMojank(), VersionFromJsonButInAClass.class);
             for (VersionFromJsonButInAClass.Version v: versionMetaFromJson.versions) {
                 out.add(v.id);

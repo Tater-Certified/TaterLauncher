@@ -151,7 +151,7 @@ public class Light {
         loader0.setBackground(new Color(209, 209, 209));
 
         profile1.setBackground(Color.WHITE);
-        select1.setBackground(new Color(209, 209, 209));
+        select1.setBackground(new Color(0, 200, 0));
         select1.setForeground(Color.BLACK);
         label1.setForeground(Color.BLACK);
         ver1.setBackground(new Color(209, 209, 209));
