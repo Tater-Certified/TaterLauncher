@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'com.github.johnrengelman.shadow' version '5.2.0'
 }
 
 group 'io.github.qpcrummer'
@@ -9,11 +10,16 @@ sourceCompatibility = targetCompatibility = JavaVersion.VERSION_17
 
 repositories {
     mavenCentral()
+    maven {
+        url 'https://repo.nevets.tech/repository/maven-public'
+    }
 }
 
 dependencies {
     implementation 'com.google.code.gson:gson:2.9.0'
+    implementation 'net.arikia.dev:drpc:1.0'
 }
+
 jar {
     manifest {
         attributes(
