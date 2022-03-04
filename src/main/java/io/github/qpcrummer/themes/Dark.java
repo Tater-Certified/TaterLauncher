@@ -122,11 +122,13 @@ public class Dark {
         tatershoulder.setBackground(darkcheck);
         resourceusage.setBackground(darkcheck);
         tatertube.setBackground(darkcheck);
+        rpc.setBackground(darkcheck);
         toggles.setForeground(darklabelforebig);
         tatercape.setForeground(Color.WHITE);
         tatershoulder.setForeground(Color.WHITE);
         resourceusage.setForeground(Color.WHITE);
         tatertube.setForeground(Color.WHITE);
+        rpc.setForeground(Color.WHITE);
 
         appspanel.setBackground(darkpanel);
         apps.setForeground(darklabelforebig);

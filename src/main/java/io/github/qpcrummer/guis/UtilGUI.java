@@ -1,5 +1,7 @@
 package io.github.qpcrummer.guis;
 
+import io.github.qpcrummer.DiscordRP;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
@@ -19,6 +21,7 @@ public class UtilGUI {
     public static final JCheckBox tatershoulder = new JCheckBox("TaterPet - Enables a tater that sits on your shoulder");
     public static final JCheckBox resourceusage = new JCheckBox("Resource Graph - Enables a resource usage graph");
     public static final JCheckBox tatertube = new JCheckBox("TaterTube - Enables an in-game Youtube client");
+    public static final JCheckBox rpc = new JCheckBox("TaterRPC - Discord Rich Presence (Can be slow sometimes)");
     //Labels
     public static final JLabel toggles = new JLabel("Toggles");
     public static final JLabel apps = new JLabel("Applications");
@@ -45,6 +48,7 @@ public class UtilGUI {
         togglespanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 30, 10));
         togglespanel.setLayout(new BoxLayout(togglespanel, BoxLayout.PAGE_AXIS));
         togglespanel.add(toggles);
+        togglespanel.add(rpc);
         togglespanel.add(tatercape);
         togglespanel.add(tatershoulder);
         togglespanel.add(resourceusage);
@@ -71,5 +75,24 @@ public class UtilGUI {
             }
         });
         utilframe.pack();
+
+        rpc.addActionListener(e -> {
+            if (rpc.isSelected()) {
+                try {
+                    DiscordRP.reset();
+                    System.out.println("RPC Init");
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+            if (!rpc.isSelected()) {
+                try {
+                    DiscordRP.shutdown();
+                    System.out.println("RPC Stop");
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
     }
 }

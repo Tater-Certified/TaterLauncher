@@ -5,11 +5,17 @@ import net.arikia.dev.drpc.DiscordEventHandlers;
 import net.arikia.dev.drpc.DiscordRichPresence;
 
 public class DiscordRP {
-    private static boolean running = true;
+    static boolean running = true;
     private static long created = 0;
 
     public static void start() {
         created = System.currentTimeMillis();
+
+        new Thread(() -> {
+            while (running) {
+                DiscordRPC.discordRunCallbacks();
+            }
+        }).start();
 
         DiscordEventHandlers handlers = new DiscordEventHandlers.Builder().setReadyEventHandler(user -> {
             System.out.println("Welcome " + user.username + "#" + user.discriminator + "!");
@@ -18,16 +24,11 @@ public class DiscordRP {
 
         DiscordRPC.discordInitialize("948043055582302250", handlers, true);
         DiscordRPC.discordRegister("948043055582302250", "");
-
-        new Thread(() -> {
-            while (running) {
-                DiscordRPC.discordRunCallbacks();
-            }
-        }).start();
     }
 
     public static void shutdown() {
         running = false;
+        DiscordRPC.discordClearPresence();
         DiscordRPC.discordShutdown();
     }
 
@@ -38,5 +39,10 @@ public class DiscordRP {
         b.setStartTimestamps(created);
 
         DiscordRPC.discordUpdatePresence(b.build());
+    }
+
+    public static void reset() {
+        running = true;
+        DiscordRP.start();
     }
 }

@@ -3,7 +3,6 @@ package io.github.qpcrummer;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Properties;
 
 import static io.github.qpcrummer.guis.ConfigGUI.usernameVar;
@@ -13,13 +12,6 @@ public class Config {
     static String launcher1 = "path";
     static String minecraft1 = "path";
     static Properties prop = new Properties();
-
-    public static void folder() {
-        try {
-            Files.createDirectory(Paths.get("TaterLauncher"));
-        } catch (IOException ignored) {
-        }
-    }
 
     public static void loadConfig() {
         try (InputStream input = new FileInputStream("TaterLauncher/config.properties")) {
