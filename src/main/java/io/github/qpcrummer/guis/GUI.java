@@ -5,9 +5,8 @@ import io.github.qpcrummer.launch.MinecraftLaunch;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 
 import static io.github.qpcrummer.guis.ConfigGUI.settingframe;
 import static io.github.qpcrummer.guis.JavaGUI.javaframe;
@@ -19,7 +18,7 @@ public class GUI {
     public static Image icon;
     static {
         try {
-            icon = ImageIO.read(new URL("https://github.com/QPCrummer/TaterLauncherResources/blob/main/TaterMC.png?raw=true"));
+            icon = ImageIO.read(new File("TaterLauncher/assets/TaterMC.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -27,29 +26,17 @@ public class GUI {
     public static ImageIcon background;
 
     static {
-        try {
-            background = new ImageIcon(new URL("https://github.com/QPCrummer/TaterLauncherResources/blob/main/TaterMC%20V3%20RC4.png?raw=true"));
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
+        background = new ImageIcon(String.valueOf(new File("TaterLauncher/assets/TaterMC%20V3%20RC4.png")));
     }
     public static ImageIcon utilitater;
 
     static {
-        try {
-            utilitater = new ImageIcon(new URL("https://github.com/QPCrummer/TaterLauncherResources/blob/main/Utilitater.png?raw=true"));
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
+        utilitater = new ImageIcon(String.valueOf(new File("TaterLauncher/assets/Utilitater.png")));
     }
     public static ImageIcon settingtater;
 
     static {
-        try {
-            settingtater = new ImageIcon(new URL("https://github.com/QPCrummer/TaterLauncherResources/blob/main/SettingsTater.png?raw=true"));
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
+        settingtater = new ImageIcon(String.valueOf(new File("TaterLauncher/assets/SettingsTater.png")));
     }
 
     //Frames
@@ -134,13 +121,7 @@ public class GUI {
             System.out.println("Java Button Was Pressed");
             try {
                 JavaGUI.initializejavaui();
-            } catch (UnsupportedLookAndFeelException ex) {
-                ex.printStackTrace();
-            } catch (ClassNotFoundException ex) {
-                ex.printStackTrace();
-            } catch (InstantiationException ex) {
-                ex.printStackTrace();
-            } catch (IllegalAccessException ex) {
+            } catch (UnsupportedLookAndFeelException | ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
                 ex.printStackTrace();
             }
         });

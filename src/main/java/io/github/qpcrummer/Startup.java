@@ -22,22 +22,23 @@ public class Startup {
         } catch (IOException ignored) {
         }
         //Download Assets
-        //String[] assetList = {"https://github.com/QPCrummer/TaterLauncherResources/blob/main/SettingsTater.png?raw=true", "https://github.com/QPCrummer/TaterLauncherResources/blob/main/TaterMC%20V3%20RC4.png?raw=true", "https://github.com/QPCrummer/TaterLauncherResources/blob/main/TaterMC.png?raw=true", "https://github.com/QPCrummer/TaterLauncherResources/blob/main/Utilitater.png?raw=true"};
-        //URL url = new URL(assetList);
-        //InputStream in = new BufferedInputStream(url.openStream());
-        //ByteArrayOutputStream out = new ByteArrayOutputStream();
-        //byte[] buf = new byte[1024];
-        //int n;
-        //while (-1!=(n=in.read(buf)))
-        //{
-        //    out.write(buf, 0, n);
-        //}
-        //out.close();
-        //in.close();
-        //byte[] response = out.toByteArray();
-        //Save Assets
-        //FileOutputStream fos = new FileOutputStream("TaterLauncher/assets/SettingsTater.png");
-        //fos.write(response);
-        //fos.close();
+        String[] assetList = {"SettingsTater.png", "TaterMC%20V3%20RC4.png", "TaterMC.png", "Utilitater.png"};
+        for (int i = 0; i < assetList.length; i++) {
+            URL url = new URL("https://github.com/QPCrummer/TaterLauncherResources/blob/main/" + assetList[i] + "?raw=true");
+            InputStream in = new BufferedInputStream(url.openStream());
+            ByteArrayOutputStream out = new ByteArrayOutputStream();
+            byte[] buf = new byte[1024];
+            int n;
+            while (-1 != (n = in.read(buf))) {
+                out.write(buf, 0, n);
+            }
+            out.close();
+            in.close();
+            byte[] response = out.toByteArray();
+            //Save Assets
+            FileOutputStream fos = new FileOutputStream("TaterLauncher/assets/" + assetList[i]);
+            fos.write(response);
+            fos.close();
+        }
     }
 }
