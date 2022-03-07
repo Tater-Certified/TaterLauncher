@@ -103,7 +103,7 @@ public class GUI {
         settingsbutton.addActionListener(e -> {
             System.out.println("Settings Was Pressed");
             settingframe.setVisible(true);
-            ConfigGUI.initializeconfigui();
+            ConfigGUI.initializeConfigGui();
         });
 
         //version button settings
@@ -132,7 +132,7 @@ public class GUI {
         utilsbutton.addActionListener(e -> {
             utilframe.setVisible(true);
             System.out.println("Util Button Was Pressed");
-            UtilGUI.initializeutil();
+            UtilGUI.initializeUtil();
         });
         frame.pack();
     }

@@ -9,9 +9,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
         Startup.prep();
         Config.loadConfig();
-        ActiveUtils.loadActiveUtils();
         GUI.initializeGui();
         Light.initlight();
-        DiscordRP.update("", "");
     }
 }

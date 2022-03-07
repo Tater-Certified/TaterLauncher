@@ -1,28 +1,31 @@
 package io.github.qpcrummer.guis;
 
-import io.github.qpcrummer.ActiveUtils;
+import io.github.qpcrummer.Config;
 import io.github.qpcrummer.DiscordRP;
+import org.simpleyaml.configuration.file.YamlFile;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.IOException;
 
 import static io.github.qpcrummer.guis.GUI.frame;
 import static io.github.qpcrummer.guis.GUI.icon;
 
 public class UtilGUI {
+    private static final YamlFile CONFIG = Config.CONFIG;
     //Frames
     public static final JFrame utilframe = new JFrame();
     //Panels
     public static final JPanel togglespanel = new JPanel();
     public static final JPanel appspanel = new JPanel();
     //Checkbox
-    public static final JCheckBox  tatercape = new JCheckBox("TaterCape - Enables a Tater-styled cape");
-    public static final JCheckBox tatershoulder = new JCheckBox("TaterPet - Enables a tater that sits on your shoulder");
-    public static final JCheckBox resourceusage = new JCheckBox("Resource Graph - Enables a resource usage graph");
-    public static final JCheckBox tatertube = new JCheckBox("TaterTube - Enables an in-game Youtube client");
-    public static final JCheckBox rpc = new JCheckBox("TaterRPC - Discord Rich Presence (Can be slow sometimes)");
+    public static JCheckBox tatercape = new JCheckBox("TaterCape - Enables a Tater-styled cape");
+    public static JCheckBox tatershoulder = new JCheckBox("TaterPet - Enables a tater that sits on your shoulder");
+    public static JCheckBox resourceusage = new JCheckBox("Resource Graph - Enables a resource usage graph");
+    public static JCheckBox tatertube = new JCheckBox("TaterTube - Enables an in-game Youtube client");
+    public static JCheckBox rpc = new JCheckBox("TaterRPC - Discord Rich Presence (Can be slow sometimes)");
     //Labels
     public static final JLabel toggles = new JLabel("Toggles");
     public static final JLabel apps = new JLabel("Applications");
@@ -31,13 +34,13 @@ public class UtilGUI {
     public static final JTabbedPane tabs = new JTabbedPane(JTabbedPane.TOP);
 
     //Toggle Variables
-    public static String rpcVar = String.valueOf(rpc.isSelected());
-    public static String capeVar = String.valueOf(tatercape.isSelected());
-    public static String shoulderVar = String.valueOf(tatershoulder.isSelected());
-    public static String resourceVar = String.valueOf(resourceusage.isSelected());
-    public static String tubeVar = String.valueOf(tatertube.isSelected());
+    public static boolean rpcVar = rpc.isSelected();
+    public static boolean capeVar = tatercape.isSelected();
+    public static boolean shoulderVar = tatershoulder.isSelected();
+    public static boolean resourceVar = resourceusage.isSelected();
+    public static boolean tubeVar = tatertube.isSelected();
 
-    public static void initializeutil() {
+    public static void initializeUtil() {
         //Util Frame
         utilframe.getContentPane().setLayout(new GridLayout(1, 1));
         utilframe.setTitle("Utilities");
@@ -78,7 +81,8 @@ public class UtilGUI {
 
             @Override
             public void windowClosing(WindowEvent e) {
-                ActiveUtils.storeActiveUtils();
+                getSelection();
+                saveUtils();
                 System.out.println("Util is closing");
                 frame.setVisible(true);
             }
@@ -88,7 +92,6 @@ public class UtilGUI {
         rpc.addActionListener(e -> {
             if (rpc.isSelected()) {
                 try {
-                    System.out.println(rpcVar);
                     DiscordRP.reset();
                     System.out.println("RPC Init");
                 } catch (Exception ex) {
@@ -97,7 +100,6 @@ public class UtilGUI {
             }
             if (!rpc.isSelected()) {
                 try {
-                    System.out.println(rpcVar);
                     DiscordRP.shutdown();
                     System.out.println("RPC Stop");
                 } catch (Exception ex) {
@@ -105,5 +107,28 @@ public class UtilGUI {
                 }
             }
         });
+    }
+
+    private static void getSelection() {
+        rpcVar = rpc.isSelected();
+        capeVar = tatercape.isSelected();
+        shoulderVar = tatershoulder.isSelected();
+        resourceVar = resourceusage.isSelected();
+        tubeVar = tatertube.isSelected();
+    }
+
+    private static void saveUtils() {
+        CONFIG.set("tater.cape", capeVar);
+        CONFIG.set("tater.shoulder", shoulderVar);
+        CONFIG.set("tater.tube", tubeVar);
+        CONFIG.set("hooks.discord-rpc", rpcVar);
+        CONFIG.set("debug.resource-usage", resourceVar);
+
+        try {
+            CONFIG.save();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Config.reloadConfig();
     }
 }
