@@ -9,8 +9,6 @@ import static io.github.qpcrummer.guis.ConfigGUI.usernameVar;
 import static io.github.qpcrummer.guis.ConfigGUI.passwordVar;
 
 public class Config {
-    static String launcher1 = "path";
-    static String minecraft1 = "path";
     static Properties prop = new Properties();
 
     public static void loadConfig() {
@@ -19,8 +17,6 @@ public class Config {
             //get the properties value
             usernameVar = prop.getProperty("Username"); // Get the username from the GUI class
             passwordVar = prop.getProperty("Password"); // Get the password from the GUI class
-            launcher1 = prop.getProperty("LauncherPath");
-            minecraft1 = prop.getProperty("MineCraftPath");
             prop.load(input);
             System.out.println(prop);
         } catch (IOException ignored) {
@@ -34,8 +30,6 @@ public class Config {
             //set the properties value
             prop.setProperty("Username", usernameVar); // Get the username from the GUI class
             prop.setProperty("Password", passwordVar); // Get the password from the GUI class
-            prop.setProperty("LauncherPath", launcher1);
-            prop.setProperty("MineCraftPath", minecraft1);
             // save properties to project root folder
             prop.store(output, null);
 

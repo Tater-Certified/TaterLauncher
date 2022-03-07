@@ -1,5 +1,6 @@
 package io.github.qpcrummer.guis;
 
+import io.github.qpcrummer.ActiveUtils;
 import io.github.qpcrummer.DiscordRP;
 
 import javax.swing.*;
@@ -28,6 +29,13 @@ public class UtilGUI {
     public static final JLabel noapps = new JLabel("Apps are currently WIP");
     //Tabs
     public static final JTabbedPane tabs = new JTabbedPane(JTabbedPane.TOP);
+
+    //Toggle Variables
+    public static String rpcVar = String.valueOf(rpc.isSelected());
+    public static String capeVar = String.valueOf(tatercape.isSelected());
+    public static String shoulderVar = String.valueOf(tatershoulder.isSelected());
+    public static String resourceVar = String.valueOf(resourceusage.isSelected());
+    public static String tubeVar = String.valueOf(tatertube.isSelected());
 
     public static void initializeutil() {
         //Util Frame
@@ -70,6 +78,7 @@ public class UtilGUI {
 
             @Override
             public void windowClosing(WindowEvent e) {
+                ActiveUtils.storeActiveUtils();
                 System.out.println("Util is closing");
                 frame.setVisible(true);
             }
@@ -79,6 +88,7 @@ public class UtilGUI {
         rpc.addActionListener(e -> {
             if (rpc.isSelected()) {
                 try {
+                    System.out.println(rpcVar);
                     DiscordRP.reset();
                     System.out.println("RPC Init");
                 } catch (Exception ex) {
@@ -87,6 +97,7 @@ public class UtilGUI {
             }
             if (!rpc.isSelected()) {
                 try {
+                    System.out.println(rpcVar);
                     DiscordRP.shutdown();
                     System.out.println("RPC Stop");
                 } catch (Exception ex) {
