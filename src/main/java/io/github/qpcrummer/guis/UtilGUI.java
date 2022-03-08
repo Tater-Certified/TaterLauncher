@@ -65,6 +65,12 @@ public class UtilGUI {
         togglespanel.add(resourceusage);
         togglespanel.add(tatertube);
 
+        rpc.setSelected(CONFIG.getBoolean("hooks.discord-rpc"));
+        tatercape.setSelected(CONFIG.getBoolean("tater.cape"));
+        tatershoulder.setSelected(CONFIG.getBoolean("tater.shoulder"));
+        resourceusage.setSelected(CONFIG.getBoolean("debug.resource-usage"));
+        tatertube.setSelected(CONFIG.getBoolean("tater.tube"));
+
         //Apps Panel
         appspanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 30, 10));
         appspanel.setLayout(new BoxLayout(appspanel, BoxLayout.PAGE_AXIS));
