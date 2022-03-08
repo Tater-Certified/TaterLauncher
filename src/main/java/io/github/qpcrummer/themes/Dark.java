@@ -81,7 +81,6 @@ public class Dark {
         newproname.setForeground(Color.WHITE);
         newprofile.setBackground(darkbutton);
         newproname.setBackground(darktextbox);
-        newprolabel.setForeground(darklabelforebig);
 
         path.setBackground(darkpanel);
         javalabel.setForeground(darklabelforebig);

@@ -39,7 +39,6 @@ public class JavaGUI {
     public static final JLabel largepage = new JLabel("Set LargePages size");
     public static final JLabel gcthreadlabel = new JLabel("Set number of GC threads");
     public static final JLabel otherargslabel = new JLabel("Add other arguments");
-    public static final JLabel newprolabel = new JLabel("Create A New Profile");
     //Text Boxes
     public static final JTextField minjava = new JTextField("Use M for megabytes and G for gigabytes");
     public static final JTextField maxjava = new JTextField("Use M for megabytes and G for gigabytes");
@@ -78,8 +77,7 @@ public class JavaGUI {
         profilefinder.updateUI();
 
         //Add Tabs
-        tabbedPane.addTab("Select Profile", profiles);
-        tabbedPane.addTab("New Profile", newpro);
+        tabbedPane.addTab("Java Profiles", profiles);
         tabbedPane.addTab("Select Java", path);
         tabbedPane.addTab("Set Ram", ram);
         tabbedPane.addTab("Select Flags", flags);
@@ -87,10 +85,17 @@ public class JavaGUI {
         javaframe.getContentPane().add(tabbedPane);
 
         //Profiles
-        profiles.setBorder(BorderFactory.createEmptyBorder(10, 10, 30, 10));
+        profiles.setBorder(BorderFactory.createEmptyBorder(10, 10, 0, 10));
         profiles.setLayout(new BoxLayout(profiles, BoxLayout.PAGE_AXIS));
         profiles.add(finderlabel);
         profiles.add(profilefinder);
+        profiles.add(newprocombo);
+
+        newprocombo.setLayout(new GridLayout(1,2));
+        newprocombo.add(newproname);
+        newprocombo.add(newprofile);
+        newprocombo.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+
         profilefinder.setApproveButtonText("Select Profile");
 
 
@@ -109,15 +114,6 @@ public class JavaGUI {
             }
         });
 
-        //New Profiles
-        newpro.setBorder(BorderFactory.createEmptyBorder(10, 10, 30, 10));
-        newpro.setLayout(new BoxLayout(newpro, BoxLayout.Y_AXIS));
-        newpro.add(newprolabel);
-        newpro.add(newprocombo);
-        newprocombo.setLayout(new GridLayout(1,2));
-        newprocombo.add(newproname);
-        newprocombo.add(newprofile);
-        newprocombo.setBorder(BorderFactory.createEmptyBorder(200, 10, 100, 10));
 
         //Java Paths
         path.setBorder(BorderFactory.createEmptyBorder(10, 10, 30, 10));
@@ -125,6 +121,7 @@ public class JavaGUI {
         path.add(javalabel);
         path.add(javafinder);
 
+        javafinder.setApproveButtonText("Select Java");
 
         //Ram
         ram.setBorder(BorderFactory.createEmptyBorder(10, 10, 30, 10));
@@ -156,7 +153,7 @@ public class JavaGUI {
         newprofile.setPreferredSize(new Dimension(200,40));
 
         //Label configs
-        finderlabel.setFont(new Font("Serif", Font.HANGING_BASELINE, 30));
+        finderlabel.setFont(new Font("Serif", Font.HANGING_BASELINE, 20));
         javalabel.setFont(new Font("Serif", Font.HANGING_BASELINE, 30));
         ramlabel.setFont(new Font("Serif", Font.HANGING_BASELINE, 30));
         minjavalabel.setFont(new Font("Serif", Font.BOLD, 20));
@@ -167,7 +164,6 @@ public class JavaGUI {
         gcthreadlabel.setFont(new Font("Serif", Font.BOLD, 12));
         largepage.setFont(new Font("Serif", Font.BOLD, 12));
         otherargslabel.setFont(new Font("Serif", Font.BOLD, 18));
-        newprolabel.setFont(new Font("Serif", Font.HANGING_BASELINE, 30));
 
         javaframe.addWindowListener(new WindowAdapter() {
             @Override

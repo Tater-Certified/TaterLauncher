@@ -71,7 +71,6 @@ public class Light {
         newproname.setForeground(Color.BLACK);
         newprofile.setBackground(new Color(0, 200, 0));
         newproname.setBackground(new Color(209, 209, 209));
-        newprolabel.setForeground(Color.BLACK);
 
         path.setBackground(Color.WHITE);
         javalabel.setForeground(Color.BLACK);

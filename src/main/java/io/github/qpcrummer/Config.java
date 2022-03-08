@@ -7,12 +7,13 @@ import java.io.IOException;
 public class Config {
     private static final YamlFile YML_FILE = new YamlFile("TaterLauncher/config.yml");
     private static final String TL_LOGO =
-            "  _______    _            _                            _               \n"
-                    + " |__   __|  | |          | |                          | |              \n"
-                    + "    | | __ _| |_ ___ _ __| |     __ _ _   _ _ __   ___| |__   ___ _ __ \n"
-                    + "    | |/ _` | __/ _ \\ '__| |    / _` | | | | '_ \\ / __| '_ \\ / _ \\ '__|\n"
-                    + "    | | (_| | ||  __/ |  | |___| (_| | |_| | | | | (__| | | |  __/ |   \n"
-                    + "    |_|\\__,_|\\__\\___|_|  |______\\__,_|\\__,_|_| |_|\\___|_| |_|\\___|_|"
+            """
+                     _______    _            _                            _              \s
+                    |__   __|  | |          | |                          | |             \s
+                       | | __ _| |_ ___ _ __| |     __ _ _   _ _ __   ___| |__   ___ _ __\s
+                       | |/ _` | __/ _ \\ '__| |    / _` | | | | '_ \\ / __| '_ \\ / _ \\ '__|
+                       | | (_| | ||  __/ |  | |___| (_| | |_| | | | | (__| | | |  __/ |  \s
+                       |_|\\__,_|\\__\\___|_|  |______\\__,_|\\__,_|_| |_|\\___|_| |_|\\___|_|""".indent(1)
             ;
 
     public static void loadConfig() {
@@ -31,11 +32,11 @@ public class Config {
         }
 
         YML_FILE.setComment("tater", TL_LOGO);
-        YML_FILE.addDefault("tater.cape", true);
+        YML_FILE.addDefault("tater.cape", false);
         YML_FILE.setComment("tater.cape", "Use custom cape to show Tater Launcher loyalty");
-        YML_FILE.addDefault("tater.shoulder", true);
+        YML_FILE.addDefault("tater.shoulder", false);
         YML_FILE.setComment("tater.shoulder", "Adds a Tater Pet on your shoulder");
-        YML_FILE.addDefault("tater.tube", true);
+        YML_FILE.addDefault("tater.tube", false);
         YML_FILE.setComment("tater.tube", "Integrated YouTube client");
         YML_FILE.addDefault("hooks.discord-rpc", true);
         YML_FILE.setComment("hooks.discord-rpc", "Shows Tater Launcher in Discord Activity");
