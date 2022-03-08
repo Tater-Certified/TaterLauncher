@@ -11,6 +11,9 @@ sourceCompatibility = targetCompatibility = JavaVersion.VERSION_17
 repositories {
     mavenCentral()
     maven {
+        url 'https://jitpack.io'
+    }
+    maven {
         url 'https://repo.nevets.tech/repository/maven-public'
     }
 }
@@ -18,9 +21,10 @@ repositories {
 dependencies {
     implementation 'com.google.code.gson:gson:2.9.0'
     implementation 'net.arikia.dev:drpc:1.0'
+    implementation 'me.carleslc.Simple-YAML:Simple-Yaml:1.7.3'
 }
 
-jar {
+shadowJar {
     manifest {
         attributes(
                 'Main-Class': 'io.github.qpcrummer.Main'

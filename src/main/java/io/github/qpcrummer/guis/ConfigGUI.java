@@ -1,6 +1,5 @@
 package io.github.qpcrummer.guis;
 
-import io.github.qpcrummer.Config;
 import io.github.qpcrummer.themes.Dark;
 import io.github.qpcrummer.themes.Light;
 
@@ -36,7 +35,7 @@ public class ConfigGUI {
     public static String usernameVar = username.getText();
     public static String passwordVar = password.getText();
 
-    public static void initializeconfigui() {
+    public static void initializeConfigGui() {
         //Settings Frame
         settingframe.getContentPane().setLayout(new GridLayout(1, 1));
         settingframe.setTitle("Settings");
@@ -89,7 +88,6 @@ public class ConfigGUI {
 
             @Override
             public void windowClosing(WindowEvent e) {
-                Config.storeConfig();
                 System.out.println("Setting is closing");
                 frame.setVisible(true);
             }
