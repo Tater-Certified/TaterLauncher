@@ -71,12 +71,12 @@ public class GUI {
         JFrame.setDefaultLookAndFeelDecorated(false);
 
         //Panel Settings
-        panel.setLayout(new BorderLayout());
-        panel.add(menupic, BorderLayout.CENTER);
-        panel.add(buttonsubpanel, BorderLayout.PAGE_END);
-        panel.add(leftsubpanel, BorderLayout.LINE_START);
-        panel.add(rightsubpanel, BorderLayout.LINE_END);
-        panel.add(topsubpanel, BorderLayout.PAGE_START);
+        panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
+        panel.add(menupic);
+        panel.add(buttonsubpanel);
+        panel.add(leftsubpanel);
+        panel.add(rightsubpanel);
+        panel.add(topsubpanel);
 
 
         buttonsubpanel.add(versionbutton);
