@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'io.github.qpcrummer'
-version '1.0-SNAPSHOT'
+version '0.1.0'
 def build = 'dev'
 
 sourceCompatibility = targetCompatibility = JavaVersion.VERSION_17
