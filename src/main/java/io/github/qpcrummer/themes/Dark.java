@@ -96,7 +96,6 @@ public class Dark {
 
         flagslabel.setForeground(darklabelforebig);
         gclabel.setForeground(darklabelforebig);
-        jvmflaglabel.setForeground(darklabelforebig);
         gcthreadlabel.setForeground(darklabelforebig);
         otherargslabel.setForeground(darklabelforebig);
         largepagescheck.setBackground(darkcheck);
@@ -110,9 +109,32 @@ public class Dark {
         noexplicitcheck.setForeground(Color.WHITE);
         utf8check.setForeground(Color.WHITE);
         largepage.setForeground(darklabelforebig);
+        jvmtoggles.setForeground(darklabelforebig);
+        amounts.setForeground(darklabelforebig);
 
         tabbedPane.setBackground(darktabs);
         tabbedPane.setForeground(Color.WHITE);
+
+        //Default JVM Profiles
+        presets.setBackground(darkpanel);
+        g1.setBackground(darkpanel);
+        z.setBackground(darkpanel);
+        shen.setBackground(darkpanel);
+        g1title.setForeground(darklabelforebig);
+        ztitle.setForeground(darklabelforebig);
+        shentitle.setForeground(darklabelforebig);
+        g1text.setForeground(Color.WHITE);
+        ztext.setForeground(Color.WHITE);
+        shentext.setForeground(Color.WHITE);
+        g1text.setBackground(darktextbox);
+        ztext.setBackground(darktextbox);
+        shentext.setBackground(darktextbox);
+        g1sel.setBackground(new Color(0, 100, 0));
+        zsel.setBackground(new Color(0, 100, 0));
+        shensel.setBackground(new Color(0, 100, 0));
+        g1sel.setForeground(Color.WHITE);
+        zsel.setForeground(Color.WHITE);
+        shensel.setForeground(Color.WHITE);
     }
     //Utils GUI
     public static void utilguidark() {
@@ -135,6 +157,12 @@ public class Dark {
 
         tabs.setBackground(darktabs);
         tabs.setForeground(Color.WHITE);
+
+        //Linux Warning
+        warnpanel.setBackground(darkpanel);
+        warnlabel.setForeground(darklabelforebig);
+        warnconfirm.setBackground(new Color(100,0,0));
+        warnconfirm.setForeground(Color.WHITE);
     }
     //Version GUI
     public static void verguidark() {

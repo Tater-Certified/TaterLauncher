@@ -1,5 +1,6 @@
 package io.github.qpcrummer.guis;
 
+import io.github.qpcrummer.Config;
 import io.github.qpcrummer.themes.Dark;
 import io.github.qpcrummer.themes.Light;
 
@@ -7,9 +8,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.IOException;
 
+import static io.github.qpcrummer.Config.CONFIG;
 import static io.github.qpcrummer.guis.GUI.frame;
 import static io.github.qpcrummer.guis.GUI.icon;
+import static io.github.qpcrummer.guis.UtilGUI.getSelection;
+import static io.github.qpcrummer.guis.UtilGUI.saveUtils;
 
 public class ConfigGUI {
     //Frames
@@ -26,14 +31,14 @@ public class ConfigGUI {
     public static final JLabel user = new JLabel("Insert MineCraft Username");
     public static final JLabel pass = new JLabel("Insert MineCraft Password");
     public static final JLabel themelabel = new JLabel("Toggle Theme");
-    //Dividers
-    public static final JSeparator divider1 = new JSeparator();
     //CheckBoxes
     public static final JCheckBox dark = new JCheckBox("Toggle Theme Modes");
 
     // Public Variable for storing the username and password
     public static String usernameVar = username.getText();
     public static String passwordVar = password.getText();
+
+    public static boolean colormodeVar;
 
     public static void initializeConfigGui() {
         //Settings Frame
@@ -49,9 +54,14 @@ public class ConfigGUI {
         authpanel.setLayout(new BoxLayout(authpanel, BoxLayout.PAGE_AXIS));
         authpanel.add(user);
         authpanel.add(username);
-        authpanel.add(divider1);
+        username.setMaximumSize(
+                new Dimension(Integer.MAX_VALUE,
+                        username.getPreferredSize().height));
         authpanel.add(pass);
         authpanel.add(password);
+        password.setMaximumSize(
+                new Dimension(Integer.MAX_VALUE,
+                        password.getPreferredSize().height));
 
         //Theme Panel
         themepanel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
@@ -89,6 +99,8 @@ public class ConfigGUI {
             @Override
             public void windowClosing(WindowEvent e) {
                 System.out.println("Setting is closing");
+                getSelection();
+                saveUtils();
                 frame.setVisible(true);
             }
         });
@@ -105,5 +117,18 @@ public class ConfigGUI {
         themelabel.setFont(new Font("Serif", Font.HANGING_BASELINE, 30));
 
         settingframe.pack();
+    }
+    static void getSelection() {
+        colormodeVar = dark.isSelected();
+    }
+    static void saveUtils() {
+        CONFIG.set("dark.darkgui", colormodeVar);
+
+        try {
+            CONFIG.save();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Config.reloadConfig();
     }
 }

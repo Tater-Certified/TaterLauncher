@@ -42,6 +42,8 @@ public class Config {
         YML_FILE.setComment("hooks.discord-rpc", "Shows Tater Launcher in Discord Activity");
         YML_FILE.addDefault("debug.resource-usage", false);
         YML_FILE.setComment("debug.resource-usage", "Debugging tool to show resource utilization of app");
+        YML_FILE.addDefault("dark.gui", false);
+        YML_FILE.setComment("dark.darkgui", "Enables Dark Mode");
 
         try {
             YML_FILE.save();

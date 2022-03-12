@@ -86,7 +86,6 @@ public class Light {
 
         flagslabel.setForeground(Color.BLACK);
         gclabel.setForeground(Color.BLACK);
-        jvmflaglabel.setForeground(Color.BLACK);
         gcthreadlabel.setForeground(Color.BLACK);
         otherargslabel.setForeground(Color.BLACK);
         largepagescheck.setBackground(Color.WHITE);
@@ -102,9 +101,30 @@ public class Light {
         noexplicitcheck.setForeground(Color.BLACK);
         utf8check.setForeground(Color.BLACK);
         largepage.setForeground(Color.BLACK);
+        toggles.setForeground(Color.BLACK);
+        amounts.setForeground(Color.BLACK);
 
-        tabbedPane.setForeground(Color.WHITE);
+        tabbedPane.setBackground(Color.WHITE);
         tabbedPane.setForeground(Color.BLACK);
+        //Default JVM Profiles
+        g1.setBackground(Color.WHITE);
+        z.setBackground(Color.WHITE);
+        shen.setBackground(Color.WHITE);
+        g1title.setForeground(Color.BLACK);
+        ztitle.setForeground(Color.BLACK);
+        shentitle.setForeground(Color.BLACK);
+        g1text.setForeground(Color.BLACK);
+        ztext.setForeground(Color.BLACK);
+        shentext.setForeground(Color.BLACK);
+        g1text.setBackground(new Color(209, 209, 209));
+        ztext.setBackground(new Color(209, 209, 209));
+        shentext.setBackground(new Color(209, 209, 209));
+        g1sel.setBackground(new Color(0, 200, 0));
+        zsel.setBackground(new Color(0, 200, 0));
+        shensel.setBackground(new Color(0, 200, 0));
+        g1sel.setForeground(Color.BLACK);
+        zsel.setForeground(Color.BLACK);
+        shensel.setForeground(Color.BLACK);
     }
 
     public static void utilguilight() {
@@ -127,6 +147,12 @@ public class Light {
 
         tabs.setBackground(Color.WHITE);
         tabs.setForeground(Color.BLACK);
+
+        //Linux Warning
+        warnpanel.setBackground(Color.WHITE);
+        warnlabel.setForeground(Color.BLACK);
+        warnconfirm.setBackground(new Color(180,0,0));
+        warnconfirm.setForeground(Color.BLACK);
     }
 
     public static void verguilight() {

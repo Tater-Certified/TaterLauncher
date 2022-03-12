@@ -1,5 +1,8 @@
 package io.github.qpcrummer;
 
+import io.github.qpcrummer.themes.Dark;
+import io.github.qpcrummer.themes.Light;
+
 import java.io.*;
 import java.net.URL;
 import java.nio.file.Files;
@@ -19,6 +22,7 @@ public class Startup {
             Files.createDirectory(Paths.get("TaterLauncher/java_profiles"));
             Files.createDirectory(Paths.get("TaterLauncher/game_profiles"));
             Files.createDirectory(Paths.get("TaterLauncher/apps"));
+            Files.createDirectory(Paths.get("TaterLauncher/accounts"));
         } catch (IOException ignored) {
         }
         //Download Assets
@@ -39,6 +43,33 @@ public class Startup {
             FileOutputStream fos = new FileOutputStream("TaterLauncher/assets/" + assetList[i]);
             fos.write(response);
             fos.close();
+        }
+    }
+    //Check to see if things are toggled
+    public static void check() {
+        if (Config.CONFIG.getBoolean("hooks.discord-rpc")) {
+            try {
+                DiscordRP.start();
+                System.out.println("RPC Loaded As TRUE From Config");
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+        if (Config.CONFIG.getBoolean("dark.darkgui")) {
+            try {
+                Dark.initdark();
+                System.out.println("Dark Mode Loaded As TRUE From Config");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        if (!Config.CONFIG.getBoolean("dark.darkgui")) {
+            try {
+                Light.initlight();
+                System.out.println("Light Mode Loaded As TRUE From Config");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 }
