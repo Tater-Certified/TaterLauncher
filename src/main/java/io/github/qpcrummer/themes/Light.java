@@ -147,12 +147,6 @@ public class Light {
 
         tabs.setBackground(Color.WHITE);
         tabs.setForeground(Color.BLACK);
-
-        //Linux Warning
-        warnpanel.setBackground(Color.WHITE);
-        warnlabel.setForeground(Color.BLACK);
-        warnconfirm.setBackground(new Color(180,0,0));
-        warnconfirm.setForeground(Color.BLACK);
     }
 
     public static void verguilight() {

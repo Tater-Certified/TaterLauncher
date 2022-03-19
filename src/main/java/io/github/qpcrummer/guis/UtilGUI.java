@@ -11,7 +11,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
 
-import static io.github.qpcrummer.guis.ConfigGUI.dark;
+import static io.github.qpcrummer.guis.ConfigGUI.*;
 import static io.github.qpcrummer.guis.GUI.frame;
 import static io.github.qpcrummer.guis.GUI.icon;
 
@@ -19,11 +19,9 @@ public class UtilGUI {
     private static final YamlFile CONFIG = Config.CONFIG;
     //Frames
     public static final JFrame utilframe = new JFrame();
-    public static final JFrame warnframe = new JFrame();
     //Panels
     public static final JPanel togglespanel = new JPanel();
     public static final JPanel appspanel = new JPanel();
-    public static final JPanel warnpanel = new JPanel();
     //Checkbox
     public static JCheckBox tatercape = new JCheckBox("TaterCape - Enables a Tater-styled cape");
     public static JCheckBox tatershoulder = new JCheckBox("TaterPet - Enables a tater that sits on your shoulder");
@@ -34,12 +32,9 @@ public class UtilGUI {
     public static final JLabel toggles = new JLabel("Toggles");
     public static final JLabel apps = new JLabel("Applications");
     public static final JLabel noapps = new JLabel("Apps are currently WIP");
-    public static final JLabel warnlabel = new JLabel("Linux is currently incompatible with TaterRPC");
+    ;
     //Tabs
     public static final JTabbedPane tabs = new JTabbedPane(JTabbedPane.TOP);
-
-    //Buttons
-    public static final JButton warnconfirm = new JButton("Accept Potential Failure");
 
     //Toggle Variables
     public static boolean rpcVar;
@@ -49,19 +44,18 @@ public class UtilGUI {
     public static boolean tubeVar;
 
 
-
     public static void initializeUtil() {
         //Util Frame
         utilframe.getContentPane().setLayout(new GridLayout(1, 1));
         utilframe.setTitle("Utilities");
         utilframe.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        utilframe.setMinimumSize(new Dimension(500,500));
+        utilframe.setMinimumSize(new Dimension(500, 500));
         utilframe.setIconImage(icon);
         JFrame.setDefaultLookAndFeelDecorated(false);
 
         //Add tabs
-        tabs.addTab("Toggles",togglespanel);
-        tabs.addTab("Apps",appspanel);
+        tabs.addTab("Toggles", togglespanel);
+        tabs.addTab("Apps", appspanel);
 
         utilframe.getContentPane().add(tabs);
 
@@ -92,16 +86,6 @@ public class UtilGUI {
         apps.setFont(new Font("Serif", Font.HANGING_BASELINE, 20));
         noapps.setFont(new Font("Serif", Font.BOLD, 15));
 
-        //Linux Warning
-        warnframe.setTitle("Linux RPC Warning");
-        warnframe.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        warnframe.setMinimumSize(new Dimension(200,200));
-        warnframe.setVisible(false);
-        warnframe.add(warnpanel);
-        warnpanel.setLayout(new GridLayout(2, 1));
-        warnpanel.add(warnlabel);
-        warnlabel.setFont(new Font("Serif", Font.BOLD, 20));
-        warnpanel.add(warnconfirm);
 
         //Window Listener
         utilframe.addWindowListener(new WindowAdapter() {
@@ -116,39 +100,27 @@ public class UtilGUI {
         });
         utilframe.pack();
 
-        warnconfirm.addActionListener(e -> {
-            System.out.println("Linux Warning Bypassed");
-            DiscordRP.reset();
-            warnframe.setVisible(false);
-                });
-
         rpc.addActionListener(e -> {
-            if (!SystemUtils.IS_OS_LINUX) {
-                if (rpc.isSelected()) {
-                    try {
-                        DiscordRP.reset();
-                        System.out.println("RPC Init");
-                    } catch (Exception ex) {
-                        ex.printStackTrace();
-                    }
-                }
-                if (!rpc.isSelected()) {
-                    try {
-                        DiscordRP.shutdown();
-                        System.out.println("RPC Stop");
-                    } catch (Exception ex) {
-                        ex.printStackTrace();
-                    }
+            if (rpc.isSelected()) {
+                try {
+                    DiscordRP.reset();
+                    System.out.println("RPC Init");
+                } catch (Exception ex) {
+                    ex.printStackTrace();
                 }
             }
-            else {
-                warnframe.setVisible(true);
-                System.out.println("RPC Failed - Linux is currently not supported");
+            if (!rpc.isSelected()) {
+                try {
+                    DiscordRP.shutdown();
+                    System.out.println("RPC Stop");
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
             }
         });
     }
 
-    static void getSelection() {
+    public static void getSelection() {
         rpcVar = rpc.isSelected();
         capeVar = tatercape.isSelected();
         shoulderVar = tatershoulder.isSelected();
@@ -156,7 +128,7 @@ public class UtilGUI {
         tubeVar = tatertube.isSelected();
     }
 
-    static void saveUtils() {
+    public static void saveUtils() {
         CONFIG.set("tater.cape", capeVar);
         CONFIG.set("tater.shoulder", shoulderVar);
         CONFIG.set("tater.tube", tubeVar);

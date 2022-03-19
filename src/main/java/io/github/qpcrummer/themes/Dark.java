@@ -157,12 +157,6 @@ public class Dark {
 
         tabs.setBackground(darktabs);
         tabs.setForeground(Color.WHITE);
-
-        //Linux Warning
-        warnpanel.setBackground(darkpanel);
-        warnlabel.setForeground(darklabelforebig);
-        warnconfirm.setBackground(new Color(100,0,0));
-        warnconfirm.setForeground(Color.WHITE);
     }
     //Version GUI
     public static void verguidark() {

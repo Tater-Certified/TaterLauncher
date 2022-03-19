@@ -8,6 +8,8 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+import static io.github.qpcrummer.guis.ConfigGUI.colormodeVar;
+
 public class Startup {
     public static void prep() throws IOException {
         System.out.println("Creating files");
@@ -49,7 +51,7 @@ public class Startup {
     public static void check() {
         if (Config.CONFIG.getBoolean("hooks.discord-rpc")) {
             try {
-                DiscordRP.start();
+                DiscordRP.reset();
                 System.out.println("RPC Loaded As TRUE From Config");
             } catch (Exception ex) {
                 ex.printStackTrace();
@@ -57,6 +59,8 @@ public class Startup {
         }
         if (Config.CONFIG.getBoolean("dark.darkgui")) {
             try {
+                Config.CONFIG.set("dark.darkgui", true);
+                colormodeVar = true;
                 Dark.initdark();
                 System.out.println("Dark Mode Loaded As TRUE From Config");
             } catch (Exception e) {
@@ -65,6 +69,8 @@ public class Startup {
         }
         if (!Config.CONFIG.getBoolean("dark.darkgui")) {
             try {
+                Config.CONFIG.set("dark.darkgui", false);
+                colormodeVar = false;
                 Light.initlight();
                 System.out.println("Light Mode Loaded As TRUE From Config");
             } catch (Exception e) {

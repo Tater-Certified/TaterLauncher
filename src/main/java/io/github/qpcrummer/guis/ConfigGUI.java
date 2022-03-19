@@ -41,6 +41,7 @@ public class ConfigGUI {
     public static boolean colormodeVar;
 
     public static void initializeConfigGui() {
+
         //Settings Frame
         settingframe.getContentPane().setLayout(new GridLayout(1, 1));
         settingframe.setTitle("Settings");
