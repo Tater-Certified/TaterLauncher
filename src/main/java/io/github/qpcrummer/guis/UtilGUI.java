@@ -26,6 +26,7 @@ public class UtilGUI {
     public static JCheckBox resourceusage = new JCheckBox("Resource Graph - Enables a resource usage graph");
     public static JCheckBox tatertube = new JCheckBox("TaterTube - Enables an in-game Youtube client");
     public static JCheckBox rpc = new JCheckBox("TaterRPC - Discord Rich Presence (Can be slow sometimes)");
+    public static JCheckBox loading = new JCheckBox("Loading Screen - Toggles Loading Screen");
     //Labels
     public static final JLabel toggles = new JLabel("Toggles");
     public static final JLabel apps = new JLabel("Applications");
@@ -40,6 +41,7 @@ public class UtilGUI {
     public static boolean shoulderVar;
     public static boolean resourceVar;
     public static boolean tubeVar;
+    public static boolean loadingVar;
 
 
     public static void initializeUtil() {
@@ -61,6 +63,7 @@ public class UtilGUI {
         togglespanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 30, 10));
         togglespanel.setLayout(new BoxLayout(togglespanel, BoxLayout.PAGE_AXIS));
         togglespanel.add(toggles);
+        togglespanel.add(loading);
         togglespanel.add(rpc);
         togglespanel.add(tatercape);
         togglespanel.add(tatershoulder);
@@ -72,6 +75,7 @@ public class UtilGUI {
         tatershoulder.setSelected(CONFIG.getBoolean("tater.shoulder"));
         resourceusage.setSelected(CONFIG.getBoolean("debug.resource-usage"));
         tatertube.setSelected(CONFIG.getBoolean("tater.tube"));
+        loading.setSelected(CONFIG.getBoolean("loading.screen"));
 
         //Apps Panel
         appspanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 30, 10));
@@ -124,6 +128,7 @@ public class UtilGUI {
         shoulderVar = tatershoulder.isSelected();
         resourceVar = resourceusage.isSelected();
         tubeVar = tatertube.isSelected();
+        loadingVar = loading.isSelected();
     }
 
     public static void saveUtils() {
@@ -132,6 +137,7 @@ public class UtilGUI {
         CONFIG.set("tater.tube", tubeVar);
         CONFIG.set("hooks.discord-rpc", rpcVar);
         CONFIG.set("debug.resource-usage", resourceVar);
+        CONFIG.set("loading.screen", loadingVar);
 
         try {
             CONFIG.save();

@@ -44,6 +44,8 @@ public class Config {
         YML_FILE.setComment("debug.resource-usage", "Debugging tool to show resource utilization of app");
         YML_FILE.addDefault("dark.darkgui", false);
         YML_FILE.setComment("dark.darkgui", "Enables Dark Mode");
+        YML_FILE.addDefault("loading.screen", true);
+        YML_FILE.setComment("loading.screen", "Enables Loading Screen");
 
         try {
             YML_FILE.save();

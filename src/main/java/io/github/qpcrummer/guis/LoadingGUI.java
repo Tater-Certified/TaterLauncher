@@ -71,7 +71,6 @@ public class LoadingGUI extends JFrame {
             Startup.prep();
         } catch (IOException ignored) {}
         smoothIncrease(progressBar, 25);
-        Config.loadConfig();
         sleep();
         smoothIncrease(progressBar, 50);
         Startup.check();

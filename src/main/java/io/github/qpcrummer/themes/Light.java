@@ -134,12 +134,14 @@ public class Light {
         resourceusage.setBackground(Color.WHITE);
         tatertube.setBackground(Color.WHITE);
         rpc.setBackground(Color.WHITE);
+        loading.setBackground(Color.WHITE);
         toggles.setForeground(Color.BLACK);
         tatercape.setForeground(Color.BLACK);
         tatershoulder.setForeground(Color.BLACK);
         resourceusage.setForeground(Color.BLACK);
         tatertube.setForeground(Color.BLACK);
         rpc.setForeground(Color.BLACK);
+        loading.setForeground(Color.BLACK);
 
         appspanel.setBackground(Color.WHITE);
         apps.setForeground(Color.BLACK);

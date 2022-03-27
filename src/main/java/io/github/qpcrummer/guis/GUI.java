@@ -52,7 +52,11 @@ public class GUI {
 
     public static void initializeGui() {
 
-        Main.loadingGUI.dispose();
+        try {
+            Main.loadingGUI.dispose();
+        } catch (Exception ignored) {
+            System.out.println("Loading Screen Skipped");
+        }
         //Main Frame
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

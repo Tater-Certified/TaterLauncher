@@ -4,7 +4,6 @@ import io.github.qpcrummer.themes.Dark;
 import io.github.qpcrummer.themes.Light;
 
 import java.io.*;
-import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
