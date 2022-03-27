@@ -6,16 +6,20 @@ import io.github.qpcrummer.guis.panels.CustomProgressBarPanel;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import java.awt.*;
 import java.io.IOException;
 
 public class LoadingGUI extends JFrame {
+    public static final int SCREEN_WIDTH = (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth();
+    public static final int SCREEN_HEIGHT = (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight();
+
     JPanel contentPane;
 
     public LoadingGUI() {
         setUndecorated(true);
         setResizable(false);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setSize(GUI.SCREEN_WIDTH / 3, GUI.SCREEN_HEIGHT / 3);
+        setSize(SCREEN_WIDTH / 3, SCREEN_HEIGHT / 3);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
