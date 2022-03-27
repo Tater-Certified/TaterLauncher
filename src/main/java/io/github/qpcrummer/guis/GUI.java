@@ -3,40 +3,32 @@ package io.github.qpcrummer.guis;
 import io.github.qpcrummer.Main;
 import io.github.qpcrummer.launch.MinecraftLaunch;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.io.File;
-import java.io.IOException;
+import java.util.Objects;
 
 import static io.github.qpcrummer.guis.ConfigGUI.settingframe;
 import static io.github.qpcrummer.guis.JavaGUI.javaframe;
+import static io.github.qpcrummer.guis.LoadingGUI.icon;
 import static io.github.qpcrummer.guis.UtilGUI.utilframe;
 import static io.github.qpcrummer.guis.VersionGUI.versionframe;
 
 public class GUI {
-    public static Image icon;
-    static {
-        try {
-            icon = ImageIO.read(new File("TaterLauncher/assets/TaterMC.png"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+
     public static ImageIcon background;
 
     static {
-        background = new ImageIcon(String.valueOf(new File("TaterLauncher/assets/TaterMC%20V3%20RC4.png")));
+        background = new ImageIcon(Objects.requireNonNull(GUI.class.getClassLoader().getResource("assets/TaterMC%20V3%20RC4.png")));
     }
     public static ImageIcon utilitater;
 
     static {
-        utilitater = new ImageIcon(String.valueOf(new File("TaterLauncher/assets/Utilitater.png")));
+        utilitater = new ImageIcon(Objects.requireNonNull(GUI.class.getClassLoader().getResource("assets/Utilitater.png")));
     }
     public static ImageIcon settingtater;
 
     static {
-        settingtater = new ImageIcon(String.valueOf(new File("TaterLauncher/assets/SettingsTater.png")));
+        settingtater = new ImageIcon(Objects.requireNonNull(GUI.class.getClassLoader().getResource("assets/SettingsTater.png")));
     }
 
     //Frames

@@ -3,7 +3,6 @@ package io.github.qpcrummer.guis;
 import io.github.qpcrummer.Config;
 import io.github.qpcrummer.DiscordRP;
 import org.simpleyaml.configuration.file.YamlFile;
-import org.apache.commons.lang3.SystemUtils;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,9 +10,8 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
 
-import static io.github.qpcrummer.guis.ConfigGUI.*;
 import static io.github.qpcrummer.guis.GUI.frame;
-import static io.github.qpcrummer.guis.GUI.icon;
+import static io.github.qpcrummer.guis.LoadingGUI.icon;
 
 public class UtilGUI {
     private static final YamlFile CONFIG = Config.CONFIG;

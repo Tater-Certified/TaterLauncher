@@ -12,9 +12,7 @@ import java.io.IOException;
 
 import static io.github.qpcrummer.Config.CONFIG;
 import static io.github.qpcrummer.guis.GUI.frame;
-import static io.github.qpcrummer.guis.GUI.icon;
-import static io.github.qpcrummer.guis.UtilGUI.getSelection;
-import static io.github.qpcrummer.guis.UtilGUI.saveUtils;
+import static io.github.qpcrummer.guis.LoadingGUI.icon;
 
 public class ConfigGUI {
     //Frames

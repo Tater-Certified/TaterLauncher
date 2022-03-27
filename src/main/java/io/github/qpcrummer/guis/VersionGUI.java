@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import static io.github.qpcrummer.guis.GUI.frame;
-import static io.github.qpcrummer.guis.GUI.icon;
+import static io.github.qpcrummer.guis.LoadingGUI.icon;
 
 public class VersionGUI {
     //Name Vars

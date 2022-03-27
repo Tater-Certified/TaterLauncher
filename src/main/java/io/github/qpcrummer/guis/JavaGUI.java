@@ -8,7 +8,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
 
-import static io.github.qpcrummer.guis.GUI.icon;
+import static io.github.qpcrummer.guis.LoadingGUI.icon;
 
 public class JavaGUI {
     //Frames

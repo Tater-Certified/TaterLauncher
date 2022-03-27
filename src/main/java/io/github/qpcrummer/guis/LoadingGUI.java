@@ -4,18 +4,32 @@ import io.github.qpcrummer.Config;
 import io.github.qpcrummer.Startup;
 import io.github.qpcrummer.guis.panels.CustomProgressBarPanel;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.Objects;
 
 public class LoadingGUI extends JFrame {
+
+    public static BufferedImage icon;
+    static {
+        try {
+            icon = ImageIO.read(Objects.requireNonNull(GUI.class.getClassLoader().getResource("assets/TaterMC.png")));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static final int SCREEN_WIDTH = (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth();
     public static final int SCREEN_HEIGHT = (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight();
 
     JPanel contentPane;
 
     public LoadingGUI() {
+        setIconImage(icon);
         setUndecorated(true);
         setResizable(false);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -33,7 +47,7 @@ public class LoadingGUI extends JFrame {
 
         JLabel progressBarOutline = new JLabel();
         progressBarOutline.setBounds(pbX, pbY - 10, pbWidth, pbHeight + 20);
-        ImageIcon pgOutline = new ImageIcon(getClass().getClassLoader().getResource("assets/progressbaroutline.png"));
+        ImageIcon pgOutline = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("assets/progressbaroutline.png")));
         pgOutline = CustomProgressBarPanel.resizeIcon(pgOutline, pbWidth + 20, pbHeight);
         progressBarOutline.setIcon(pgOutline);
         contentPane.add(progressBarOutline);
@@ -44,7 +58,7 @@ public class LoadingGUI extends JFrame {
 
         JLabel splashIcon = new JLabel("");
         splashIcon.setSize(getWidth(), getHeight());
-        ImageIcon backgroundImg = new ImageIcon(getClass().getClassLoader().getResource("assets/background.png"));
+        ImageIcon backgroundImg = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("assets/background.png")));
         backgroundImg = CustomProgressBarPanel.resizeIcon(backgroundImg, splashIcon.getWidth(), splashIcon.getHeight());
         splashIcon.setIcon(backgroundImg);
         contentPane.add(splashIcon);
