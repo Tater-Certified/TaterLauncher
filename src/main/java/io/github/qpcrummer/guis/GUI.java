@@ -1,5 +1,6 @@
 package io.github.qpcrummer.guis;
 
+import io.github.qpcrummer.Main;
 import io.github.qpcrummer.launch.MinecraftLaunch;
 
 import javax.imageio.ImageIO;
@@ -14,10 +15,6 @@ import static io.github.qpcrummer.guis.UtilGUI.utilframe;
 import static io.github.qpcrummer.guis.VersionGUI.versionframe;
 
 public class GUI {
-    private static io.github.qpcrummer.guis.LoadingGUI loadingGUI;
-    public static final int SCREEN_WIDTH = (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth();
-    public static final int SCREEN_HEIGHT = (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight();
-
     public static Image icon;
     static {
         try {
@@ -61,13 +58,9 @@ public class GUI {
     private static final JLabel menupic = new JLabel(background);
     public static final JLabel launchername = new JLabel("Tater Launcher");
 
-    public static void startLoadingScreen() {
-        loadingGUI = new io.github.qpcrummer.guis.LoadingGUI();
-    }
-
     public static void initializeGui() {
 
-        loadingGUI.dispose();
+        Main.loadingGUI.dispose();
         //Main Frame
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
