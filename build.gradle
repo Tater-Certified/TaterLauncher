@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'com.github.johnrengelman.shadow' version '5.2.0'
+    id 'edu.sc.seis.launch4j' version '2.5.1'
 }
 
 group 'io.github.qpcrummer'
@@ -32,4 +33,17 @@ shadowJar {
                 'Main-Class': 'io.github.qpcrummer.Main'
         )
     }
+}
+
+launch4j {
+    mainClassName = 'io.github.qpcrummer.Main'
+    outfile = 'TaterLauncher.exe'
+    jarTask = project.tasks.shadowJar
+    fileDescription = 'Tater Launcher'
+    //icon = "${projectDir}/src/main/resources/assets/icon.ico"
+    productName = 'TaterLauncher'
+    version = "$this.version"
+    textVersion = "$this.version"
+    downloadUrl = "https://github.com/QPCrummer/TaterLauncher"
+    bundledJre64Bit = false
 }
