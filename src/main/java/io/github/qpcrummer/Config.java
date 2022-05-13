@@ -57,10 +57,4 @@ public class Config {
     public static YamlFile getConfig() {
         return YML_FILE;
     }
-
-    public static void reloadConfig() {
-        Config.CONFIG = getConfig();
-    }
-
-    public static YamlFile CONFIG = Config.getConfig();
 }

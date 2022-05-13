@@ -10,11 +10,11 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
 
+import static io.github.qpcrummer.Config.getConfig;
 import static io.github.qpcrummer.guis.GUI.frame;
 import static io.github.qpcrummer.guis.LoadingGUI.icon;
 
 public class UtilGUI {
-    private static final YamlFile CONFIG = Config.CONFIG;
     //Frames
     public static final JFrame utilframe = new JFrame();
     //Panels
@@ -31,7 +31,6 @@ public class UtilGUI {
     public static final JLabel toggles = new JLabel("Toggles");
     public static final JLabel apps = new JLabel("Applications");
     public static final JLabel noapps = new JLabel("Apps are currently WIP");
-    ;
     //Tabs
     public static final JTabbedPane tabs = new JTabbedPane(JTabbedPane.TOP);
 
@@ -70,12 +69,13 @@ public class UtilGUI {
         togglespanel.add(resourceusage);
         togglespanel.add(tatertube);
 
-        rpc.setSelected(CONFIG.getBoolean("hooks.discord-rpc"));
-        tatercape.setSelected(CONFIG.getBoolean("tater.cape"));
-        tatershoulder.setSelected(CONFIG.getBoolean("tater.shoulder"));
-        resourceusage.setSelected(CONFIG.getBoolean("debug.resource-usage"));
-        tatertube.setSelected(CONFIG.getBoolean("tater.tube"));
-        loading.setSelected(CONFIG.getBoolean("loading.screen"));
+        //Set Checkmarks Correctly
+        rpc.setSelected(getConfig().getBoolean("hooks.discord-rpc"));
+        tatercape.setSelected(getConfig().getBoolean("tater.cape"));
+        tatershoulder.setSelected(getConfig().getBoolean("tater.shoulder"));
+        resourceusage.setSelected(getConfig().getBoolean("debug.resource-usage"));
+        tatertube.setSelected(getConfig().getBoolean("tater.tube"));
+        loading.setSelected(getConfig().getBoolean("loading.screen"));
 
         //Apps Panel
         appspanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 30, 10));
@@ -132,18 +132,18 @@ public class UtilGUI {
     }
 
     public static void saveUtils() {
-        CONFIG.set("tater.cape", capeVar);
-        CONFIG.set("tater.shoulder", shoulderVar);
-        CONFIG.set("tater.tube", tubeVar);
-        CONFIG.set("hooks.discord-rpc", rpcVar);
-        CONFIG.set("debug.resource-usage", resourceVar);
-        CONFIG.set("loading.screen", loadingVar);
+        getConfig().set("tater.cape", capeVar);
+        getConfig().set("tater.shoulder", shoulderVar);
+        getConfig().set("tater.tube", tubeVar);
+        getConfig().set("hooks.discord-rpc", rpcVar);
+        getConfig().set("debug.resource-usage", resourceVar);
+        getConfig().set("loading.screen", loadingVar);
 
         try {
-            CONFIG.save();
+            getConfig().save();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Config.reloadConfig();
+        Config.getConfig();
     }
 }

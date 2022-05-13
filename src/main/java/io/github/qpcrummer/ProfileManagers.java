@@ -29,13 +29,12 @@ public class ProfileManagers {
         }
     }
 
-    public static GameProfile loadGameProfile(String profileName) {
+    public static void loadGameProfile(String profileName) {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(GAME_PROFILE_PATH + "/" + profileName + ".json"));
-            return new Gson().fromJson(reader, GameProfile.class);
+            new Gson().fromJson(reader, GameProfile.class);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-            return null;
         }
     }
 

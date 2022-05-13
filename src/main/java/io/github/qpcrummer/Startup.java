@@ -28,7 +28,7 @@ public class Startup {
     }
     //Check to see if things are toggled
     public static void check() {
-        if (Config.CONFIG.getBoolean("hooks.discord-rpc")) {
+        if (Config.getConfig().getBoolean("hooks.discord-rpc")) {
             try {
                 DiscordRP.reset();
                 System.out.println("RPC Loaded As TRUE From Config");
@@ -36,9 +36,9 @@ public class Startup {
                 ex.printStackTrace();
             }
         }
-        if (Config.CONFIG.getBoolean("dark.darkgui")) {
+        if (Config.getConfig().getBoolean("dark.darkgui")) {
             try {
-                Config.CONFIG.set("dark.darkgui", true);
+                Config.getConfig().set("dark.darkgui", true);
                 colormodeVar = true;
                 Dark.initdark();
                 System.out.println("Dark Mode Loaded As TRUE From Config");
@@ -46,9 +46,9 @@ public class Startup {
                 e.printStackTrace();
             }
         }
-        if (!Config.CONFIG.getBoolean("dark.darkgui")) {
+        if (!Config.getConfig().getBoolean("dark.darkgui")) {
             try {
-                Config.CONFIG.set("dark.darkgui", false);
+                Config.getConfig().set("dark.darkgui", false);
                 colormodeVar = false;
                 Light.initlight();
                 System.out.println("Light Mode Loaded As TRUE From Config");

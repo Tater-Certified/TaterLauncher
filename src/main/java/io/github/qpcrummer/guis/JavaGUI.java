@@ -59,7 +59,6 @@ public class JavaGUI {
     public static final JTextField largepagesize = new JTextField("Use M for megabytes");
     public static final JTextField gcthreads = new JTextField("If set to 0, it will use as many as needed");
     public static final JTextField otherargs = new JTextField();
-    public static final JTextField otherflags = new JTextField();
     public static final JTextField newproname = new JTextField("Profile Name");
     //CheckBoxes
     public static final JCheckBox noexplicitcheck = new JCheckBox("DisableExplicitGC - Disables this GC to stop slowdowns");
@@ -149,6 +148,9 @@ public class JavaGUI {
         newprocombo.add(newprofile);
         newprocombo.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
+        JavaGUI.newprofile.addActionListener(e -> {
+        });
+
         profilefinder.setApproveButtonText("Select Profile");
 
 
@@ -233,11 +235,6 @@ public class JavaGUI {
         otherargs.setMaximumSize(
                 new Dimension(Integer.MAX_VALUE,
                         otherargs.getPreferredSize().height));
-        flags.add(otherflagslabel);
-        flags.add(otherflags);
-        otherflags.setMaximumSize(
-                new Dimension(Integer.MAX_VALUE,
-                        otherflags.getPreferredSize().height));
 
         //Presets
         presets.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));

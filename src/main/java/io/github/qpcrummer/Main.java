@@ -9,7 +9,7 @@ public class Main {
     public static void main(String[] args) {
         Config.loadConfig();
 
-        if (Config.CONFIG.getBoolean("loading.screen")) {
+        if (Config.getConfig().getBoolean("loading.screen")) {
             try {
                 loadingGUI = new LoadingGUI();
                 System.out.println("Loading Screen Loaded As TRUE From Config");
@@ -17,7 +17,7 @@ public class Main {
                 e.printStackTrace();
             }
         }
-        if (!Config.CONFIG.getBoolean("loading.screen")) {
+        if (!Config.getConfig().getBoolean("loading.screen")) {
             try {
                 Startup.check();
                 System.out.println("Loading Screen Loaded As FALSE From Config");
