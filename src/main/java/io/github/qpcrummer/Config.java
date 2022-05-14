@@ -5,7 +5,7 @@ import org.simpleyaml.configuration.file.YamlFile;
 import java.io.IOException;
 
 public class Config {
-    private static final YamlFile YML_FILE = new YamlFile("TaterLauncher/config.yml");
+    static final YamlFile YML_FILE = new YamlFile("TaterLauncher/config.yml");
     private static final String TL_LOGO =
             """
                      _______    _            _                            _              \s

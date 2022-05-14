@@ -1,5 +1,7 @@
 package io.github.qpcrummer.guis;
 
+import io.github.qpcrummer.JavaProfile;
+
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.filechooser.FileFilter;
@@ -8,6 +10,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
 
+import static io.github.qpcrummer.JavaProfile.*;
 import static io.github.qpcrummer.guis.LoadingGUI.icon;
 
 public class JavaGUI {
@@ -149,23 +152,28 @@ public class JavaGUI {
         newprocombo.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
         JavaGUI.newprofile.addActionListener(e -> {
+            JavaProfile.getJavaSelection();
+            JavaProfile.saveJavaProfile();
+            JavaProfile.defaultJavaProfile();
+            JavaProfile.getJavaSelection();
+            JavaProfile.profileName = newproname.getText();
+            JavaProfile.javaProfileCreate();
         });
 
         profilefinder.setApproveButtonText("Select Profile");
-
 
         profilefinder.setFileFilter(new FileFilter()
         {
             @Override
             public boolean accept(File file)
             {
-                return file.getName().equalsIgnoreCase(".JSON");
+                return file.getName().equalsIgnoreCase(".YML");
             }
 
             @Override
             public String getDescription()
             {
-                return ".json files";
+                return ".yml files";
             }
         });
 
@@ -303,6 +311,10 @@ public class JavaGUI {
         javaframe.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
+                getJavaSelection();
+                saveJavaProfile();
+                defaultJavaProfile();
+                getJavaSelection();
                 System.out.println("Java Frame is closing");
             }
         });

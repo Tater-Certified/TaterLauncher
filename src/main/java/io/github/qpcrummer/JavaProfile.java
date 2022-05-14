@@ -1,112 +1,109 @@
 package io.github.qpcrummer;
 
-import java.nio.file.Path;
+import org.simpleyaml.configuration.file.YamlFile;
+
+import java.io.IOException;
+
+import static io.github.qpcrummer.guis.JavaGUI.*;
+
 
 public class JavaProfile {
-    private String profileName;
-    private Path path;
-    private int startingRam;
-    private int maxRam;
-    private String gc;
-    private int gcThreads;
-    private boolean useLargePages;
-    private int gcPageSize;
-    private boolean disableExplicitGC;
-    private boolean fastEncoder;
-    private String otherArgs;
+    //Variables
+    public static String jvmpathVar = String.valueOf(javafinder.getSelectedFile());
+    public static String minRamVar = minjava.getText();
+    public static String maxRamVar = maxjava.getText();
+    public static String threadVar = gcthreads.getText();
+    public static String argotherVar = otherargs.getText();
+    public static String lrgpgsizeVar = largepagesize.getText();
+    public static String gcVar = (String) gcselect.getSelectedItem();
+    public static String lrgpgVar = String.valueOf(largepagescheck.isSelected());
+    public static String explicitVar = String.valueOf(noexplicitcheck.isSelected());
+    public static String utf8Var = String.valueOf(utf8check.isSelected());
 
-    public JavaProfile() {
+
+    public static String profileName = newproname.getText();
+
+    public static YamlFile JAVA_FILE = new YamlFile("TaterLauncher/java_profiles/"+profileName+".yml");
+
+    public static void javaProfileCreate() {
+        YamlFile JAVA_FILE = new YamlFile("TaterLauncher/java_profiles/"+profileName+".yml");
+        try {
+            if (!JAVA_FILE.exists()) {
+                System.out.println("Creating Profile");
+                JAVA_FILE.createNewFile(false);
+                System.out.println("Profile created!");
+            } else {
+                System.out.println("Profile Already Exists");
+            }
+        } catch (final Exception e) {
+            System.out.println("Error while creating profile: " + e.getMessage());
+        }
+        //Data
+        JAVA_FILE.addDefault("jvm.path", jvmpathVar);
+        JAVA_FILE.addDefault("jvm.minram", minRamVar);
+        JAVA_FILE.addDefault("jvm.maxram", maxRamVar);
+        JAVA_FILE.addDefault("jvm.gc", gcVar);
+        JAVA_FILE.addDefault("arg.lrgpg", lrgpgVar);
+        JAVA_FILE.addDefault("arg.lrgpgsize", lrgpgsizeVar);
+        JAVA_FILE.addDefault("arg.explicit", explicitVar);
+        JAVA_FILE.addDefault("arg.utf8", utf8Var);
+        JAVA_FILE.addDefault("arg.threads", threadVar);
+        JAVA_FILE.addDefault("arg.other", argotherVar);
+
+        // Saving
+        try {
+            JAVA_FILE.save();
+        } catch (IOException e) {
+            System.out.println("Error saving profile: " + e.getMessage());
+        }
     }
 
-    public String getProfileName() {
-        return profileName;
+    //Use for other classes to save
+
+    public static YamlFile getConfig() {
+        return JAVA_FILE;
     }
 
-    public void setProfileName(String profileName) {
-        this.profileName = profileName;
+    public static void getJavaSelection() {
+        jvmpathVar = String.valueOf(javafinder.getSelectedFile());
+        minRamVar = minjava.getText();
+        maxRamVar = maxjava.getText();
+        threadVar = gcthreads.getText();
+        argotherVar = otherargs.getText();
+        gcVar = (String) gcselect.getSelectedItem();
+        lrgpgVar = String.valueOf(largepagescheck.isSelected());
+        lrgpgsizeVar = largepagesize.getText();
+        explicitVar = String.valueOf(noexplicitcheck.isSelected());
+        utf8Var = String.valueOf(utf8check.isSelected());
     }
+    public static void saveJavaProfile() {
+        JavaProfile.getConfig().set("jvm.path", jvmpathVar);
+        JavaProfile.getConfig().set("jvm.minram", minRamVar);
+        JavaProfile.getConfig().set("jvm.maxram", maxRamVar);
+        JavaProfile.getConfig().set("jvm.gc", gcVar);
+        JavaProfile.getConfig().set("arg.lrgpg", lrgpgVar);
+        JavaProfile.getConfig().set("arg.lrgpgsize", lrgpgsizeVar);
+        JavaProfile.getConfig().set("arg.explicit", explicitVar);
+        JavaProfile.getConfig().set("arg.utf8", utf8Var);
+        JavaProfile.getConfig().set("arg.threads", threadVar);
+        JavaProfile.getConfig().set("arg.other", argotherVar);
 
-    public Path getPath() {
-        return path;
+        try {
+            JavaProfile.getConfig().save();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        JavaProfile.getConfig();
     }
-
-    public void setPath(Path path) {
-        this.path = path;
-    }
-
-    public int getStartingRam() {
-        return startingRam;
-    }
-
-    public void setStartingRam(int startingRam) {
-        this.startingRam = startingRam;
-    }
-
-    public int getMaxRam() {
-        return maxRam;
-    }
-
-    public void setMaxRam(int maxRam) {
-        this.maxRam = maxRam;
-    }
-
-    public String getGc() {
-        return gc;
-    }
-
-    public void setGc(String gc) {
-        this.gc = gc;
-    }
-
-    public int getGcThreads() {
-        return gcThreads;
-    }
-
-    public void setGcThreads(int gcThreads) {
-        this.gcThreads = gcThreads;
-    }
-
-    public boolean isUseLargePages() {
-        return useLargePages;
-    }
-
-    public void setUseLargePages(boolean useLargePages) {
-        this.useLargePages = useLargePages;
-    }
-
-    public int getGcPageSize() {
-        return gcPageSize;
-    }
-
-    public void setGcPageSize(int gcPageSize) {
-        this.gcPageSize = gcPageSize;
-    }
-
-    public boolean isDisableExplicitGC() {
-        return disableExplicitGC;
-    }
-
-    public void setDisableExplicitGC(boolean disableExplicitGC) {
-        this.disableExplicitGC = disableExplicitGC;
-    }
-
-    public boolean isFastEncoder() {
-        return fastEncoder;
-    }
-
-    public void setFastEncoder(boolean fastEncoder) {
-        this.fastEncoder = fastEncoder;
-    }
-
-    public String getOtherArgs() {
-        return otherArgs;
-    }
-
-    public void setOtherArgs(String otherArgs) {
-        this.otherArgs = otherArgs;
-    }
-
-    public String toString() {
-        return "{name: " + profileName + ", path: " + path + ", startingRam: " + startingRam + ", maxRam: " + maxRam + ", gc: " + gc + ", gcThreads: " + gcThreads + ", useLargePages: " + useLargePages + ", gcPageSize: " + gcPageSize + ", disableExplicitGC: " + disableExplicitGC + ", fastEncoder: " + fastEncoder + ", otherArgs: " + otherArgs + "}";
+    public static void defaultJavaProfile() {
+        minjava.setText("Use M for megabytes and G for gigabytes");
+        maxjava.setText("Use M for megabytes and G for gigabytes");
+        gcthreads.setText("If set to 0, it will use as many as needed");
+        otherargs.setText("");
+        largepagesize.setText("Use M for megabytes");
+        gcselect.setSelectedItem("Parallel");
+        largepagescheck.setSelected(false);
+        noexplicitcheck.setSelected(false);
+        utf8check.setSelected(false);
     }
 }
