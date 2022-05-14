@@ -287,6 +287,20 @@ public class JavaGUI {
         shen.add(shensel,BorderLayout.PAGE_END);
         shensel.setPreferredSize(new Dimension(300,60));
 
+        //Action Listeners
+        g1sel.addActionListener(e -> {
+            JavaProfile.g1JavaProfile();
+            System.out.println("G1GC Preset Loaded");
+        });
+        zsel.addActionListener(e -> {
+            JavaProfile.zJavaProfile();
+            System.out.println("ZGC Preset Loaded");
+        });
+        shensel.addActionListener(e -> {
+            JavaProfile.shenJavaProfile();
+            System.out.println("ShenGC Preset Loaded");
+        });
+
         //Button configs
         newprofile.setPreferredSize(new Dimension(200,40));
 

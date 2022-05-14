@@ -106,4 +106,43 @@ public class JavaProfile {
         noexplicitcheck.setSelected(false);
         utf8check.setSelected(false);
     }
+    public static void g1JavaProfile() {
+        minjava.setText("2G");
+        maxjava.setText("4G");
+        gcthreads.setText("0");
+        otherargs.setText("-Xmn384m -XX:+AggressiveOpts -XX:+AlwaysPreTouch -XX:+ParallelRefProcEnabled -XX:+PerfDisableSharedMem -XX:+UseCompressedOops -XX:-UsePerfData -XX:MaxGCPauseMillis=200 -XX:ParallelGCThreads=4 -XX:ConcGCThreads=2 -XX:+UseTransparentHugePages -XX:+UseNUMA -XX:InitiatingHeapOccupancyPercent=50 -XX:G1HeapRegionSize=1 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=8");
+        largepagesize.setText("2M");
+        gcselect.setSelectedItem("G1");
+        largepagescheck.setSelected(true);
+        noexplicitcheck.setSelected(true);
+        utf8check.setSelected(true);
+        getJavaSelection();
+        saveJavaProfile();
+    }
+    public static void zJavaProfile() {
+        minjava.setText("2G");
+        maxjava.setText("4G");
+        gcthreads.setText("0");
+        otherargs.setText("-Xmn384m -XX:+UnlockExperimentalVMOptions -XX:+IgnoreUnrecognizedVMOptions -XX:+UnlockDiagnosticVMOptions -XX:-OmitStackTraceInFastThrow -XX:+ShowCodeDetailsInExceptionMessages -XX:-UseParallelGC -XX:-UseParallelOldGC -XX:+PerfDisableSharedMem -XX:-ZUncommit -XX:ZUncommitDelay=300 -XX:ZCollectionInterval=5 -XX:ZAllocationSpikeTolerance=2.0 -XX:+UseTransparentHugePages -XX:+ParallelRefProcEnabled -XX:+UseNUMA -XX:+AlwaysPreTouch -XX:-UseBiasedLocking");
+        largepagesize.setText("2M");
+        gcselect.setSelectedItem("Z");
+        largepagescheck.setSelected(true);
+        noexplicitcheck.setSelected(true);
+        utf8check.setSelected(true);
+        getJavaSelection();
+        saveJavaProfile();
+    }
+    public static void shenJavaProfile() {
+        minjava.setText("2G");
+        maxjava.setText("4G");
+        gcthreads.setText("0");
+        otherargs.setText("-Xmn384m -XX:+UnlockExperimentalVMOptions -XX:ShenandoahGCMode=iu -XX:+UseTransparentHugePages -XX:+UseNUMA -XX:+AlwaysPreTouch -XX:-UseBiasedLocking");
+        largepagesize.setText("2M");
+        gcselect.setSelectedItem("Shenandoah");
+        largepagescheck.setSelected(true);
+        noexplicitcheck.setSelected(true);
+        utf8check.setSelected(true);
+        getJavaSelection();
+        saveJavaProfile();
+    }
 }
