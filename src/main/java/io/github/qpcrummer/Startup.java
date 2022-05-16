@@ -30,7 +30,7 @@ public class Startup {
     public static void check() {
         if (Config.getConfig().getBoolean("hooks.discord-rpc")) {
             try {
-                DiscordRP.reset();
+                DiscordRP.start();
                 System.out.println("RPC Loaded As TRUE From Config");
             } catch (Exception ex) {
                 ex.printStackTrace();

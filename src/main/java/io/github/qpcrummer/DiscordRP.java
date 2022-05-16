@@ -4,18 +4,27 @@ import net.arikia.dev.drpc.DiscordRPC;
 import net.arikia.dev.drpc.DiscordEventHandlers;
 import net.arikia.dev.drpc.DiscordRichPresence;
 
+import java.util.concurrent.atomic.AtomicBoolean;
+
 public class DiscordRP {
-    static boolean running = true;
+    static AtomicBoolean running = new AtomicBoolean(false);
     private static long created = 0;
 
-    public static void start() {
-        created = System.currentTimeMillis();
+    public static Thread rpcThread = new Thread(DiscordRP::run);
 
-        new Thread(() -> {
-            while (running) {
-                DiscordRPC.discordRunCallbacks();
-            }
-        }).start();
+    private static void run() {
+        while (running.get()) {
+            DiscordRPC.discordRunCallbacks();
+        }
+    }
+
+    public static void start() {
+        if (running.getAndSet(true)) {
+            throw new IllegalStateException("RPC Thread already running");
+        }
+        created = System.currentTimeMillis();
+        rpcThread = new Thread(DiscordRP::run);
+        rpcThread.start();
 
         DiscordEventHandlers handlers = new DiscordEventHandlers.Builder().setReadyEventHandler(user -> {
             System.out.println("Welcome " + user.username + "#" + user.discriminator + "!");
@@ -26,10 +35,14 @@ public class DiscordRP {
         DiscordRPC.discordRegister("948043055582302250", "");
     }
 
-    public static void shutdown() {
-        running = false;
-        DiscordRPC.discordClearPresence();
-        DiscordRPC.discordShutdown();
+    public static void shutdown() throws InterruptedException {
+        if (!running.getAndSet(false)) {
+            throw new IllegalStateException("RPC Thread already down");
+        }
+            running.set(false);
+            DiscordRPC.discordClearPresence();
+            DiscordRPC.discordShutdown();
+            rpcThread.join();
     }
 
     public static void update(String firstLine, String secondLine) {
@@ -39,10 +52,5 @@ public class DiscordRP {
         b.setStartTimestamps(created);
 
         DiscordRPC.discordUpdatePresence(b.build());
-    }
-
-    public static void reset() {
-        running = true;
-        DiscordRP.start();
     }
 }

@@ -2,7 +2,6 @@ package io.github.qpcrummer.guis;
 
 import io.github.qpcrummer.Config;
 import io.github.qpcrummer.DiscordRP;
-import org.simpleyaml.configuration.file.YamlFile;
 
 import javax.swing.*;
 import java.awt.*;
@@ -105,7 +104,7 @@ public class UtilGUI {
         rpc.addActionListener(e -> {
             if (rpc.isSelected()) {
                 try {
-                    DiscordRP.reset();
+                    DiscordRP.start();
                     System.out.println("RPC Init");
                 } catch (Exception ex) {
                     ex.printStackTrace();
