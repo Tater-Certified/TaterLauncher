@@ -10,7 +10,7 @@ public class DiscordRP {
     static AtomicBoolean running = new AtomicBoolean(false);
     private static long created = 0;
 
-    public static Thread rpcThread = new Thread(DiscordRP::run);
+    public static Thread rpcThread;
 
     private static void run() {
         while (running.get()) {
@@ -18,13 +18,14 @@ public class DiscordRP {
         }
     }
 
-    public static void start() {
+    public static void start() throws Exception {
         if (running.getAndSet(true)) {
-            throw new IllegalStateException("RPC Thread already running");
+            throw new Exception("RPC Thread already running");
         }
         created = System.currentTimeMillis();
         rpcThread = new Thread(DiscordRP::run);
         rpcThread.start();
+        running.set(true);
 
         DiscordEventHandlers handlers = new DiscordEventHandlers.Builder().setReadyEventHandler(user -> {
             System.out.println("Welcome " + user.username + "#" + user.discriminator + "!");
@@ -35,14 +36,14 @@ public class DiscordRP {
         DiscordRPC.discordRegister("948043055582302250", "");
     }
 
-    public static void shutdown() throws InterruptedException {
-        if (!running.getAndSet(false)) {
-            throw new IllegalStateException("RPC Thread already down");
+    public static void shutdown() throws Exception {
+        if (running.getAndSet(false)) {
+            throw new Exception("RPC Thread already down");
         }
-            running.set(false);
             DiscordRPC.discordClearPresence();
             DiscordRPC.discordShutdown();
             rpcThread.join();
+        running.set(false);
     }
 
     public static void update(String firstLine, String secondLine) {

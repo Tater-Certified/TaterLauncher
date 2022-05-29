@@ -1,7 +1,7 @@
 package io.github.qpcrummer.guis;
 
 import io.github.qpcrummer.Main;
-import io.github.qpcrummer.launch.MinecraftLaunch;
+import io.github.qpcrummer.launch.ScuffedLoadingGUI;
 
 import javax.swing.*;
 import java.awt.*;
@@ -91,8 +91,9 @@ public class GUI {
         //start button settings
         startbutton.setPreferredSize(new Dimension(150,50));
         startbutton.addActionListener(e -> {
-            startbutton.setText("Minecraft is starting!");
-            MinecraftLaunch.launchmc();
+            //Temp. removed for alternative launch method
+            //startbutton.setText("Minecraft is starting!");
+            ScuffedLoadingGUI.openTempLoadingScreen();
         });
         //settings button settings
         settingsbutton.setVerticalTextPosition(SwingConstants.BOTTOM);
