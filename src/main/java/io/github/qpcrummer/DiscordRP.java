@@ -15,6 +15,11 @@ public class DiscordRP {
     private static void run() {
         while (running.get()) {
             DiscordRPC.discordRunCallbacks();
+            try {
+                Thread.sleep(5000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -38,8 +43,12 @@ public class DiscordRP {
 
     public static void shutdown() throws Exception {
         if (running.getAndSet(false)) {
+            DiscordRPC.discordClearPresence();
+            DiscordRPC.discordShutdown();
+            rpcThread.join();
             throw new Exception("RPC Thread already down");
         }
+        else
             DiscordRPC.discordClearPresence();
             DiscordRPC.discordShutdown();
             rpcThread.join();
