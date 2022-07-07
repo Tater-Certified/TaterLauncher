@@ -1,14 +1,12 @@
 package com.github.tatercertified;
 
-import com.github.tatercertified.guis.LoadingGUI;
 import com.github.tatercertified.guis.GUI;
-
-import javax.swing.*;
+import com.github.tatercertified.guis.LoadingGUI;
 
 public class Main {
     public static LoadingGUI loadingGUI;
 
-    public static void main(String[] args) throws UnsupportedLookAndFeelException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+    public static void main(String[] args) {
         //Set Default Look and Feel
         //UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 
