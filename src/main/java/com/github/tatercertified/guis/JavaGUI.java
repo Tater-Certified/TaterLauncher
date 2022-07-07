@@ -1,19 +1,16 @@
-package io.github.qpcrummer.guis;
+package com.github.tatercertified.guis;
 
-import io.github.qpcrummer.JavaProfile;
+import com.github.tatercertified.JavaProfile;
 
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.filechooser.FileFilter;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
 
-import static io.github.qpcrummer.JavaProfile.*;
-import static io.github.qpcrummer.guis.LoadingGUI.icon;
+import static com.github.tatercertified.JavaProfile.*;
 
 public class JavaGUI {
     //Frames
@@ -117,7 +114,7 @@ public class JavaGUI {
         javaframe.setTitle("Java Settings");
         javaframe.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         javaframe.setMinimumSize(new Dimension(555, 500));
-        javaframe.setIconImage(icon);
+        javaframe.setIconImage(LoadingGUI.icon);
 
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {

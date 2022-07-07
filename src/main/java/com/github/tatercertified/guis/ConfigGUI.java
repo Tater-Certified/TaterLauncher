@@ -1,9 +1,9 @@
-package io.github.qpcrummer.guis;
+package com.github.tatercertified.guis;
 
 
-import io.github.qpcrummer.Config;
-import io.github.qpcrummer.themes.Dark;
-import io.github.qpcrummer.themes.Light;
+import com.github.tatercertified.Config;
+import com.github.tatercertified.themes.Dark;
+import com.github.tatercertified.themes.Light;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,9 +11,8 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
 
-import static io.github.qpcrummer.Config.getConfig;
-import static io.github.qpcrummer.guis.GUI.frame;
-import static io.github.qpcrummer.guis.LoadingGUI.icon;
+import static com.github.tatercertified.Config.getConfig;
+import static com.github.tatercertified.guis.GUI.frame;
 
 public class ConfigGUI {
     //Frames
@@ -42,7 +41,7 @@ public class ConfigGUI {
         settingframe.setTitle("Settings");
         settingframe.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         settingframe.setMinimumSize(new Dimension(500,500));
-        settingframe.setIconImage(icon);
+        settingframe.setIconImage(LoadingGUI.icon);
         JFrame.setDefaultLookAndFeelDecorated(false);
 
         //AuthPanel

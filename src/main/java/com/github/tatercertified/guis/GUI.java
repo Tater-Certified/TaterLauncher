@@ -1,17 +1,11 @@
-package io.github.qpcrummer.guis;
+package com.github.tatercertified.guis;
 
-import io.github.qpcrummer.Main;
-import io.github.qpcrummer.launch.ScuffedLoadingGUI;
+import com.github.tatercertified.Main;
+import com.github.tatercertified.launch.ScuffedLoadingGUI;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.Objects;
-
-import static io.github.qpcrummer.guis.ConfigGUI.settingframe;
-import static io.github.qpcrummer.guis.JavaGUI.javaframe;
-import static io.github.qpcrummer.guis.LoadingGUI.icon;
-import static io.github.qpcrummer.guis.UtilGUI.utilframe;
-import static io.github.qpcrummer.guis.VersionGUI.versionframe;
 
 public class GUI {
 
@@ -47,6 +41,7 @@ public class GUI {
     public static final JButton utilsbutton = new JButton("Utils",utilitater);
     public static final JButton javabutton = new JButton("Java Configuration");
     //Labels
+
     private static final JLabel menupic = new JLabel(background);
     public static final JLabel launchername = new JLabel("Tater Launcher");
 
@@ -63,7 +58,8 @@ public class GUI {
         frame.setTitle("Tater Launcher");
         frame.setMinimumSize(new Dimension(510,510));
         frame.setExtendedState(frame.getExtendedState() | JFrame.MAXIMIZED_BOTH);
-        frame.setIconImage(icon);
+        frame.setIconImage(LoadingGUI.icon);
+
         frame.getContentPane().add(panel);
         JFrame.setDefaultLookAndFeelDecorated(false);
 
@@ -100,7 +96,7 @@ public class GUI {
         settingsbutton.setHorizontalTextPosition(SwingConstants.CENTER);
         settingsbutton.addActionListener(e -> {
             System.out.println("Settings Was Pressed");
-            settingframe.setVisible(true);
+            ConfigGUI.settingframe.setVisible(true);
             ConfigGUI.initializeConfigGui();
         });
 
@@ -108,14 +104,14 @@ public class GUI {
         versionbutton.setPreferredSize(new Dimension(150,50));
         versionbutton.addActionListener(e -> {
             System.out.println("Version Button Was Pressed");
-            versionframe.setVisible(true);
+            VersionGUI.versionframe.setVisible(true);
             VersionGUI.initializever();
         });
 
         //Java button settings
         javabutton.setPreferredSize(new Dimension(150,50));
         javabutton.addActionListener(e -> {
-            javaframe.setVisible(true);
+            JavaGUI.javaframe.setVisible(true);
             System.out.println("Java Button Was Pressed");
             try {
                 JavaGUI.initializejavaui();
@@ -128,7 +124,7 @@ public class GUI {
         utilsbutton.setVerticalTextPosition(SwingConstants.BOTTOM);
         utilsbutton.setHorizontalTextPosition(SwingConstants.CENTER);
         utilsbutton.addActionListener(e -> {
-            utilframe.setVisible(true);
+            UtilGUI.utilframe.setVisible(true);
             System.out.println("Util Button Was Pressed");
             UtilGUI.initializeUtil();
         });

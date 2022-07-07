@@ -1,13 +1,13 @@
-package io.github.qpcrummer;
+package com.github.tatercertified;
 
-import io.github.qpcrummer.themes.Dark;
-import io.github.qpcrummer.themes.Light;
+import com.github.tatercertified.themes.Dark;
+import com.github.tatercertified.themes.Light;
 
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import static io.github.qpcrummer.guis.ConfigGUI.colormodeVar;
+import static com.github.tatercertified.guis.ConfigGUI.colormodeVar;
 
 public class Startup {
     public static void prep() throws IOException {

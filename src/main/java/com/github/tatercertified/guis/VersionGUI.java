@@ -1,4 +1,4 @@
-package io.github.qpcrummer.guis;
+package com.github.tatercertified.guis;
 
 import com.google.gson.Gson;
 
@@ -12,8 +12,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import static io.github.qpcrummer.guis.GUI.frame;
-import static io.github.qpcrummer.guis.LoadingGUI.icon;
+import static com.github.tatercertified.guis.GUI.frame;
 
 public class VersionGUI {
     //Name Vars
@@ -77,7 +76,7 @@ public class VersionGUI {
         versionframe.setTitle("Version Selector");
         versionframe.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         versionframe.setMinimumSize(new Dimension(500,500));
-        versionframe.setIconImage(icon);
+        versionframe.setIconImage(LoadingGUI.icon);
         JFrame.setDefaultLookAndFeelDecorated(false);
 
         versionframe.add(masterpanel);

@@ -1,4 +1,4 @@
-package io.github.qpcrummer;
+package com.github.tatercertified;
 
 import org.simpleyaml.configuration.file.YamlFile;
 

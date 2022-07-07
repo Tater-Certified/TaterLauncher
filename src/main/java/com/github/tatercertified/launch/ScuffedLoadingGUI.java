@@ -1,4 +1,6 @@
-package io.github.qpcrummer.launch;
+package com.github.tatercertified.launch;
+
+import com.github.tatercertified.guis.LoadingGUI;
 
 import javax.swing.*;
 
@@ -8,8 +10,7 @@ import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.IOException;
 
-import static io.github.qpcrummer.guis.GUI.frame;
-import static io.github.qpcrummer.guis.LoadingGUI.icon;
+import static com.github.tatercertified.guis.GUI.frame;
 
 public class ScuffedLoadingGUI {
     public static JFrame temploadingscreen = new JFrame();
@@ -37,7 +38,7 @@ public class ScuffedLoadingGUI {
     public static void openTempLoadingScreen() {
         frame.setVisible(false);
         temploadingscreen.setVisible(true);
-        temploadingscreen.setIconImage(icon);
+        temploadingscreen.setIconImage(LoadingGUI.icon);
         temploadingscreen.setMinimumSize(new Dimension(510, 900));
 
         temploadingscreen.add(temploadingpanel);

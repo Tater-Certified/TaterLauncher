@@ -1,13 +1,14 @@
-package io.github.qpcrummer.themes;
+package com.github.tatercertified.themes;
+
+import com.github.tatercertified.guis.ConfigGUI;
+import com.github.tatercertified.guis.VersionGUI;
 
 import javax.swing.*;
 import java.awt.*;
 
-import static io.github.qpcrummer.guis.ConfigGUI.*;
-import static io.github.qpcrummer.guis.GUI.*;
-import static io.github.qpcrummer.guis.JavaGUI.*;
-import static io.github.qpcrummer.guis.UtilGUI.*;
-import static io.github.qpcrummer.guis.VersionGUI.*;
+import static com.github.tatercertified.guis.GUI.*;
+import static com.github.tatercertified.guis.JavaGUI.*;
+import static com.github.tatercertified.guis.UtilGUI.*;
 
 public class Light {
     public static void initlight() {
@@ -152,54 +153,54 @@ public class Light {
     }
 
     public static void verguilight() {
-        masterpanel.setBackground(Color.WHITE);
-        versionpanel.setBackground(Color.WHITE);
+        VersionGUI.masterpanel.setBackground(Color.WHITE);
+        VersionGUI.versionpanel.setBackground(Color.WHITE);
 
-        newverpanel.setBackground(Color.WHITE);
-        verlabel.setForeground(Color.BLACK);
-        newverlabel.setForeground(Color.BLACK);
-        namever.setBackground(new Color(209, 209, 209));
-        namever.setForeground(Color.BLACK);
-        createver.setBackground(new Color(0, 200, 0));
-        createver.setForeground(Color.BLACK);
+        VersionGUI.newverpanel.setBackground(Color.WHITE);
+        VersionGUI.verlabel.setForeground(Color.BLACK);
+        VersionGUI.newverlabel.setForeground(Color.BLACK);
+        VersionGUI.namever.setBackground(new Color(209, 209, 209));
+        VersionGUI.namever.setForeground(Color.BLACK);
+        VersionGUI.createver.setBackground(new Color(0, 200, 0));
+        VersionGUI.createver.setForeground(Color.BLACK);
 
-        profile0.setBackground(Color.WHITE);
-        select0.setBackground(new Color(0, 200, 0));
-        select0.setForeground(Color.BLACK);
-        label0.setForeground(Color.BLACK);
-        ver0.setBackground(new Color(209, 209, 209));
-        dir0.setBackground(new Color(209, 209, 209));
-        dir0.setForeground(Color.BLACK);
-        java0.setBackground(new Color(209, 209, 209));
-        loader0.setBackground(new Color(209, 209, 209));
+        VersionGUI.profile0.setBackground(Color.WHITE);
+        VersionGUI.select0.setBackground(new Color(0, 200, 0));
+        VersionGUI.select0.setForeground(Color.BLACK);
+        VersionGUI.label0.setForeground(Color.BLACK);
+        VersionGUI.ver0.setBackground(new Color(209, 209, 209));
+        VersionGUI.dir0.setBackground(new Color(209, 209, 209));
+        VersionGUI.dir0.setForeground(Color.BLACK);
+        VersionGUI.java0.setBackground(new Color(209, 209, 209));
+        VersionGUI.loader0.setBackground(new Color(209, 209, 209));
 
-        profile1.setBackground(Color.WHITE);
-        select1.setBackground(new Color(0, 200, 0));
-        select1.setForeground(Color.BLACK);
-        label1.setForeground(Color.BLACK);
-        ver1.setBackground(new Color(209, 209, 209));
-        dir1.setBackground(new Color(209, 209, 209));
-        dir1.setForeground(Color.BLACK);
-        java1.setBackground(new Color(209, 209, 209));
-        loader1.setBackground(new Color(209, 209, 209));
+        VersionGUI.profile1.setBackground(Color.WHITE);
+        VersionGUI.select1.setBackground(new Color(0, 200, 0));
+        VersionGUI.select1.setForeground(Color.BLACK);
+        VersionGUI.label1.setForeground(Color.BLACK);
+        VersionGUI.ver1.setBackground(new Color(209, 209, 209));
+        VersionGUI.dir1.setBackground(new Color(209, 209, 209));
+        VersionGUI.dir1.setForeground(Color.BLACK);
+        VersionGUI.java1.setBackground(new Color(209, 209, 209));
+        VersionGUI.loader1.setBackground(new Color(209, 209, 209));
     }
 
     public static void configguilight() {
-        authpanel.setBackground(Color.WHITE);
+        ConfigGUI.authpanel.setBackground(Color.WHITE);
 
-        user.setForeground(Color.BLACK);
-        pass.setForeground(Color.BLACK);
-        username.setBackground(new Color(209, 209, 209));
-        password.setBackground(new Color(209, 209, 209));
-        username.setForeground(Color.BLACK);
-        password.setForeground(Color.BLACK);
+        ConfigGUI.user.setForeground(Color.BLACK);
+        ConfigGUI.pass.setForeground(Color.BLACK);
+        ConfigGUI.username.setBackground(new Color(209, 209, 209));
+        ConfigGUI.password.setBackground(new Color(209, 209, 209));
+        ConfigGUI.username.setForeground(Color.BLACK);
+        ConfigGUI.password.setForeground(Color.BLACK);
 
-        themepanel.setBackground(Color.WHITE);
-        themelabel.setForeground(Color.BLACK);
-        dark.setBackground(Color.WHITE);
-        dark.setForeground(Color.BLACK);
+        ConfigGUI.themepanel.setBackground(Color.WHITE);
+        ConfigGUI.themelabel.setForeground(Color.BLACK);
+        ConfigGUI.dark.setBackground(Color.WHITE);
+        ConfigGUI.dark.setForeground(Color.BLACK);
 
-        tabPane.setBackground(Color.WHITE);
-        tabPane.setForeground(Color.BLACK);
+        ConfigGUI.tabPane.setBackground(Color.WHITE);
+        ConfigGUI.tabPane.setForeground(Color.BLACK);
     }
 }

@@ -1,4 +1,4 @@
-package io.github.qpcrummer;
+package com.github.tatercertified;
 
 import java.nio.file.Path;
 

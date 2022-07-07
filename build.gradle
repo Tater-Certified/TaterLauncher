@@ -4,7 +4,7 @@ plugins {
     id 'edu.sc.seis.launch4j' version '2.5.1'
 }
 
-group 'io.github.qpcrummer'
+group 'com.github.tatercertified'
 version '0.1.0'
 def build = 'dev'
 
@@ -29,20 +29,20 @@ dependencies {
 shadowJar {
     manifest {
         attributes(
-                'Main-Class': 'io.github.qpcrummer.Main'
+                'Main-Class': 'com.github.tatercertified.Main'
         )
     }
 }
 
 launch4j {
-    mainClassName = 'io.github.qpcrummer.Main'
+    mainClassName = 'com.github.tatercertified.Main'
     outfile = 'TaterLauncher.exe'
     jarTask = project.tasks.shadowJar
     fileDescription = 'Tater Launcher'
-    //icon = "${projectDir}/src/main/resources/assets/icon.ico"
+    icon = "${projectDir}/src/main/resources/assets/TaterMC.png"
     productName = 'TaterLauncher'
     version = "$this.version"
     textVersion = "$this.version"
-    downloadUrl = "https://github.com/QPCrummer/TaterLauncher"
+    downloadUrl = "https://github.com/Tater-Certified/TaterLauncher"
     bundledJre64Bit = false
 }

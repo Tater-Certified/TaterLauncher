@@ -1,12 +1,17 @@
-package io.github.qpcrummer;
+package com.github.tatercertified;
 
-import io.github.qpcrummer.guis.GUI;
-import io.github.qpcrummer.guis.LoadingGUI;
+import com.github.tatercertified.guis.LoadingGUI;
+import com.github.tatercertified.guis.GUI;
+
+import javax.swing.*;
 
 public class Main {
     public static LoadingGUI loadingGUI;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws UnsupportedLookAndFeelException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+        //Set Default Look and Feel
+        //UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+
         Config.loadConfig();
 
         if (Config.getConfig().getBoolean("loading.screen")) {

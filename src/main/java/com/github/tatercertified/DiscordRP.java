@@ -1,4 +1,4 @@
-package io.github.qpcrummer;
+package com.github.tatercertified;
 
 import net.arikia.dev.drpc.DiscordRPC;
 import net.arikia.dev.drpc.DiscordEventHandlers;

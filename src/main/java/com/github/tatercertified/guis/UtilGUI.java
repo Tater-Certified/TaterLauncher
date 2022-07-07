@@ -1,7 +1,7 @@
-package io.github.qpcrummer.guis;
+package com.github.tatercertified.guis;
 
-import io.github.qpcrummer.Config;
-import io.github.qpcrummer.DiscordRP;
+import com.github.tatercertified.DiscordRP;
+import com.github.tatercertified.Config;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,9 +9,8 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
 
-import static io.github.qpcrummer.Config.getConfig;
-import static io.github.qpcrummer.guis.GUI.frame;
-import static io.github.qpcrummer.guis.LoadingGUI.icon;
+import static com.github.tatercertified.Config.getConfig;
+import static com.github.tatercertified.guis.GUI.frame;
 
 public class UtilGUI {
     //Frames
@@ -24,7 +23,7 @@ public class UtilGUI {
     public static JCheckBox tatershoulder = new JCheckBox("TaterPet - Enables a tater that sits on your shoulder");
     public static JCheckBox resourceusage = new JCheckBox("Resource Graph - Enables a resource usage graph");
     public static JCheckBox tatertube = new JCheckBox("TaterTube - Enables an in-game Youtube client");
-    public static JCheckBox rpc = new JCheckBox("TaterRPC - Discord Rich Presence (Can be slow sometimes)");
+    public static JCheckBox rpc = new JCheckBox("TaterRPC - Discord Rich Presence");
     public static JCheckBox loading = new JCheckBox("Loading Screen - Toggles Loading Screen");
     //Labels
     public static final JLabel toggles = new JLabel("Toggles");
@@ -48,7 +47,7 @@ public class UtilGUI {
         utilframe.setTitle("Utilities");
         utilframe.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         utilframe.setMinimumSize(new Dimension(500, 500));
-        utilframe.setIconImage(icon);
+        utilframe.setIconImage(LoadingGUI.icon);
         JFrame.setDefaultLookAndFeelDecorated(false);
 
         //Add tabs

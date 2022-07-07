@@ -1,4 +1,4 @@
-package io.github.qpcrummer.guis.panels;
+package com.github.tatercertified.guis.panels;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,13 +1,14 @@
-package io.github.qpcrummer.themes;
+package com.github.tatercertified.themes;
+
+import com.github.tatercertified.guis.ConfigGUI;
+import com.github.tatercertified.guis.UtilGUI;
+import com.github.tatercertified.guis.VersionGUI;
 
 import javax.swing.*;
 import java.awt.*;
 
-import static io.github.qpcrummer.guis.ConfigGUI.*;
-import static io.github.qpcrummer.guis.GUI.*;
-import static io.github.qpcrummer.guis.JavaGUI.*;
-import static io.github.qpcrummer.guis.UtilGUI.*;
-import static io.github.qpcrummer.guis.VersionGUI.*;
+import static com.github.tatercertified.guis.GUI.*;
+import static com.github.tatercertified.guis.JavaGUI.*;
 
 public class Dark {
     //Defaults
@@ -138,78 +139,78 @@ public class Dark {
     }
     //Utils GUI
     public static void utilguidark() {
-        togglespanel.setBackground(darkpanel);
-        tatercape.setBackground(darkcheck);
-        tatershoulder.setBackground(darkcheck);
-        resourceusage.setBackground(darkcheck);
-        tatertube.setBackground(darkcheck);
-        rpc.setBackground(darkcheck);
-        loading.setBackground(darkcheck);
-        toggles.setForeground(darklabelforebig);
-        tatercape.setForeground(Color.WHITE);
-        tatershoulder.setForeground(Color.WHITE);
-        resourceusage.setForeground(Color.WHITE);
-        tatertube.setForeground(Color.WHITE);
-        rpc.setForeground(Color.WHITE);
-        loading.setForeground(Color.WHITE);
+        UtilGUI.togglespanel.setBackground(darkpanel);
+        UtilGUI.tatercape.setBackground(darkcheck);
+        UtilGUI.tatershoulder.setBackground(darkcheck);
+        UtilGUI.resourceusage.setBackground(darkcheck);
+        UtilGUI.tatertube.setBackground(darkcheck);
+        UtilGUI.rpc.setBackground(darkcheck);
+        UtilGUI.loading.setBackground(darkcheck);
+        UtilGUI.toggles.setForeground(darklabelforebig);
+        UtilGUI.tatercape.setForeground(Color.WHITE);
+        UtilGUI.tatershoulder.setForeground(Color.WHITE);
+        UtilGUI.resourceusage.setForeground(Color.WHITE);
+        UtilGUI.tatertube.setForeground(Color.WHITE);
+        UtilGUI.rpc.setForeground(Color.WHITE);
+        UtilGUI.loading.setForeground(Color.WHITE);
 
-        appspanel.setBackground(darkpanel);
-        apps.setForeground(darklabelforebig);
-        noapps.setForeground(darklabelforebig);
+        UtilGUI.appspanel.setBackground(darkpanel);
+        UtilGUI.apps.setForeground(darklabelforebig);
+        UtilGUI.noapps.setForeground(darklabelforebig);
 
-        tabs.setBackground(darktabs);
-        tabs.setForeground(Color.WHITE);
+        UtilGUI.tabs.setBackground(darktabs);
+        UtilGUI.tabs.setForeground(Color.WHITE);
     }
     //Version GUI
     public static void verguidark() {
-        masterpanel.setBackground(darkpanel);
-        versionpanel.setBackground(darkpanel);
+        VersionGUI.masterpanel.setBackground(darkpanel);
+        VersionGUI.versionpanel.setBackground(darkpanel);
 
-        newverpanel.setBackground(darkpanel);
-        verlabel.setForeground(darklabelforebig);
-        newverlabel.setForeground(darklabelforebig);
-        namever.setBackground(darktextbox);
-        namever.setForeground(Color.WHITE);
-        createver.setBackground(darkbutton);
-        createver.setForeground(Color.WHITE);
+        VersionGUI.newverpanel.setBackground(darkpanel);
+        VersionGUI.verlabel.setForeground(darklabelforebig);
+        VersionGUI.newverlabel.setForeground(darklabelforebig);
+        VersionGUI.namever.setBackground(darktextbox);
+        VersionGUI.namever.setForeground(Color.WHITE);
+        VersionGUI.createver.setBackground(darkbutton);
+        VersionGUI.createver.setForeground(Color.WHITE);
 
-        profile0.setBackground(darkpanel);
-        select0.setBackground(darkbuttongreen);
-        select0.setForeground(Color.WHITE);
-        label0.setForeground(Color.WHITE);
-        ver0.setBackground(darkcombo);
-        dir0.setBackground(darktextbox);
-        dir0.setForeground(Color.WHITE);
-        java0.setBackground(darkcombo);
-        loader0.setBackground(darkcombo);
+        VersionGUI.profile0.setBackground(darkpanel);
+        VersionGUI.select0.setBackground(darkbuttongreen);
+        VersionGUI.select0.setForeground(Color.WHITE);
+        VersionGUI.label0.setForeground(Color.WHITE);
+        VersionGUI.ver0.setBackground(darkcombo);
+        VersionGUI.dir0.setBackground(darktextbox);
+        VersionGUI.dir0.setForeground(Color.WHITE);
+        VersionGUI.java0.setBackground(darkcombo);
+        VersionGUI.loader0.setBackground(darkcombo);
 
-        profile1.setBackground(darkpanel);
-        select1.setBackground(darkbuttongreen);
-        select1.setForeground(Color.WHITE);
-        label1.setForeground(Color.WHITE);
-        ver1.setBackground(darkcombo);
-        dir1.setBackground(darktextbox);
-        dir1.setForeground(Color.WHITE);
-        java1.setBackground(darkcombo);
-        loader1.setBackground(darkcombo);
+        VersionGUI.profile1.setBackground(darkpanel);
+        VersionGUI.select1.setBackground(darkbuttongreen);
+        VersionGUI.select1.setForeground(Color.WHITE);
+        VersionGUI.label1.setForeground(Color.WHITE);
+        VersionGUI.ver1.setBackground(darkcombo);
+        VersionGUI.dir1.setBackground(darktextbox);
+        VersionGUI.dir1.setForeground(Color.WHITE);
+        VersionGUI.java1.setBackground(darkcombo);
+        VersionGUI.loader1.setBackground(darkcombo);
     }
     //Config GUI
     public static void configguidark() {
-        authpanel.setBackground(darkpanel);
+        ConfigGUI.authpanel.setBackground(darkpanel);
 
-        user.setForeground(darklabelforebig);
-        pass.setForeground(darklabelforebig);
-        username.setBackground(darktextbox);
-        password.setBackground(darktextbox);
-        username.setForeground(Color.WHITE);
-        password.setForeground(Color.WHITE);
+        ConfigGUI.user.setForeground(darklabelforebig);
+        ConfigGUI.pass.setForeground(darklabelforebig);
+        ConfigGUI.username.setBackground(darktextbox);
+        ConfigGUI.password.setBackground(darktextbox);
+        ConfigGUI.username.setForeground(Color.WHITE);
+        ConfigGUI.password.setForeground(Color.WHITE);
 
-        themepanel.setBackground(darkpanel);
-        themelabel.setForeground(darklabelforebig);
-        dark.setBackground(darkcheck);
-        dark.setForeground(Color.WHITE);
+        ConfigGUI.themepanel.setBackground(darkpanel);
+        ConfigGUI.themelabel.setForeground(darklabelforebig);
+        ConfigGUI.dark.setBackground(darkcheck);
+        ConfigGUI.dark.setForeground(Color.WHITE);
 
-        tabPane.setBackground(darktabs);
-        tabPane.setForeground(Color.WHITE);
+        ConfigGUI.tabPane.setBackground(darktabs);
+        ConfigGUI.tabPane.setForeground(Color.WHITE);
     }
 }

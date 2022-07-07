@@ -1,8 +1,7 @@
-package io.github.qpcrummer.guis;
+package com.github.tatercertified.guis;
 
-import io.github.qpcrummer.Config;
-import io.github.qpcrummer.Startup;
-import io.github.qpcrummer.guis.panels.CustomProgressBarPanel;
+import com.github.tatercertified.Startup;
+import com.github.tatercertified.guis.panels.CustomProgressBarPanel;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
