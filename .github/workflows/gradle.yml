@@ -41,12 +41,12 @@ jobs:
           
       - name: Chmod
         run: chmod +x gradlew
-
-      - name: Build with Gradle
-        run: ./gradlew build --no-daemon
+        
+      - name: ShadowJar
+        run: ./gradlew clean shadowJar --no-daemon
         
       - name: Create Windows Executable
-        run: ./gradlew createExe
+        run: ./gradlew createExe --no-daemon
         
       - name: Capture build artifacts
         uses: actions/upload-artifact@v3
