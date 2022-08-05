@@ -44,8 +44,14 @@ jobs:
 
       - name: Build with Gradle
         run: ./gradlew build --no-daemon
+        
+      - name: Create Windows Executable
+        run: ./gradlew createExe
+        
       - name: Capture build artifacts
         uses: actions/upload-artifact@v3
         with:
           name: Artifacts
           path: build/libs/
+          
+
