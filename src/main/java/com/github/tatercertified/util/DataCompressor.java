@@ -11,11 +11,6 @@ public class DataCompressor {
         this.key = key;
         this.value = value;
     }
-    public DataCompressor(String data, String key, String salt) {
-        this.data = data;
-        this.key = key;
-        this.salt = salt;
-    }
     public String getValue() {
         return value;
     }

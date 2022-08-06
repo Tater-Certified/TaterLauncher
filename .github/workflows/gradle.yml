@@ -38,28 +38,24 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: 18
-          
-      - name: Install Wine
-        run: |
-         sudo dpkg --add-architecture i386
-         wget -qO - https://dl.winehq.org/wine-builds/winehq.key | sudo apt-key add -
-         sudo add-apt-repository ppa:cybermax-dexter/sdl2-backport
-         sudo apt-add-repository "deb https://dl.winehq.org/wine-builds/ubuntu $(lsb_release -cs) main"
-         sudo apt install --install-recommends winehq-stable
+
           
       - name: Chmod
         run: chmod +x gradlew
         
-      - name: ShadowJar
-        run: ./gradlew clean shadowJar --no-daemon
-        
       - name: Create Windows Executable
         run: ./gradlew createExe --no-daemon
         
-      - name: Capture build artifacts
+      - name: Upload Jar
         uses: actions/upload-artifact@v3
         with:
-          name: Artifacts
+          name: TaterLauncher Jar
           path: build/libs/
+
+      - name: Upload Exe
+        uses: actions/upload-artifact@v3
+        with:
+          name: TaterLauncher Exe
+          path: build/launch4j/
           
 

@@ -4,6 +4,9 @@ import net.arikia.dev.drpc.DiscordRPC;
 import net.arikia.dev.drpc.DiscordEventHandlers;
 import net.arikia.dev.drpc.DiscordRichPresence;
 
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class DiscordRP {
@@ -11,6 +14,8 @@ public class DiscordRP {
     private static long created = 0;
 
     public static Thread rpcThread;
+
+    public static ScheduledExecutorService rpcthread;
 
     private static void run() {
         while (running.get()) {
@@ -30,7 +35,16 @@ public class DiscordRP {
         created = System.currentTimeMillis();
         rpcThread = new Thread(DiscordRP::run);
         rpcThread.start();
+
         running.set(true);
+        rpcthread = Executors.newScheduledThreadPool(1);
+        rpcthread.scheduleAtFixedRate(() -> {
+            if (running.get()) {
+                DiscordRPC.discordRunCallbacks();
+            } else {
+                rpcthread.shutdownNow();
+            }
+        }, 0,5, TimeUnit.SECONDS);
 
         DiscordEventHandlers handlers = new DiscordEventHandlers.Builder().setReadyEventHandler(user -> {
             System.out.println("Welcome " + user.username + "#" + user.discriminator + "!");
@@ -46,13 +60,15 @@ public class DiscordRP {
             DiscordRPC.discordClearPresence();
             DiscordRPC.discordShutdown();
             rpcThread.join();
+            rpcthread.shutdownNow();
             throw new Exception("RPC Thread already down");
         }
-        else
-            DiscordRPC.discordClearPresence();
-            DiscordRPC.discordShutdown();
-            rpcThread.join();
-        running.set(false);
+        //else {
+        //   DiscordRPC.discordClearPresence();
+        //    DiscordRPC.discordShutdown();
+        //    rpcThread.join();
+        //    running.set(false);
+        //}
     }
 
     public static void update(String firstLine, String secondLine) {

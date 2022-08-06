@@ -1,7 +1,7 @@
 plugins {
     id 'java'
-    id 'com.github.johnrengelman.shadow' version '5.2.0'
-    id 'edu.sc.seis.launch4j' version '2.5.1'
+    id 'com.github.johnrengelman.shadow' version '7.1.2'
+    id 'edu.sc.seis.launch4j' version '2.5.3'
 }
 
 group 'com.github.tatercertified'
@@ -34,15 +34,14 @@ shadowJar {
     }
 }
 
-launch4j {
-    mainClassName = 'com.github.tatercertified.Main'
+createExe {
     outfile = 'TaterLauncher.exe'
+    mainClassName = 'com.github.tatercertified.Main'
+    copyConfigurable = []
     jarTask = project.tasks.shadowJar
     fileDescription = 'Tater Launcher'
-    icon = "${projectDir}/src/main/resources/assets/TaterMC.png"
+    icon = "${projectDir}/src/main/resources/assets/TaterLauncher.ico"
     productName = 'TaterLauncher'
     version = "$this.version"
     textVersion = "$this.version"
-    downloadUrl = "https://github.com/Tater-Certified/TaterLauncher"
-    bundledJre64Bit = false
 }
