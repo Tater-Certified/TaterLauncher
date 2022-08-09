@@ -10,9 +10,11 @@ import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
+import java.net.URISyntaxException;
 
 import static com.github.tatercertified.Config.getConfig;
 import static com.github.tatercertified.guis.GUI.frame;
+import static com.github.tatercertified.guis.GUI.initializeGui;
 
 public class ConfigGUI {
     //Frames
@@ -20,6 +22,7 @@ public class ConfigGUI {
     //Panels
     public static final JPanel authpanel = new JPanel();
     public static final JPanel themepanel = new JPanel();
+    public static final JPanel maingui = new JPanel();
     //Tabs
     public static final JTabbedPane tabPane = new JTabbedPane(JTabbedPane.TOP);
     //TextBoxes
@@ -29,10 +32,13 @@ public class ConfigGUI {
     public static final JLabel user = new JLabel("Insert MineCraft Username");
     public static final JLabel pass = new JLabel("Insert MineCraft Password");
     public static final JLabel themelabel = new JLabel("Toggle Theme");
+    public static final JLabel mainguilabel = new JLabel("Toggle GUI Style");
     //CheckBoxes
     public static final JCheckBox dark = new JCheckBox("Toggle Theme Modes");
+    public static final JCheckBox legacygui = new JCheckBox("Toggle Legacy GUI");
 
     public static boolean colormodeVar;
+    public static boolean legacyVar;
 
     public static void initializeConfigGui() {
 
@@ -64,9 +70,16 @@ public class ConfigGUI {
         themepanel.add(themelabel);
         themepanel.add(dark);
 
+        //Main GUI
+        maingui.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
+        maingui.setLayout(new BoxLayout(maingui, BoxLayout.PAGE_AXIS));
+        maingui.add(mainguilabel);
+        maingui.add(legacygui);
+
         //Add Tabs
         tabPane.addTab("MC Auth", authpanel);
         tabPane.addTab("Themes", themepanel);
+        tabPane.addTab("Main GUI Themes", maingui);
 
         settingframe.getContentPane().add(tabPane);
 
@@ -117,12 +130,28 @@ public class ConfigGUI {
             }
         });
 
+        legacygui.addActionListener(e -> {
+            if (legacygui.isSelected()) {
+                initializeGui();
+                NewMainGUI.mainframe.dispose();
+            } else {
+                try {
+                    NewMainGUI.initMainGUI();
+                } catch (URISyntaxException ex) {
+                    throw new RuntimeException(ex);
+                }
+                frame.dispose();
+            }
+        });
+
     }
     public static void getConfigSelection() {
         colormodeVar = dark.isSelected();
+        legacyVar = legacygui.isSelected();
     }
     public static void saveConfig() {
         getConfig().set("dark.darkgui", colormodeVar);
+        getConfig().set("gui.legacy", legacyVar);
 
         try {
             getConfig().save();

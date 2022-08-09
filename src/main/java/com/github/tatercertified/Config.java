@@ -46,6 +46,8 @@ public class Config {
         YML_FILE.setComment("dark.darkgui", "Enables Dark Mode");
         YML_FILE.addDefault("loading.screen", true);
         YML_FILE.setComment("loading.screen", "Enables Loading Screen");
+        YML_FILE.addDefault("gui.legacy", false);
+        YML_FILE.setComment("gui.legacy", "Enables Legacy Main GUI");
 
         try {
             YML_FILE.save();

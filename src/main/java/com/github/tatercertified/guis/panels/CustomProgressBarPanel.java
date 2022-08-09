@@ -2,11 +2,12 @@ package com.github.tatercertified.guis.panels;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Objects;
 
 public class CustomProgressBarPanel extends JPanel {
     private int progress = 0;
-    private int width;
-    private int height;
+    private final int width;
+    private final int height;
 
     public CustomProgressBarPanel(int width, int height) {
         this.width = width;
@@ -14,7 +15,7 @@ public class CustomProgressBarPanel extends JPanel {
 
         JLabel progressBar = new JLabel();
         progressBar.setSize(getWidth(), getHeight());
-        ImageIcon image = new ImageIcon(getClass().getClassLoader().getResource("assets/progressbar.png"));
+        ImageIcon image = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("assets/progressbar.png")));
         image = resizeIcon(image, width, height);
         progressBar.setIcon(image);
         add(progressBar);

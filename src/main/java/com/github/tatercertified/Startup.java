@@ -1,13 +1,17 @@
 package com.github.tatercertified;
 
+import com.github.tatercertified.guis.GUI;
+import com.github.tatercertified.guis.NewMainGUI;
 import com.github.tatercertified.themes.Dark;
 import com.github.tatercertified.themes.Light;
 
 import java.io.*;
+import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
 import static com.github.tatercertified.guis.ConfigGUI.colormodeVar;
+import static com.github.tatercertified.guis.ConfigGUI.legacyVar;
 
 public class Startup {
     public static void prep() throws IOException {
@@ -55,6 +59,21 @@ public class Startup {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        }
+        if (Config.getConfig().getBoolean("gui.legacy")) {
+            Config.getConfig().set("gui.legacy", true);
+            legacyVar = true;
+            GUI.initializeGui();
+            System.out.println("Legacy GUI Loaded As TRUE From Config");
+        } else {
+            Config.getConfig().set("gui.legacy", false);
+            legacyVar = false;
+            try {
+                NewMainGUI.initMainGUI();
+            } catch (URISyntaxException e) {
+                throw new RuntimeException(e);
+            }
+            System.out.println("Legacy GUI Loaded As FALSE From Config");
         }
     }
 }

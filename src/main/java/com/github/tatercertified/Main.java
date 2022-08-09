@@ -1,6 +1,5 @@
 package com.github.tatercertified;
 
-import com.github.tatercertified.guis.GUI;
 import com.github.tatercertified.guis.LoadingGUI;
 
 public class Main {
@@ -28,6 +27,5 @@ public class Main {
                 e.printStackTrace();
             }
         }
-        GUI.initializeGui();
     }
 }
