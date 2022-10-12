@@ -72,13 +72,12 @@ public class LoadingGUI extends JFrame {
         smoothIncrease(progressBar, 25);
         sleep();
         smoothIncrease(progressBar, 50);
-        Startup.check();
         sleep();
         smoothIncrease(progressBar, 75);
         sleep();
         smoothIncrease(progressBar, 100);
-
-
+        Startup.check();
+        this.dispose();
     }
 
     private static void sleep() {

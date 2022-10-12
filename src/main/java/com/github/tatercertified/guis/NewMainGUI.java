@@ -1,6 +1,6 @@
 package com.github.tatercertified.guis;
 
-import com.github.tatercertified.Main;
+import com.github.tatercertified.guis.profiles.VersionGUI;
 import com.github.tatercertified.launch.ScuffedLoadingGUI;
 
 import javax.imageio.ImageIO;
@@ -55,12 +55,6 @@ public class NewMainGUI {
     public static final JButton microsoftbutton = new JButton("Microsoft Account", microtater);
 
     public static void initMainGUI() throws URISyntaxException {
-        try {
-            Main.loadingGUI.dispose();
-        } catch (Exception ignored) {
-            System.out.println("Loading Screen Skipped");
-        }
-
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         mainframe.setPreferredSize(new Dimension(screenSize));
         mainframe.setSize(mainframe.getPreferredSize());

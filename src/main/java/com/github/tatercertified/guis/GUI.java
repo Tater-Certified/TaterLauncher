@@ -1,6 +1,6 @@
 package com.github.tatercertified.guis;
 
-import com.github.tatercertified.Main;
+import com.github.tatercertified.guis.profiles.VersionGUI;
 import com.github.tatercertified.launch.ScuffedLoadingGUI;
 
 import javax.swing.*;
@@ -46,12 +46,6 @@ public class GUI {
     public static final JLabel launchername = new JLabel("Tater Launcher");
 
     public static void initializeGui() {
-
-        try {
-            Main.loadingGUI.dispose();
-        } catch (Exception ignored) {
-            System.out.println("Loading Screen Skipped");
-        }
         //Main Frame
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

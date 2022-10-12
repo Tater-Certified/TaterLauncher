@@ -2,7 +2,7 @@ package com.github.tatercertified.themes;
 
 import com.github.tatercertified.guis.ConfigGUI;
 import com.github.tatercertified.guis.UtilGUI;
-import com.github.tatercertified.guis.VersionGUI;
+import com.github.tatercertified.guis.profiles.VersionGUI;
 
 import javax.swing.*;
 import java.awt.*;

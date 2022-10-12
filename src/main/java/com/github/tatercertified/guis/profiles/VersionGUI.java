@@ -1,5 +1,6 @@
-package com.github.tatercertified.guis;
+package com.github.tatercertified.guis.profiles;
 
+import com.github.tatercertified.guis.LoadingGUI;
 import com.google.gson.Gson;
 
 import javax.swing.*;
@@ -9,6 +10,7 @@ import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -138,15 +140,46 @@ public class VersionGUI {
         //Text Box Config
         namever.setPreferredSize(new Dimension(300,30));
 
+        //Create Ver Button
+        createver.addActionListener(e -> {
+            LoaderInstaller.LaunchGUI();
+                });
+
+
         versionframe.addWindowListener(new WindowAdapter() {
 
             @Override
             public void windowClosing(WindowEvent e) {
                 System.out.println("Version is closing");
-                frame.setVisible(true);
             }
         });
         versionframe.pack();
+    }
+
+    static class ProfileList {
+        public ProfileList() {}
+        private String name;
+        private Path path;
+
+        public String getProfileName() {
+            return name;
+        }
+
+        public Path getProfilePath() {
+            return path;
+        }
+
+        public void setProfileName(String profileName) {
+            this.name = profileName;
+        }
+
+        public void setProfilePath(Path path) {
+            this.path = path;
+        }
+    }
+
+    public void fetchProfiles(JPanel panel) {
+
     }
 
     //Version code I don't understand

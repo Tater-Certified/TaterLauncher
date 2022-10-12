@@ -101,7 +101,6 @@ public class ConfigGUI {
                 System.out.println("Setting is closing");
                 getConfigSelection();
                 saveConfig();
-                frame.setVisible(true);
             }
         });
 

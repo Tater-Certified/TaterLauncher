@@ -95,7 +95,6 @@ public class UtilGUI {
                 getSelection();
                 saveUtils();
                 System.out.println("Util is closing");
-                frame.setVisible(true);
             }
         });
         utilframe.pack();

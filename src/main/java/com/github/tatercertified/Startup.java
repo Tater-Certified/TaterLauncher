@@ -21,12 +21,15 @@ public class Startup {
             Files.createDirectory(Paths.get("TaterLauncher"));
         } catch (IOException ignored) {
         }
-        //Other folders
+        //Other folders & files
         try {
             Files.createDirectory(Paths.get("TaterLauncher/java_profiles"));
             Files.createDirectory(Paths.get("TaterLauncher/game_profiles"));
             Files.createDirectory(Paths.get("TaterLauncher/apps"));
             Files.createDirectory(Paths.get("TaterLauncher/accounts"));
+            if (!Files.exists(Paths.get("TaterLauncher/profiles.json"))) {
+                Files.createFile(Paths.get("TaterLauncher/profiles.json"));
+            }
         } catch (IOException ignored) {
         }
     }
