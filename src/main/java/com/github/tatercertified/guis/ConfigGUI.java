@@ -20,17 +20,11 @@ public class ConfigGUI {
     //Frames
     public static final JFrame settingframe = new JFrame();
     //Panels
-    public static final JPanel authpanel = new JPanel();
     public static final JPanel themepanel = new JPanel();
     public static final JPanel maingui = new JPanel();
     //Tabs
     public static final JTabbedPane tabPane = new JTabbedPane(JTabbedPane.TOP);
-    //TextBoxes
-    public static final JTextField username = new JTextField();
-    public static final JTextField password = new JTextField();
     //Labels
-    public static final JLabel user = new JLabel("Insert MineCraft Username");
-    public static final JLabel pass = new JLabel("Insert MineCraft Password");
     public static final JLabel themelabel = new JLabel("Toggle Theme");
     public static final JLabel mainguilabel = new JLabel("Toggle GUI Style");
     //CheckBoxes
@@ -50,20 +44,6 @@ public class ConfigGUI {
         settingframe.setIconImage(LoadingGUI.icon);
         JFrame.setDefaultLookAndFeelDecorated(false);
 
-        //AuthPanel
-        authpanel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
-        authpanel.setLayout(new BoxLayout(authpanel, BoxLayout.PAGE_AXIS));
-        authpanel.add(user);
-        authpanel.add(username);
-        username.setMaximumSize(
-                new Dimension(Integer.MAX_VALUE,
-                        username.getPreferredSize().height));
-        authpanel.add(pass);
-        authpanel.add(password);
-        password.setMaximumSize(
-                new Dimension(Integer.MAX_VALUE,
-                        password.getPreferredSize().height));
-
         //Theme Panel
         themepanel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
         themepanel.setLayout(new BoxLayout(themepanel, BoxLayout.PAGE_AXIS));
@@ -77,21 +57,12 @@ public class ConfigGUI {
         maingui.add(legacygui);
 
         //Add Tabs
-        tabPane.addTab("MC Auth", authpanel);
         tabPane.addTab("Themes", themepanel);
         tabPane.addTab("Main GUI Themes", maingui);
 
         settingframe.getContentPane().add(tabPane);
 
-        //Settings Fill-in Blanks
-        username.setBounds(200, 30, 400, 40);
-        password.setBounds(200, 80, 400, 40);
-        user.setBounds(20, 30,180,40);
-        pass.setBounds(20,80,180,40);
-
         //Label Config
-        user.setFont(new Font("Serif", Font.BOLD, 15));
-        pass.setFont(new Font("Serif", Font.BOLD, 15));
         themelabel.setFont(new Font("Serif", Font.HANGING_BASELINE, 30));
 
         settingframe.addWindowListener(new WindowAdapter() {

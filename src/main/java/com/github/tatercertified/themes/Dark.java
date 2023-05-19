@@ -1,6 +1,7 @@
 package com.github.tatercertified.themes;
 
 import com.github.tatercertified.guis.ConfigGUI;
+import com.github.tatercertified.guis.MSAccountGUI;
 import com.github.tatercertified.guis.UtilGUI;
 import com.github.tatercertified.guis.profiles.VersionGUI;
 
@@ -196,14 +197,14 @@ public class Dark {
     }
     //Config GUI
     public static void configguidark() {
-        ConfigGUI.authpanel.setBackground(darkpanel);
+        MSAccountGUI.authpanel.setBackground(darkpanel);
 
-        ConfigGUI.user.setForeground(darklabelforebig);
-        ConfigGUI.pass.setForeground(darklabelforebig);
-        ConfigGUI.username.setBackground(darktextbox);
-        ConfigGUI.password.setBackground(darktextbox);
-        ConfigGUI.username.setForeground(Color.WHITE);
-        ConfigGUI.password.setForeground(Color.WHITE);
+        MSAccountGUI.user.setForeground(darklabelforebig);
+        MSAccountGUI.pass.setForeground(darklabelforebig);
+        MSAccountGUI.username.setBackground(darktextbox);
+        MSAccountGUI.password.setBackground(darktextbox);
+        MSAccountGUI.username.setForeground(Color.WHITE);
+        MSAccountGUI.password.setForeground(Color.WHITE);
 
         ConfigGUI.themepanel.setBackground(darkpanel);
         ConfigGUI.themelabel.setForeground(darklabelforebig);

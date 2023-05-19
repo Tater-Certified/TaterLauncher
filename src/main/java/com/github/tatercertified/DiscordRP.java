@@ -1,7 +1,7 @@
 package com.github.tatercertified;
 
-import net.arikia.dev.drpc.DiscordRPC;
 import net.arikia.dev.drpc.DiscordEventHandlers;
+import net.arikia.dev.drpc.DiscordRPC;
 import net.arikia.dev.drpc.DiscordRichPresence;
 
 import java.util.concurrent.Executors;
@@ -10,42 +10,18 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class DiscordRP {
-    static AtomicBoolean running = new AtomicBoolean(false);
-    private static long created = 0;
-
-    public static Thread rpcThread;
-
-    public static ScheduledExecutorService rpcthread;
-
-    private static void run() {
-        while (running.get()) {
-            DiscordRPC.discordRunCallbacks();
-            try {
-                Thread.sleep(5000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-    }
+    private static final AtomicBoolean running = new AtomicBoolean(false);
+    private static long created;
+    private static ScheduledExecutorService rpcThreadPool;
 
     public static void start() throws Exception {
         if (running.getAndSet(true)) {
             throw new Exception("RPC Thread already running");
         }
+
         created = System.currentTimeMillis();
-        rpcThread = new Thread(DiscordRP::run);
-        rpcThread.start();
 
-        running.set(true);
-        rpcthread = Executors.newScheduledThreadPool(1);
-        rpcthread.scheduleAtFixedRate(() -> {
-            if (running.get()) {
-                DiscordRPC.discordRunCallbacks();
-            } else {
-                rpcthread.shutdownNow();
-            }
-        }, 0,5, TimeUnit.SECONDS);
-
+        // Initialize DiscordRPC
         DiscordEventHandlers handlers = new DiscordEventHandlers.Builder().setReadyEventHandler(user -> {
             System.out.println("Welcome " + user.username + "#" + user.discriminator + "!");
             update("Starting...", "");
@@ -53,30 +29,29 @@ public class DiscordRP {
 
         DiscordRPC.discordInitialize("948043055582302250", handlers, true);
         DiscordRPC.discordRegister("948043055582302250", "");
+
+        // Create a new scheduled executor service
+        rpcThreadPool = Executors.newScheduledThreadPool(1);
+        rpcThreadPool.scheduleAtFixedRate(DiscordRPC::discordRunCallbacks, 0, 5, TimeUnit.SECONDS);
     }
 
     public static void shutdown() throws Exception {
-        if (running.getAndSet(false)) {
+        if (!running.getAndSet(false)) {
+            throw new Exception("RPC Thread already down");
+        } else {
             DiscordRPC.discordClearPresence();
             DiscordRPC.discordShutdown();
-            rpcThread.join();
-            rpcthread.shutdownNow();
-            throw new Exception("RPC Thread already down");
+            rpcThreadPool.shutdownNow();
         }
-        //else {
-        //   DiscordRPC.discordClearPresence();
-        //    DiscordRPC.discordShutdown();
-        //    rpcThread.join();
-        //    running.set(false);
-        //}
     }
 
     public static void update(String firstLine, String secondLine) {
-        DiscordRichPresence.Builder b = new DiscordRichPresence.Builder(secondLine);
-        b.setBigImage("large", "");
-        b.setDetails(firstLine);
-        b.setStartTimestamps(created);
+        DiscordRichPresence presence = new DiscordRichPresence.Builder(secondLine)
+                .setBigImage("large", "")
+                .setDetails(firstLine)
+                .setStartTimestamps(created)
+                .build();
 
-        DiscordRPC.discordUpdatePresence(b.build());
+        DiscordRPC.discordUpdatePresence(presence);
     }
 }

@@ -109,6 +109,11 @@ public class NewMainGUI {
         microsoftbutton.setFocusPainted(false);
         leftsidebar.add(microsoftbutton, leftc);
 
+        microsoftbutton.addActionListener(e -> {
+            MSAccountGUI.openMSAccountGUI();
+            System.out.println("MS Button Was Pressed");
+        });
+
         leftc.weightx = 1.0;
         leftc.weighty = 0.7;
         leftc.gridx = 0;

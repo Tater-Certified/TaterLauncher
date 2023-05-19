@@ -1,6 +1,7 @@
 package com.github.tatercertified.themes;
 
 import com.github.tatercertified.guis.ConfigGUI;
+import com.github.tatercertified.guis.MSAccountGUI;
 import com.github.tatercertified.guis.profiles.VersionGUI;
 
 import javax.swing.*;
@@ -186,14 +187,14 @@ public class Light {
     }
 
     public static void configguilight() {
-        ConfigGUI.authpanel.setBackground(Color.WHITE);
+        MSAccountGUI.authpanel.setBackground(Color.WHITE);
 
-        ConfigGUI.user.setForeground(Color.BLACK);
-        ConfigGUI.pass.setForeground(Color.BLACK);
-        ConfigGUI.username.setBackground(new Color(209, 209, 209));
-        ConfigGUI.password.setBackground(new Color(209, 209, 209));
-        ConfigGUI.username.setForeground(Color.BLACK);
-        ConfigGUI.password.setForeground(Color.BLACK);
+        MSAccountGUI.user.setForeground(Color.BLACK);
+        MSAccountGUI.pass.setForeground(Color.BLACK);
+        MSAccountGUI.username.setBackground(new Color(209, 209, 209));
+        MSAccountGUI.password.setBackground(new Color(209, 209, 209));
+        MSAccountGUI.username.setForeground(Color.BLACK);
+        MSAccountGUI.password.setForeground(Color.BLACK);
 
         ConfigGUI.themepanel.setBackground(Color.WHITE);
         ConfigGUI.themelabel.setForeground(Color.BLACK);
