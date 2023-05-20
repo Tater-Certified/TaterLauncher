@@ -9,9 +9,11 @@ import com.github.tatercertified.util.GameProfileGson;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.Objects;
 
 public class ProfileEditor extends JFrame {
     private final JPanel main_panel = new JPanel();
@@ -46,6 +48,8 @@ public class ProfileEditor extends JFrame {
         JComboBox<String> loaderVersionComboBox = new JComboBox<>();
         JComboBox<JavaProfile> javaProfileComboBox = new JComboBox<>();
         JButton saveButton = new JButton("Save");
+        ImageIcon folder_icon = new ImageIcon(Objects.requireNonNull(ProfileEditor.class.getClassLoader().getResource("assets/folder.png")));
+        JButton openInFileExplorer = new JButton(folder_icon);
         JCheckBox mcSnapshotCheck = new JCheckBox("Snapshots");
         JCheckBox loaderSnapshotCheck = new JCheckBox("Snapshots");
 
@@ -62,6 +66,11 @@ public class ProfileEditor extends JFrame {
 
         // Configure Components
         pathTextField.setText(profile.getPath().toString());
+        openInFileExplorer.setBorderPainted(false);
+        openInFileExplorer.setOpaque(false);
+        openInFileExplorer.setFocusPainted(false);
+        openInFileExplorer.setBackground(Color.WHITE);
+        openInFileExplorer.setBorder(BorderFactory.createEmptyBorder());
         nameTextField.setText(profile.getProfileName());
         javaProfileComboBox.setModel(new DefaultComboBoxModel<>(new JavaProfile[]{profile.getJavaProfile()}));
         mcSnapshotCheck.setSelected(profile.isSnapshot());
@@ -89,6 +98,21 @@ public class ProfileEditor extends JFrame {
             dispose();
         });
 
+        openInFileExplorer.addActionListener(e -> {
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+
+            int result = fileChooser.showOpenDialog(main_panel);
+
+            if (result == JFileChooser.APPROVE_OPTION) {
+                File selectedDirectory = fileChooser.getSelectedFile();
+
+                String selectedDirectoryPath = selectedDirectory.getAbsolutePath();
+
+                pathTextField.setText(selectedDirectoryPath);
+            }
+        });
+
         loaderComboBox.addActionListener(e -> updateLoaderVersions(loaderComboBox, loaderVersionComboBox, loaderVersionLabel, loaderSnapshotCheck));
 
         mcSnapshotCheck.addActionListener(e -> updateSnapshot(mcSnapshotCheck, versionComboBox));
@@ -112,6 +136,9 @@ public class ProfileEditor extends JFrame {
 
         constraints.gridx = 1;
         main_panel.add(pathTextField, constraints);
+
+        constraints.gridx = 2;
+        main_panel.add(openInFileExplorer, constraints);
 
         constraints.gridx = 0;
         constraints.gridy = 3;
