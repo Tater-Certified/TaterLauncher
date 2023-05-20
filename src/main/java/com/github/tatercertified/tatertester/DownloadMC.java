@@ -1,9 +1,9 @@
 package com.github.tatercertified.tatertester;
 
-import com.github.tatercertified.guis.profiles.LoaderInstaller;
 import com.google.gson.Gson;
 import net.lingala.zip4j.ZipFile;
 
+import javax.swing.*;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -15,7 +15,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
 
-import static com.github.tatercertified.guis.profiles.LoaderInstaller.*;
 import static com.github.tatercertified.guis.profiles.VersionGUI.namever;
 
 public class DownloadMC {
@@ -37,13 +36,13 @@ public class DownloadMC {
 
 
 
-    public static void download() throws IOException {
+    public static void install(String loader, JComboBox<String> minecraftversion, JComboBox<String> loaderversion) {
         String url;
         if (Objects.equals(loader, "Fabric")) {
             currentloader = "fabric-loader";
             url = "https://meta.fabricmc.net/v2/versions/loader/" + minecraftversion.getSelectedItem().toString() + "/" + loaderversion.getSelectedItem().toString() + "/profile/zip";
             try {
-                download(url);
+                download(url, minecraftversion, loaderversion);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -52,7 +51,7 @@ public class DownloadMC {
             currentloader = "quilt-loader";
             url = "https://meta.quiltmc.org/v3/versions/loader/" + minecraftversion.getSelectedItem().toString() + "/" + loaderversion.getSelectedItem().toString() + "/profile/zip";
             try {
-                download(url);
+                download(url, minecraftversion, loaderversion);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -67,15 +66,14 @@ public class DownloadMC {
             System.out.println("You are downloading Vanilla Minecraft " + Objects.requireNonNull(minecraftversion.getSelectedItem()));
         }
 
-        extractFile();
+        extractFile(minecraftversion, loaderversion);
         removeUnneededFiles();
-        renameProfile();
+        renameProfile(minecraftversion, loaderversion);
         //System.out.println(locateVanillaJar(minecraftversion.getSelectedItem().toString()));
         namever.setText("Name");
-        mainframe.setVisible(false);
     }
 
-    private static void extractFile() {
+    private static void extractFile(JComboBox<String> minecraftversion, JComboBox<String> loaderversion) {
         if (!Objects.equals(currentloader, "minecraft")) {
             try (ZipFile zipFile = new ZipFile(profile_path + currentloader + "-" + Objects.requireNonNull(loaderversion.getSelectedItem()) + "-" + Objects.requireNonNull(minecraftversion.getSelectedItem()) + ".zip")) {
                 zipFile.extractAll(profile_path);
@@ -238,7 +236,7 @@ public class DownloadMC {
         return filtered.get(0);
     }
 
-    private static void download(String urlStr) throws IOException {
+    private static void download(String urlStr, JComboBox<String> minecraftversion, JComboBox<String> loaderversion) throws IOException {
         URL url = new URL(urlStr);
         ReadableByteChannel rbc = Channels.newChannel(url.openStream());
         FileOutputStream fos;
@@ -265,7 +263,7 @@ public class DownloadMC {
         }
     }
 
-    public static void renameProfile() {
+    public static void renameProfile(JComboBox<String> minecraftversion, JComboBox<String> loaderversion) {
         File file = new File(profile_path + currentloader + "-" + Objects.requireNonNull(loaderversion.getSelectedItem()) + "-" + Objects.requireNonNull(minecraftversion.getSelectedItem()));
         if (file.isDirectory()) {
             file.renameTo(new File(profile_path + profile_name));

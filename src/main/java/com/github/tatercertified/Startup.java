@@ -4,6 +4,7 @@ import com.github.tatercertified.guis.GUI;
 import com.github.tatercertified.guis.NewMainGUI;
 import com.github.tatercertified.themes.Dark;
 import com.github.tatercertified.themes.Light;
+import com.github.tatercertified.util.GameProfileGson;
 
 import java.io.*;
 import java.net.URISyntaxException;
@@ -25,12 +26,17 @@ public class Startup {
         try {
             Files.createDirectory(Paths.get("TaterLauncher/java_profiles"));
             Files.createDirectory(Paths.get("TaterLauncher/game_profiles"));
+            if (!Files.exists(Paths.get("TaterLauncher/game_profiles/profiles.json"))) {
+                Files.createFile(Paths.get("TaterLauncher/game_profiles/profiles.json"));
+                GameProfileGson.writeSampleGameProfile();
+            }
             Files.createDirectory(Paths.get("TaterLauncher/apps"));
             Files.createDirectory(Paths.get("TaterLauncher/accounts"));
             if (!Files.exists(Paths.get("TaterLauncher/profiles.json"))) {
                 Files.createFile(Paths.get("TaterLauncher/profiles.json"));
             }
-        } catch (IOException ignored) {
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
     //Check to see if things are toggled

@@ -1,6 +1,9 @@
 package com.github.tatercertified.guis.profiles;
 
+import com.github.tatercertified.GameProfile;
 import com.github.tatercertified.guis.LoadingGUI;
+import com.github.tatercertified.guis.panels.ProfileEditor;
+import com.github.tatercertified.guis.panels.ProfilePanel;
 import com.google.gson.Gson;
 
 import javax.swing.*;
@@ -10,11 +13,8 @@ import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Scanner;
-
-import static com.github.tatercertified.guis.GUI.frame;
 
 public class VersionGUI {
     //Name Vars
@@ -70,8 +70,8 @@ public class VersionGUI {
     //Loader DropDown
     public static final JComboBox<String> loader0 = new JComboBox<>(loaderoptions);
     public static final JComboBox<String> loader1 = new JComboBox<>(loaderoptions);
-    //Separator
-    public static final JSeparator separate = new JSeparator();
+    //Scroll
+    public static JScrollPane scrollPane;
 
     public static void initializever() {
         //Version Frame
@@ -90,12 +90,10 @@ public class VersionGUI {
         masterpanel.add(newverpanel, BorderLayout.PAGE_END);
 
         //Version Panel
-        versionpanel.setLayout(new BoxLayout(versionpanel, BoxLayout.PAGE_AXIS));
+        versionpanel.setLayout(new GridLayout(0, 3, 10, 10));
 
         //Add Profiles
-        versionpanel.add(profile0);
-        versionpanel.add(profile1);
-        versionpanel.add(separate);
+        createProfiles();
 
         //New Version Panel
         newverpanel.setLayout(new BorderLayout());
@@ -103,29 +101,6 @@ public class VersionGUI {
         newverpanel.add(newverlabel, BorderLayout.PAGE_START);
         newverpanel.add(namever, BorderLayout.LINE_START);
         newverpanel.add(createver, BorderLayout.CENTER);
-
-        //Profile configurations
-        profile0.setPreferredSize(new Dimension(800,35));
-        profile0.add(label0);
-        profile0.add(select0);
-        profile0.add(ver0);
-        profile0.add(dir0);
-        dir0.addActionListener(ae -> {
-        });
-        dir0.setPreferredSize(new Dimension(300,25));
-        profile0.add(java0);
-        profile0.add(loader0);
-
-        profile1.setPreferredSize(new Dimension(800,35));
-        profile1.add(label1);
-        profile1.add(select1);
-        profile1.add(ver1);
-        profile1.add(dir1);
-        dir1.addActionListener(ae -> {
-        });
-        dir1.setPreferredSize(new Dimension(300,25));
-        profile1.add(java1);
-        profile1.add(loader1);
 
         //Name Config
         label0.setFont(new Font("Serif", Font.BOLD, 12));
@@ -142,8 +117,11 @@ public class VersionGUI {
 
         //Create Ver Button
         createver.addActionListener(e -> {
-            LoaderInstaller.LaunchGUI();
-                });
+            GameProfile profile = new GameProfile();
+            profile.setProfileName(namever.getText());
+            JFrame editor = new ProfileEditor(profile, true);
+            editor.setVisible(true);
+        });
 
 
         versionframe.addWindowListener(new WindowAdapter() {
@@ -156,34 +134,20 @@ public class VersionGUI {
         versionframe.pack();
     }
 
-    static class ProfileList {
-        public ProfileList() {}
-        private String name;
-        private Path path;
+    public static void createProfiles() {
+        versionpanel.removeAll();
+        versionpanel.setLayout(new GridLayout(0, 3, 10, 10)); // Change the number of columns (3 in this example)
 
-        public String getProfileName() {
-            return name;
+        for (int i = 0; i < ProfileGenerator.createProfiles().size(); i++) {
+            ProfilePanel panel = ProfileGenerator.profiles.get(i);
+            versionpanel.add(panel);
         }
 
-        public Path getProfilePath() {
-            return path;
-        }
-
-        public void setProfileName(String profileName) {
-            this.name = profileName;
-        }
-
-        public void setProfilePath(Path path) {
-            this.path = path;
-        }
-    }
-
-    public void fetchProfiles(JPanel panel) {
-
+        scrollPane = new JScrollPane(versionpanel);
+        masterpanel.add(scrollPane);
     }
 
     //Version code I don't understand
-
     static class VersionHelpers {
         public static Object[] getVersions() throws IOException {
             Gson gson = new Gson();

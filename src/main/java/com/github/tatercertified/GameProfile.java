@@ -7,7 +7,10 @@ public class GameProfile {
     private String version;
     private JavaProfile javaProfile;
     private String loader;
+    private String loaderVer;
     private Path path;
+    private boolean isSnapshot;
+    private boolean isLoaderSnapshot;
 
     public GameProfile() {
     }
@@ -28,6 +31,14 @@ public class GameProfile {
         this.version = version;
     }
 
+    public boolean isSnapshot() {
+        return isSnapshot;
+    }
+
+    public void setSnapshot(boolean bool) {
+        isSnapshot = bool;
+    }
+
     public JavaProfile getJavaProfile() {
         return javaProfile;
     }
@@ -42,6 +53,22 @@ public class GameProfile {
 
     public void setLoader(String loader) {
         this.loader = loader;
+    }
+
+    public String getLoaderVer() {
+        return loaderVer;
+    }
+
+    public void setLoaderVer(String version) {
+        loaderVer = version;
+    }
+
+    public boolean isLoaderSnapshot() {
+        return isLoaderSnapshot;
+    }
+
+    public void setLoaderSnapshot(boolean bool) {
+        isLoaderSnapshot = bool;
     }
 
     public Path getPath() {
