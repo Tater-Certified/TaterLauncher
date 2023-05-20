@@ -1,6 +1,7 @@
 package com.github.tatercertified;
 
 import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class GameProfile {
     private String profileName;
@@ -8,12 +9,11 @@ public class GameProfile {
     private JavaProfile javaProfile;
     private String loader;
     private String loaderVer;
-    private Path path;
+    private String path;
     private boolean isSnapshot;
     private boolean isLoaderSnapshot;
 
-    public GameProfile() {
-    }
+    private boolean isSelected;
 
     public String getProfileName() {
         return profileName;
@@ -21,6 +21,14 @@ public class GameProfile {
 
     public void setProfileName(String profileName) {
         this.profileName = profileName;
+    }
+
+    public boolean getSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(boolean bool) {
+        isSelected = bool;
     }
 
     public String getVersion() {
@@ -72,11 +80,11 @@ public class GameProfile {
     }
 
     public Path getPath() {
-        return path;
+        return Paths.get(path);
     }
 
     public void setPath(Path path) {
-        this.path = path;
+        this.path = path.toString();
     }
 
     public String toString() {

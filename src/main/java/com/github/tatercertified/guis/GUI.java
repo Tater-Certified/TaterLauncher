@@ -1,6 +1,6 @@
 package com.github.tatercertified.guis;
 
-import com.github.tatercertified.guis.profiles.VersionGUI;
+import com.github.tatercertified.guis.profiles.VersionGUIV2;
 import com.github.tatercertified.launch.ScuffedLoadingGUI;
 
 import javax.swing.*;
@@ -98,8 +98,8 @@ public class GUI {
         versionbutton.setPreferredSize(new Dimension(150,50));
         versionbutton.addActionListener(e -> {
             System.out.println("Version Button Was Pressed");
-            VersionGUI.versionframe.setVisible(true);
-            VersionGUI.initializever();
+            JFrame frame = new VersionGUIV2();
+            frame.setVisible(true);
         });
 
         //Java button settings

@@ -3,7 +3,6 @@ package com.github.tatercertified.themes;
 import com.github.tatercertified.guis.ConfigGUI;
 import com.github.tatercertified.guis.MSAccountGUI;
 import com.github.tatercertified.guis.UtilGUI;
-import com.github.tatercertified.guis.profiles.VersionGUI;
 
 import javax.swing.*;
 import java.awt.*;
@@ -164,36 +163,6 @@ public class Dark {
     }
     //Version GUI
     public static void verguidark() {
-        VersionGUI.masterpanel.setBackground(darkpanel);
-        VersionGUI.versionpanel.setBackground(darkpanel);
-
-        VersionGUI.newverpanel.setBackground(darkpanel);
-        VersionGUI.verlabel.setForeground(darklabelforebig);
-        VersionGUI.newverlabel.setForeground(darklabelforebig);
-        VersionGUI.namever.setBackground(darktextbox);
-        VersionGUI.namever.setForeground(Color.WHITE);
-        VersionGUI.createver.setBackground(darkbutton);
-        VersionGUI.createver.setForeground(Color.WHITE);
-
-        VersionGUI.profile0.setBackground(darkpanel);
-        VersionGUI.select0.setBackground(darkbuttongreen);
-        VersionGUI.select0.setForeground(Color.WHITE);
-        VersionGUI.label0.setForeground(Color.WHITE);
-        VersionGUI.ver0.setBackground(darkcombo);
-        VersionGUI.dir0.setBackground(darktextbox);
-        VersionGUI.dir0.setForeground(Color.WHITE);
-        VersionGUI.java0.setBackground(darkcombo);
-        VersionGUI.loader0.setBackground(darkcombo);
-
-        VersionGUI.profile1.setBackground(darkpanel);
-        VersionGUI.select1.setBackground(darkbuttongreen);
-        VersionGUI.select1.setForeground(Color.WHITE);
-        VersionGUI.label1.setForeground(Color.WHITE);
-        VersionGUI.ver1.setBackground(darkcombo);
-        VersionGUI.dir1.setBackground(darktextbox);
-        VersionGUI.dir1.setForeground(Color.WHITE);
-        VersionGUI.java1.setBackground(darkcombo);
-        VersionGUI.loader1.setBackground(darkcombo);
     }
     //Config GUI
     public static void configguidark() {

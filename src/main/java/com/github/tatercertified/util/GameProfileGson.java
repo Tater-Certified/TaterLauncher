@@ -81,9 +81,13 @@ public class GameProfileGson {
         gameProfile.setVersion("1.19.4");
         gameProfile.setSnapshot(false);
 
-        // Convert GameProfile to JSON
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String json = gson.toJson(gameProfile);
+
+        List<GameProfile> example = new ArrayList<>();
+
+        example.add(gameProfile);
+
+        String json = gson.toJson(example);
 
         try (FileWriter writer = new FileWriter(path)) {
             // Write JSON to the file

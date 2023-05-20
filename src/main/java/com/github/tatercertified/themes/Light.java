@@ -2,7 +2,6 @@ package com.github.tatercertified.themes;
 
 import com.github.tatercertified.guis.ConfigGUI;
 import com.github.tatercertified.guis.MSAccountGUI;
-import com.github.tatercertified.guis.profiles.VersionGUI;
 
 import javax.swing.*;
 import java.awt.*;
@@ -154,36 +153,6 @@ public class Light {
     }
 
     public static void verguilight() {
-        VersionGUI.masterpanel.setBackground(Color.WHITE);
-        VersionGUI.versionpanel.setBackground(Color.WHITE);
-
-        VersionGUI.newverpanel.setBackground(Color.WHITE);
-        VersionGUI.verlabel.setForeground(Color.BLACK);
-        VersionGUI.newverlabel.setForeground(Color.BLACK);
-        VersionGUI.namever.setBackground(new Color(209, 209, 209));
-        VersionGUI.namever.setForeground(Color.BLACK);
-        VersionGUI.createver.setBackground(new Color(0, 200, 0));
-        VersionGUI.createver.setForeground(Color.BLACK);
-
-        VersionGUI.profile0.setBackground(Color.WHITE);
-        VersionGUI.select0.setBackground(new Color(0, 200, 0));
-        VersionGUI.select0.setForeground(Color.BLACK);
-        VersionGUI.label0.setForeground(Color.BLACK);
-        VersionGUI.ver0.setBackground(new Color(209, 209, 209));
-        VersionGUI.dir0.setBackground(new Color(209, 209, 209));
-        VersionGUI.dir0.setForeground(Color.BLACK);
-        VersionGUI.java0.setBackground(new Color(209, 209, 209));
-        VersionGUI.loader0.setBackground(new Color(209, 209, 209));
-
-        VersionGUI.profile1.setBackground(Color.WHITE);
-        VersionGUI.select1.setBackground(new Color(0, 200, 0));
-        VersionGUI.select1.setForeground(Color.BLACK);
-        VersionGUI.label1.setForeground(Color.BLACK);
-        VersionGUI.ver1.setBackground(new Color(209, 209, 209));
-        VersionGUI.dir1.setBackground(new Color(209, 209, 209));
-        VersionGUI.dir1.setForeground(Color.BLACK);
-        VersionGUI.java1.setBackground(new Color(209, 209, 209));
-        VersionGUI.loader1.setBackground(new Color(209, 209, 209));
     }
 
     public static void configguilight() {

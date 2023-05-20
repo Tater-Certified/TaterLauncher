@@ -16,6 +16,7 @@ public class ProfileGenerator {
     //Profiles
     public static final List<ProfilePanel> profiles = new ArrayList<>();
     public static List<ProfilePanel> createProfiles() {
+        profiles.clear();
         List<GameProfile> profile_list = GameProfileGson.readGameProfilesFromFile();
         if (profile_list == null) {
             return profiles;
@@ -23,6 +24,7 @@ public class ProfileGenerator {
         for (GameProfile profile : profile_list) {
             ProfilePanel panel = createSquarePanel(profile);
             panel.setProfile(profile);
+            panel.setSelected(profile.getSelected());
             profiles.add(panel);
         }
         return profiles;
@@ -39,10 +41,12 @@ public class ProfileGenerator {
             public void mousePressed(MouseEvent e) {
                 panel.setBorder(BorderFactory.createLineBorder(Color.GREEN, 2));
                 panel.setSelected(true);
+                profile.setSelected(true);
                 for (ProfilePanel current_profile : profiles) {
                     if (current_profile != panel && current_profile.getSelected()) {
                         current_profile.setBorder(BorderFactory.createLineBorder(Color.BLACK));
                         current_profile.setSelected(false);
+                        current_profile.getProfile().setSelected(false);
                     }
                 }
             }
@@ -50,7 +54,8 @@ public class ProfileGenerator {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (e.getClickCount() >= 2) {
-                    JFrame new_editor = new ProfileEditor(profile, false);
+                    VersionGUIV2 parentFrame = (VersionGUIV2) SwingUtilities.getWindowAncestor(panel);
+                    JFrame new_editor = new ProfileEditor(parentFrame ,profile, false);
                     new_editor.setVisible(true);
                 }
             }
@@ -59,6 +64,10 @@ public class ProfileGenerator {
         JLabel name_label = new JLabel(profile.getProfileName());
         JLabel ver_label = new JLabel(profile.getVersion());
         JLabel loader_label = new JLabel(profile.getLoader());
+
+        // Fonts
+        name_label.setFont(new Font("Serif", Font.PLAIN, 20));
+
         panel.add(name_label);
         panel.add(ver_label);
         panel.add(loader_label);

@@ -2,7 +2,7 @@ package com.github.tatercertified.guis.panels;
 
 import com.github.tatercertified.GameProfile;
 import com.github.tatercertified.JavaProfile;
-import com.github.tatercertified.guis.profiles.VersionGUI;
+import com.github.tatercertified.guis.profiles.VersionGUIV2;
 import com.github.tatercertified.tatertester.DownloadLoaders;
 import com.github.tatercertified.tatertester.DownloadMC;
 import com.github.tatercertified.util.GameProfileGson;
@@ -15,7 +15,9 @@ import java.util.List;
 
 public class ProfileEditor extends JFrame {
     private final JPanel main_panel = new JPanel();
-    public ProfileEditor(GameProfile profile, boolean is_new) {
+    private final VersionGUIV2 parent_gui;
+    public ProfileEditor(VersionGUIV2 parent, GameProfile profile, boolean is_new) {
+        this.parent_gui = parent;
         create(profile, is_new);
     }
 
@@ -82,7 +84,7 @@ public class ProfileEditor extends JFrame {
 
         // Action Listeners
         saveButton.addActionListener(e -> {
-            DownloadMC.install(loaderComboBox.getSelectedItem().toString(), versionComboBox, loaderVersionComboBox);
+            DownloadMC.install(loaderComboBox.getSelectedItem().toString(), versionComboBox, loaderVersionComboBox, parent_gui);
             save(profile, nameTextField, pathTextField, versionComboBox, mcSnapshotCheck, loaderComboBox, loaderVersionComboBox, loaderSnapshotCheck, javaProfileComboBox);
             dispose();
         });
@@ -158,8 +160,11 @@ public class ProfileEditor extends JFrame {
         constraints.gridy = 10;
         main_panel.add(separator5, constraints);
 
+        constraints.gridx = 1;
         constraints.gridy = 11;
         main_panel.add(saveButton, constraints);
+
+        pack();
     }
 
     private void save(GameProfile profile, JTextField name, JTextField path, JComboBox<String> version, JCheckBox snapshot, JComboBox<String> loader, JComboBox<String> loader_version, JCheckBox loader_snaphsot, JComboBox<JavaProfile> java_profile) {
@@ -173,7 +178,7 @@ public class ProfileEditor extends JFrame {
         profile.setLoaderSnapshot(loader_snaphsot.isSelected());
         profile.setJavaProfile((JavaProfile) java_profile.getSelectedItem());
         GameProfileGson.updateGameProfileInFile(profile, original_name);
-        VersionGUI.createProfiles();
+        parent_gui.createProfiles(parent_gui.profile_container_panel);
     }
 
     private void updateLoaderVersions(JComboBox<String> loader, JComboBox<String> loader_version, JLabel loader_ver_label, JCheckBox snapshot) {

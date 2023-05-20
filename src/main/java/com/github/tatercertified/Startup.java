@@ -18,25 +18,25 @@ public class Startup {
     public static void prep() throws IOException {
         System.out.println("Creating files");
         //Main folder
-        try {
+        if (Files.notExists(Paths.get("TaterLauncher"))) {
             Files.createDirectory(Paths.get("TaterLauncher"));
-        } catch (IOException ignored) {
         }
         //Other folders & files
-        try {
+        if (Files.notExists(Paths.get("TaterLauncher/java_profiles"))) {
             Files.createDirectory(Paths.get("TaterLauncher/java_profiles"));
+        }
+        if (Files.notExists(Paths.get("TaterLauncher/game_profiles"))) {
             Files.createDirectory(Paths.get("TaterLauncher/game_profiles"));
-            if (!Files.exists(Paths.get("TaterLauncher/game_profiles/profiles.json"))) {
-                Files.createFile(Paths.get("TaterLauncher/game_profiles/profiles.json"));
-                GameProfileGson.writeSampleGameProfile();
-            }
+        }
+        if (Files.notExists(Paths.get("TaterLauncher/game_profiles/profiles.json"))) {
+            Files.createFile(Paths.get("TaterLauncher/game_profiles/profiles.json"));
+            GameProfileGson.writeSampleGameProfile();
+        }
+        if (Files.notExists(Paths.get("TaterLauncher/apps"))) {
             Files.createDirectory(Paths.get("TaterLauncher/apps"));
+        }
+        if (Files.notExists(Paths.get("TaterLauncher/accounts"))) {
             Files.createDirectory(Paths.get("TaterLauncher/accounts"));
-            if (!Files.exists(Paths.get("TaterLauncher/profiles.json"))) {
-                Files.createFile(Paths.get("TaterLauncher/profiles.json"));
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
     //Check to see if things are toggled

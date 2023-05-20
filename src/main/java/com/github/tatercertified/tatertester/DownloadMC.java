@@ -1,5 +1,6 @@
 package com.github.tatercertified.tatertester;
 
+import com.github.tatercertified.guis.profiles.VersionGUIV2;
 import com.google.gson.Gson;
 import net.lingala.zip4j.ZipFile;
 
@@ -15,13 +16,10 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
 
-import static com.github.tatercertified.guis.profiles.VersionGUI.namever;
-
 public class DownloadMC {
 
     public static String[] versions;
 
-    public static String profile_name = namever.getText();
     public static String profile_path = "TaterLauncher/game_profiles/";
 
     static {
@@ -36,7 +34,7 @@ public class DownloadMC {
 
 
 
-    public static void install(String loader, JComboBox<String> minecraftversion, JComboBox<String> loaderversion) {
+    public static void install(String loader, JComboBox<String> minecraftversion, JComboBox<String> loaderversion, VersionGUIV2 parent) {
         String url;
         if (Objects.equals(loader, "Fabric")) {
             currentloader = "fabric-loader";
@@ -68,9 +66,9 @@ public class DownloadMC {
 
         extractFile(minecraftversion, loaderversion);
         removeUnneededFiles();
-        renameProfile(minecraftversion, loaderversion);
+        renameProfile(minecraftversion, loaderversion, parent);
         //System.out.println(locateVanillaJar(minecraftversion.getSelectedItem().toString()));
-        namever.setText("Name");
+        parent.create_profile_textbox.setText("Name");
     }
 
     private static void extractFile(JComboBox<String> minecraftversion, JComboBox<String> loaderversion) {
@@ -263,10 +261,10 @@ public class DownloadMC {
         }
     }
 
-    public static void renameProfile(JComboBox<String> minecraftversion, JComboBox<String> loaderversion) {
+    public static void renameProfile(JComboBox<String> minecraftversion, JComboBox<String> loaderversion, VersionGUIV2 parent) {
         File file = new File(profile_path + currentloader + "-" + Objects.requireNonNull(loaderversion.getSelectedItem()) + "-" + Objects.requireNonNull(minecraftversion.getSelectedItem()));
         if (file.isDirectory()) {
-            file.renameTo(new File(profile_path + profile_name));
+            file.renameTo(new File(profile_path + parent.create_profile_textbox.getText()));
         }
     }
 }

@@ -1,6 +1,6 @@
 package com.github.tatercertified.guis;
 
-import com.github.tatercertified.guis.profiles.VersionGUI;
+import com.github.tatercertified.guis.profiles.VersionGUIV2;
 import com.github.tatercertified.launch.ScuffedLoadingGUI;
 
 import javax.imageio.ImageIO;
@@ -195,8 +195,8 @@ public class NewMainGUI {
 
         profilebutton.addActionListener(event -> {
             System.out.println("Version Button Was Pressed");
-            VersionGUI.versionframe.setVisible(true);
-            VersionGUI.initializever();
+            JFrame versionframe = new VersionGUIV2();
+            versionframe.setVisible(true);
         });
 
         middlebar.add(startbutton);
