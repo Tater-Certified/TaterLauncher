@@ -1,6 +1,6 @@
+// TODO Rewrite this to work with the new JavaProfile code
 package com.github.tatercertified.guis;
 
-import com.github.tatercertified.JavaProfile;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -9,8 +9,6 @@ import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
-
-import static com.github.tatercertified.JavaProfile.*;
 
 public class JavaGUI {
     //Frames
@@ -151,12 +149,6 @@ public class JavaGUI {
         newprocombo.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
         JavaGUI.newprofile.addActionListener(e -> {
-            JavaProfile.getJavaSelection();
-            JavaProfile.saveJavaProfile();
-            JavaProfile.defaultJavaProfile();
-            JavaProfile.getJavaSelection();
-            JavaProfile.profileName = newproname.getText();
-            JavaProfile.javaProfileCreate();
         });
 
         profilefinder.setApproveButtonText("Select Profile");
@@ -288,15 +280,12 @@ public class JavaGUI {
 
         //Action Listeners
         g1sel.addActionListener(e -> {
-            JavaProfile.g1JavaProfile();
             System.out.println("G1GC Preset Loaded");
         });
         zsel.addActionListener(e -> {
-            JavaProfile.zJavaProfile();
             System.out.println("ZGC Preset Loaded");
         });
         shensel.addActionListener(e -> {
-            JavaProfile.shenJavaProfile();
             System.out.println("ShenGC Preset Loaded");
         });
 
@@ -324,10 +313,6 @@ public class JavaGUI {
         javaframe.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                getJavaSelection();
-                saveJavaProfile();
-                defaultJavaProfile();
-                getJavaSelection();
                 System.out.println("Java Frame is closing");
             }
         });

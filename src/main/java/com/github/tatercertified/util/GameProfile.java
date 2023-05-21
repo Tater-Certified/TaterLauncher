@@ -1,4 +1,4 @@
-package com.github.tatercertified;
+package com.github.tatercertified.util;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -12,7 +12,6 @@ public class GameProfile {
     private String path;
     private boolean isSnapshot;
     private boolean isLoaderSnapshot;
-
     private boolean isSelected;
 
     public String getProfileName() {

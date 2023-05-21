@@ -1,6 +1,6 @@
 package com.github.tatercertified.guis.profiles;
 
-import com.github.tatercertified.GameProfile;
+import com.github.tatercertified.util.GameProfile;
 import com.github.tatercertified.guis.LoadingGUI;
 import com.github.tatercertified.guis.panels.ProfileEditor;
 import com.github.tatercertified.guis.panels.ProfilePanel;

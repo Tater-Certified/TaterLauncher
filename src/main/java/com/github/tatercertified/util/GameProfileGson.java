@@ -1,7 +1,5 @@
 package com.github.tatercertified.util;
 
-import com.github.tatercertified.GameProfile;
-import com.github.tatercertified.JavaProfile;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;

@@ -1,11 +1,12 @@
 package com.github.tatercertified.guis.panels;
 
-import com.github.tatercertified.GameProfile;
-import com.github.tatercertified.JavaProfile;
+import com.github.tatercertified.util.GameProfile;
 import com.github.tatercertified.guis.profiles.VersionGUIV2;
 import com.github.tatercertified.tatertester.DownloadLoaders;
 import com.github.tatercertified.tatertester.DownloadMC;
 import com.github.tatercertified.util.GameProfileGson;
+import com.github.tatercertified.util.JavaProfile;
+import com.github.tatercertified.util.JavaProfileGson;
 
 import javax.swing.*;
 import java.awt.*;
@@ -24,6 +25,7 @@ public class ProfileEditor extends JFrame {
     }
 
     private void create(GameProfile profile, boolean is_new) {
+        setTitle("Game Profile Editor");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setMinimumSize(new Dimension(500,500));
         add(main_panel);
@@ -46,7 +48,7 @@ public class ProfileEditor extends JFrame {
         JComboBox<String> versionComboBox = new JComboBox<>(DownloadMC.getStableVersions(List.of(DownloadMC.versions)));
         JComboBox<String> loaderComboBox = new JComboBox<>(new String[]{"Vanilla", "Fabric", "Quilt"});
         JComboBox<String> loaderVersionComboBox = new JComboBox<>();
-        JComboBox<JavaProfile> javaProfileComboBox = new JComboBox<>();
+        JComboBox<JavaProfile> javaProfileComboBox = new JComboBox<>(JavaProfileGson.readJavaProfilesFromFile().toArray(new JavaProfile[0]));
         JButton saveButton = new JButton("Save");
         ImageIcon folder_icon = new ImageIcon(Objects.requireNonNull(ProfileEditor.class.getClassLoader().getResource("assets/folder.png")));
         JButton openInFileExplorer = new JButton(folder_icon);
@@ -60,8 +62,7 @@ public class ProfileEditor extends JFrame {
             profile.setLoaderSnapshot(false);
             profile.setVersion(DownloadMC.getLatestStableVersion(List.of(DownloadMC.versions)));
             profile.setLoader("Vanilla");
-            // TODO Set this to the actual Java Profile
-            profile.setJavaProfile(new JavaProfile());
+            profile.setJavaProfile(JavaProfileGson.readJavaProfilesFromFile().get(0));
         }
 
         // Configure Components
@@ -72,7 +73,7 @@ public class ProfileEditor extends JFrame {
         openInFileExplorer.setBackground(Color.WHITE);
         openInFileExplorer.setBorder(BorderFactory.createEmptyBorder());
         nameTextField.setText(profile.getProfileName());
-        javaProfileComboBox.setModel(new DefaultComboBoxModel<>(new JavaProfile[]{profile.getJavaProfile()}));
+        javaProfileComboBox.setSelectedItem(profile.getJavaProfile());
         mcSnapshotCheck.setSelected(profile.isSnapshot());
         loaderSnapshotCheck.setSelected(profile.isLoaderSnapshot());
         updateSnapshot(mcSnapshotCheck, versionComboBox);

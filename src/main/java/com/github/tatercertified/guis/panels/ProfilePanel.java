@@ -1,6 +1,6 @@
 package com.github.tatercertified.guis.panels;
 
-import com.github.tatercertified.GameProfile;
+import com.github.tatercertified.util.GameProfile;
 
 import javax.swing.*;
 

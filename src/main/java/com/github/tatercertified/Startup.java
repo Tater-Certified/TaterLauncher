@@ -5,6 +5,7 @@ import com.github.tatercertified.guis.NewMainGUI;
 import com.github.tatercertified.themes.Dark;
 import com.github.tatercertified.themes.Light;
 import com.github.tatercertified.util.GameProfileGson;
+import com.github.tatercertified.util.JavaProfileGson;
 
 import java.io.*;
 import java.net.URISyntaxException;
@@ -31,6 +32,10 @@ public class Startup {
         if (Files.notExists(Paths.get("TaterLauncher/game_profiles/profiles.json"))) {
             Files.createFile(Paths.get("TaterLauncher/game_profiles/profiles.json"));
             GameProfileGson.writeSampleGameProfile();
+        }
+        if (Files.notExists(Paths.get("TaterLauncher/java_profiles/profiles.json"))) {
+            Files.createFile(Paths.get("TaterLauncher/java_profiles/profiles.json"));
+            JavaProfileGson.writeJavaProfilePresets();
         }
         if (Files.notExists(Paths.get("TaterLauncher/apps"))) {
             Files.createDirectory(Paths.get("TaterLauncher/apps"));
