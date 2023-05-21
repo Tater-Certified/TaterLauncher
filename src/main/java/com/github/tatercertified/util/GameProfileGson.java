@@ -61,6 +61,8 @@ public class GameProfileGson {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+            } else {
+                addGameProfileToFile(updatedProfile);
             }
         } else {
             System.out.println("Profile not found. Creating instead.");

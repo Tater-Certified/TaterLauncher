@@ -122,6 +122,8 @@ public class VersionGUIV2 extends JFrame {
             }
             profile_container_panel.add(panel);
         }
+        profile_container_panel.revalidate();
+        profile_container_panel.repaint();
     }
 
     private void saveSelected() {

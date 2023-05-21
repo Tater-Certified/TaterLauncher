@@ -94,7 +94,9 @@ public class ProfileEditor extends JFrame {
 
         // Action Listeners
         saveButton.addActionListener(e -> {
-            DownloadMC.install(loaderComboBox.getSelectedItem().toString(), versionComboBox, loaderVersionComboBox, parent_gui);
+            if (is_new || !Objects.equals(versionComboBox.getSelectedItem().toString(), profile.getVersion())) {
+                DownloadMC.install(loaderComboBox.getSelectedItem().toString(), versionComboBox, loaderVersionComboBox, parent_gui);
+            }
             save(profile, nameTextField, pathTextField, versionComboBox, mcSnapshotCheck, loaderComboBox, loaderVersionComboBox, loaderSnapshotCheck, javaProfileComboBox);
             dispose();
         });
