@@ -1,7 +1,12 @@
 package com.github.tatercertified.tatertester;
 
+import org.apache.commons.io.FileUtils;
 import org.quiltmc.installer.QuiltMeta;
 
+import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -21,8 +26,8 @@ public class DownloadLoaders {
         return versions.toArray(new String[0]);
     }
 
-    public static boolean downloadFabricMC(String loader_version, String minecraft_version) {
-        return false;
+    public static void downloadFabricLoader(String loaderVersion, String fileLocation) throws IOException {
+        FileUtils.copyURLToFile(new URL("https://maven.fabricmc.net/net/fabricmc/fabric-loader/" + loaderVersion + "/" + "fabric-loader-" + loaderVersion + ".jar"), new File(fileLocation + "\\fabric-loader-" + loaderVersion + ".jar"));
     }
 
     // Quilt
