@@ -13,6 +13,7 @@ public class GameProfile {
     private boolean isSnapshot;
     private boolean isLoaderSnapshot;
     private boolean isSelected;
+    private boolean needsInstallations;
 
     public String getProfileName() {
         return profileName;
@@ -84,6 +85,14 @@ public class GameProfile {
 
     public void setPath(Path path) {
         this.path = path.toString();
+    }
+
+    public boolean needsInstallations() {
+        return needsInstallations;
+    }
+
+    public void setNeedsInstallations(boolean bool) {
+        needsInstallations = bool;
     }
 
     public String toString() {

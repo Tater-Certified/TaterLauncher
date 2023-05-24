@@ -1,7 +1,9 @@
 package com.github.tatercertified.guis;
 
 import com.github.tatercertified.guis.profiles.VersionGUIV2;
-import com.github.tatercertified.launch.ScuffedLoadingGUI;
+import com.github.tatercertified.launch.LaunchMinecraft;
+import com.github.tatercertified.util.GameProfile;
+import com.github.tatercertified.util.GameProfileGson;
 
 import javax.swing.*;
 import java.awt.*;
@@ -81,9 +83,9 @@ public class GUI {
         //start button settings
         startbutton.setPreferredSize(new Dimension(150,50));
         startbutton.addActionListener(e -> {
-            //Temp. removed for alternative launch method
-            //startbutton.setText("Minecraft is starting!");
-            ScuffedLoadingGUI.openTempLoadingScreen();
+            GameProfile current = GameProfileGson.getCurrentlySelectedGameProfile();
+            startbutton.setText(current.getProfileName() + " is starting!");
+            LaunchMinecraft.launchMC(current, startbutton);
         });
         //settings button settings
         settingsbutton.setVerticalTextPosition(SwingConstants.BOTTOM);

@@ -16,6 +16,8 @@ import static com.github.tatercertified.guis.ConfigGUI.colormodeVar;
 import static com.github.tatercertified.guis.ConfigGUI.legacyVar;
 
 public class Startup {
+
+    public static String global_libraries_path = "TaterLauncher/libraries";
     public static void prep() throws IOException {
         System.out.println("Creating files");
         //Main folder
@@ -43,6 +45,10 @@ public class Startup {
         if (Files.notExists(Paths.get("TaterLauncher/accounts"))) {
             Files.createDirectory(Paths.get("TaterLauncher/accounts"));
         }
+        if (Files.notExists(Paths.get(global_libraries_path))) {
+            Files.createDirectory(Paths.get(global_libraries_path));
+        }
+        GameProfileGson.locateCurrentlySelectedGameProfile();
     }
     //Check to see if things are toggled
     public static void check() {

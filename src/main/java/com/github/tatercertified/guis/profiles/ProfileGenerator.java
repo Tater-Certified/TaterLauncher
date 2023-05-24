@@ -18,14 +18,13 @@ public class ProfileGenerator {
     public static List<ProfilePanel> createProfiles() {
         profiles.clear();
         List<GameProfile> profile_list = GameProfileGson.readGameProfilesFromFile();
-        if (profile_list == null) {
-            return profiles;
-        }
-        for (GameProfile profile : profile_list) {
-            ProfilePanel panel = createSquarePanel(profile);
-            panel.setProfile(profile);
-            panel.setSelected(profile.getSelected());
-            profiles.add(panel);
+        if (profile_list != null) {
+            for (GameProfile profile : profile_list) {
+                ProfilePanel panel = createSquarePanel(profile);
+                panel.setProfile(profile);
+                panel.setSelected(profile.getSelected());
+                profiles.add(panel);
+            }
         }
         return profiles;
     }
@@ -42,6 +41,7 @@ public class ProfileGenerator {
                 panel.setBorder(BorderFactory.createLineBorder(Color.GREEN, 2));
                 panel.setSelected(true);
                 profile.setSelected(true);
+                GameProfileGson.setCurrentlySelectedGameProfile(profile);
                 for (ProfilePanel current_profile : profiles) {
                     if (current_profile != panel && current_profile.getSelected()) {
                         current_profile.setBorder(BorderFactory.createLineBorder(Color.BLACK));

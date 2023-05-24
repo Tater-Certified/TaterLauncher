@@ -209,6 +209,7 @@ public class ProfileEditor extends JFrame {
         profile.setJavaProfile((JavaProfile) java_profile.getSelectedItem());
         GameProfileGson.updateGameProfileInFile(profile, original_name);
         parent_gui.createProfiles(parent_gui.profile_container_panel);
+        profile.setNeedsInstallations(true);
     }
 
     private void updateLoaderVersions(JComboBox<String> loader, JComboBox<String> loader_version, JLabel loader_ver_label, JCheckBox snapshot) {

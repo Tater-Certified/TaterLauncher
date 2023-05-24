@@ -14,6 +14,7 @@ import java.util.List;
 
 public class GameProfileGson {
     private static final String path = String.valueOf(Paths.get("TaterLauncher/game_profiles/profiles.json"));
+    public static GameProfile selected_game_profile;
 
     public static List<GameProfile> readGameProfilesFromFile() {
         Gson gson = new Gson();
@@ -96,5 +97,23 @@ public class GameProfileGson {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void locateCurrentlySelectedGameProfile() {
+        List<GameProfile> profiles = readGameProfilesFromFile();
+        for (GameProfile profile : profiles) {
+            if (profile.getSelected()) {
+                selected_game_profile = profile;
+                return;
+            }
+        }
+    }
+
+    public static GameProfile getCurrentlySelectedGameProfile() {
+        return selected_game_profile;
+    }
+
+    public static void setCurrentlySelectedGameProfile(GameProfile profile) {
+        selected_game_profile = profile;
     }
 }

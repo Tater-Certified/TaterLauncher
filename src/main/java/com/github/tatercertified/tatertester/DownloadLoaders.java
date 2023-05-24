@@ -11,6 +11,7 @@ import static com.github.tatercertified.Main.LOADER_META;
 
 public class DownloadLoaders {
 
+    // Fabric
     public static String[] fabricVersions() {
         List<String> versions = new ArrayList<>();
         int fabricmaxversions = LOADER_META.getVersions().size();
@@ -20,6 +21,11 @@ public class DownloadLoaders {
         return versions.toArray(new String[0]);
     }
 
+    public static boolean downloadFabricMC(String loader_version, String minecraft_version) {
+        return false;
+    }
+
+    // Quilt
     public static String[] quiltVersions() {
         Set<QuiltMeta.Endpoint<?>> endpoints = new HashSet<>();
         endpoints.add(QuiltMeta.LOADER_VERSIONS_ENDPOINT);
