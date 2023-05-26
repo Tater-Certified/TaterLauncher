@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import org.apache.commons.io.FileUtils;
 
 import java.io.*;
 import java.net.URL;
@@ -46,29 +47,33 @@ public class DownloadMCV2 {
         }
     }
 
-    public static boolean downloadMojankJar(String version, String directory, String file_name) {
-        try {
-            URL json = new URL(getVersionJson(version));
+    public static boolean downloadMojankJar(String version, String directory, String file_name, boolean isFullInstall) {
+        if (isFullInstall) {
+            try {
+                URL json = new URL(getVersionJson(version));
 
-            // Open a connection to the URL and read the JSON data
-            BufferedReader reader = new BufferedReader(new InputStreamReader(json.openStream()));
-            StringBuilder jsonContent = new StringBuilder();
-            String line;
-            while ((line = reader.readLine()) != null) {
-                jsonContent.append(line);
+                // Open a connection to the URL and read the JSON data
+                BufferedReader reader = new BufferedReader(new InputStreamReader(json.openStream()));
+                StringBuilder jsonContent = new StringBuilder();
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    jsonContent.append(line);
+                }
+                reader.close();
+
+                // Parse the JSON data using GSON
+                Gson gson = new Gson();
+                JsonObject jsonObject = gson.fromJson(jsonContent.toString(), JsonObject.class);
+                JsonObject downloadsObject = jsonObject.getAsJsonObject("downloads");
+                JsonObject clientObject = downloadsObject.getAsJsonObject("client");
+                String clientJarUrl = clientObject.get("url").getAsString();
+
+                return downloadClient(clientJarUrl, directory, file_name, version);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
-            reader.close();
-
-            // Parse the JSON data using GSON
-            Gson gson = new Gson();
-            JsonObject jsonObject = gson.fromJson(jsonContent.toString(), JsonObject.class);
-            JsonObject downloadsObject = jsonObject.getAsJsonObject("downloads");
-            JsonObject clientObject = downloadsObject.getAsJsonObject("client");
-            String clientJarUrl = clientObject.get("url").getAsString();
-
-            return downloadClient(clientJarUrl, directory, file_name, version);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        } else {
+            return DownloadLibraries.downloadRequiredLibraries(getVersionJson(version));
         }
     }
 
@@ -102,14 +107,8 @@ public class DownloadMCV2 {
 
     private static boolean downloadClient(String fileUrl, String directory, String fileName, String version) {
         prepareMinecraftDirectoryFolders(directory);
-        try (BufferedInputStream in = new BufferedInputStream(new URL(fileUrl).openStream());
-             FileOutputStream fileOutputStream = new FileOutputStream(directory + "/versions/" + fileName + ".jar")) {
-
-            byte[] dataBuffer = new byte[1024];
-            int bytesRead;
-            while ((bytesRead = in.read(dataBuffer, 0, 1024)) != -1) {
-                fileOutputStream.write(dataBuffer, 0, bytesRead);
-            }
+        try {
+             FileUtils.copyURLToFile(new URL(fileUrl), Path.of(directory + "/versions/" + fileName + ".jar").toFile());
             return DownloadLibraries.downloadRequiredLibraries(getVersionJson(version));
         } catch (IOException e) {
             e.printStackTrace();

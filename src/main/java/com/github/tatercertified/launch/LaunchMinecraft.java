@@ -2,6 +2,7 @@ package com.github.tatercertified.launch;
 
 import com.github.tatercertified.auth.MSAuth;
 import com.github.tatercertified.guis.MSAccountGUI;
+import com.github.tatercertified.tatertester.DownloadLoaders;
 import com.github.tatercertified.tatertester.DownloadMCV2;
 import com.github.tatercertified.util.GameProfile;
 import com.github.tatercertified.util.JavaProfile;
@@ -41,8 +42,11 @@ public class LaunchMinecraft {
 
     private static void checkForPrelaunchTasks(GameProfile profile) {
         if (profile.needsInstallations()) {
-            DownloadMCV2.downloadMojankJar(profile.getVersion(), profile.getPath().toString(), profile.getLoader() + "-" + profile.getVersion());
-            // TODO Download other loaders
+            DownloadMCV2.downloadMojankJar(profile.getVersion(), profile.getPath().toString(), profile.getLoader() + "-" + profile.getVersion(), profile.isFullInstall());
+            DownloadLoaders.downloadLoader(profile.getLoader(), profile.getLoaderVer(), null, profile.isFullInstall());
+
+            profile.setFullInstall(false);
+            profile.setNeedsInstallations(false);
         }
     }
 }

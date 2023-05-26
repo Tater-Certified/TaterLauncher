@@ -20,7 +20,8 @@ public class TestPanel extends JFrame {
 
         button.addActionListener(e -> {
             textArea.setText(DownloadMCV2.getAllMojankVersions(false).toString());
-            DownloadMCV2.downloadMojankJar("1.19.4", "C:\\Users\\qpcru\\Downloads\\Test", "1-19-4-client");
+            DownloadMCV2.downloadMojankJar("1.19.4", "C:\\Users\\qpcru\\Downloads\\Test", "1-19-4-client", true);
+            //DownloadLibraries.downloadLoaderLibraries("Fabric", "0.14.20");
             textArea.updateUI();
         });
 

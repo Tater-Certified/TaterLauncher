@@ -1,9 +1,9 @@
 package com.github.tatercertified.guis.panels;
 
-import com.github.tatercertified.util.GameProfile;
 import com.github.tatercertified.guis.profiles.VersionGUIV2;
 import com.github.tatercertified.tatertester.DownloadLoaders;
-import com.github.tatercertified.tatertester.DownloadMC;
+import com.github.tatercertified.tatertester.DownloadMCV2;
+import com.github.tatercertified.util.GameProfile;
 import com.github.tatercertified.util.GameProfileGson;
 import com.github.tatercertified.util.JavaProfile;
 import com.github.tatercertified.util.JavaProfileGson;
@@ -13,7 +13,6 @@ import java.awt.*;
 import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.List;
 import java.util.Objects;
 
 public class ProfileEditor extends JFrame {
@@ -45,7 +44,7 @@ public class ProfileEditor extends JFrame {
         // Components
         JTextField pathTextField = new JTextField();
         JTextField nameTextField = new JTextField();
-        JComboBox<String> versionComboBox = new JComboBox<>(DownloadMC.getStableVersions(List.of(DownloadMC.versions)));
+        JComboBox<String> versionComboBox = new JComboBox<>(DownloadMCV2.getAllMojankVersions(false).toArray(new String[0]));
         JComboBox<String> loaderComboBox = new JComboBox<>(new String[]{"Vanilla", "Fabric", "Quilt"});
         JComboBox<String> loaderVersionComboBox = new JComboBox<>();
         JComboBox<JavaProfile> javaProfileComboBox = new JComboBox<>(JavaProfileGson.readJavaProfilesFromFile().toArray(new JavaProfile[0]));
@@ -60,7 +59,7 @@ public class ProfileEditor extends JFrame {
             profile.setPath(Path.of(""));
             profile.setSnapshot(false);
             profile.setLoaderSnapshot(false);
-            profile.setVersion(DownloadMC.getLatestStableVersion(List.of(DownloadMC.versions)));
+            profile.setVersion(DownloadMCV2.getAllMojankVersions(false).get(0));
             profile.setLoader("Vanilla");
             profile.setJavaProfile(JavaProfileGson.readJavaProfilesFromFile().get(0));
         }
@@ -95,7 +94,7 @@ public class ProfileEditor extends JFrame {
         // Action Listeners
         saveButton.addActionListener(e -> {
             if (is_new || !Objects.equals(versionComboBox.getSelectedItem().toString(), profile.getVersion())) {
-                DownloadMC.install(loaderComboBox.getSelectedItem().toString(), versionComboBox, loaderVersionComboBox, parent_gui);
+                // TODO Download the correct files
             }
             save(profile, nameTextField, pathTextField, versionComboBox, mcSnapshotCheck, loaderComboBox, loaderVersionComboBox, loaderSnapshotCheck, javaProfileComboBox);
             dispose();
@@ -201,10 +200,19 @@ public class ProfileEditor extends JFrame {
         String original_name = profile.getProfileName();
         profile.setProfileName(name.getText());
         profile.setPath(Paths.get(path.getText()));
-        profile.setVersion((String) version.getSelectedItem());
+        if (profile.getVersion() != version.getSelectedItem()) {
+            profile.setFullInstall(true);
+            profile.setVersion((String) version.getSelectedItem());
+        }
         profile.setSnapshot(snapshot.isSelected());
-        profile.setLoader((String) loader.getSelectedItem());
-        profile.setLoaderVer((String) loader_version.getSelectedItem());
+        if (profile.getLoader() != loader.getSelectedItem()) {
+            profile.setFullInstall(true);
+            profile.setLoader((String) loader.getSelectedItem());
+        }
+        if (profile.getLoaderVer() != loader_version.getSelectedItem()) {
+            profile.setFullInstall(true);
+            profile.setLoaderVer((String) loader_version.getSelectedItem());
+        }
         profile.setLoaderSnapshot(loader_snaphsot.isSelected());
         profile.setJavaProfile((JavaProfile) java_profile.getSelectedItem());
         GameProfileGson.updateGameProfileInFile(profile, original_name);
@@ -240,9 +248,9 @@ public class ProfileEditor extends JFrame {
 
     private void updateSnapshot(JCheckBox snapshot, JComboBox<String> version) {
         if (snapshot.isSelected()) {
-            version.setModel(new DefaultComboBoxModel<>(DownloadMC.versions));
+            version.setModel(new DefaultComboBoxModel<>(DownloadMCV2.getAllMojankVersions(true).toArray(new String[0])));
         } else {
-            version.setModel(new DefaultComboBoxModel<>(DownloadMC.getStableVersions(List.of(DownloadMC.versions))));
+            version.setModel(new DefaultComboBoxModel<>(DownloadMCV2.getAllMojankVersions(false).toArray(new String[0])));
         }
     }
 

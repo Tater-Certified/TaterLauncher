@@ -1,16 +1,17 @@
 package com.github.tatercertified.tatertester;
 
 import com.github.tatercertified.Startup;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import com.google.gson.*;
+import org.apache.commons.io.FileUtils;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.URL;
-import java.net.URLConnection;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.util.Objects;
 
 public class DownloadLibraries {
     static boolean downloadRequiredLibraries(String jsonURL) {
@@ -99,32 +100,58 @@ public class DownloadLibraries {
             return;
         }
 
-        // Create the required directories
-        try {
-            Path directoryPath = Paths.get(fullPath).getParent();
-            if (directoryPath != null) {
-                Files.createDirectories(directoryPath);
-            }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
         // Download the library file
         System.out.println("Downloading library: " + libraryPath);
         try {
-            URL libraryURL = new URL(libraryUrl);
-            URLConnection connection = libraryURL.openConnection();
-            try (InputStream inputStream = connection.getInputStream();
-                 BufferedInputStream bufferedInputStream = new BufferedInputStream(inputStream);
-                 FileOutputStream fileOutputStream = new FileOutputStream(file)) {
-                byte[] buffer = new byte[1024];
-                int bytesRead;
-                while ((bytesRead = bufferedInputStream.read(buffer, 0, buffer.length)) != -1) {
-                    fileOutputStream.write(buffer, 0, bytesRead);
-                }
-            }
+            FileUtils.copyURLToFile(new URL(libraryUrl), file);
         } catch (IOException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    public static void downloadLoaderLibraries(String loader, String loader_version) {
+        URL main_url = null;
+        try {
+            if (Objects.equals(loader, "Fabric")) {
+                main_url = new URL("https://maven.fabricmc.net/net/fabricmc/fabric-loader/" + loader_version + "/fabric-loader-" + loader_version + "-launchwrapper.json");
+            } else if (Objects.equals(loader, "Quilt")) {
+                main_url = new URL("https://maven.quiltmc.org/repository/release/org/quiltmc/quilt-loader/" + loader_version + "/quilt-loader-" + loader_version + ".json");
+            }
+            assert main_url != null;
+            BufferedReader reader = new BufferedReader(new InputStreamReader(main_url.openStream()));
+
+            JsonObject jsonObject = new Gson().fromJson(reader, JsonObject.class);
+            JsonObject librariesObject = jsonObject.getAsJsonObject("libraries");
+            JsonArray commonArray = librariesObject.getAsJsonArray("common");
+
+            for (JsonElement element : commonArray) {
+                JsonObject libraryObject = element.getAsJsonObject();
+                String name = libraryObject.get("name").getAsString();
+
+                String[] nameParts = name.split(":");
+                String libraryPath = nameParts[0].replace(".", "/") + "/" + nameParts[1] + "/" + nameParts[2] + "/" + nameParts[1] + "-" + nameParts[2] + ".jar";
+
+                JsonElement urlElement = libraryObject.get("url");
+                if (urlElement == null || urlElement.isJsonNull()) {
+                    System.out.println("Skipping library: " + name + " (URL not found)");
+                    continue;
+                }
+                String libraryUrl = urlElement.getAsString();
+
+                String downloadUrl = libraryUrl + libraryPath;
+                Path libraryFilePath = Path.of(Startup.global_libraries_path, libraryPath);
+
+                if (Files.notExists(libraryFilePath)) {
+                    System.out.println("Downloading: " + downloadUrl);
+                    FileUtils.copyURLToFile(new URL(downloadUrl), libraryFilePath.toFile());
+                } else {
+                    System.out.println("Already exists: " + downloadUrl);
+                }
+            }
+
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

@@ -1,12 +1,8 @@
 package com.github.tatercertified.tatertester;
 
-import org.apache.commons.io.FileUtils;
 import org.quiltmc.installer.QuiltMeta;
 
-import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -26,8 +22,12 @@ public class DownloadLoaders {
         return versions.toArray(new String[0]);
     }
 
-    public static void downloadFabricLoader(String loaderVersion, String fileLocation) throws IOException {
-        FileUtils.copyURLToFile(new URL("https://maven.fabricmc.net/net/fabricmc/fabric-loader/" + loaderVersion + "/" + "fabric-loader-" + loaderVersion + ".jar"), new File(fileLocation + "\\fabric-loader-" + loaderVersion + ".jar"));
+    private static void downloadFabricLoader(String loader_version, String fileLocation, boolean full_install) throws IOException {
+        if (full_install) {
+            // TODO Download Fabric Loader
+            //FileUtils.copyURLToFile(new URL("https://maven.fabricmc.net/net/fabricmc/fabric-loader/" + loader_version + "/" + "fabric-loader-" + loader_version + ".jar"), new File(fileLocation + "\\fabric-loader-" + loader_version + ".jar"));
+        }
+        DownloadLibraries.downloadLoaderLibraries("Fabric", loader_version);
     }
 
     // Quilt
@@ -51,5 +51,24 @@ public class DownloadLoaders {
             }
         }
         return versions.toArray(new String[0]);
+    }
+
+    private static void downloadQuiltLoader(String loader_version, String file_location, boolean full_install) {
+        if (full_install) {
+            // TODO Download Quilt Loader
+        }
+        DownloadLibraries.downloadLoaderLibraries("Quilt", loader_version);
+    }
+
+    // Download Loader
+    public static void downloadLoader(String loader, String loader_version, String file_location, boolean full_install) {
+        try {
+            switch (loader) {
+                case "Fabric" -> downloadFabricLoader(loader_version, file_location, full_install);
+                case "Quilt" -> downloadQuiltLoader(loader_version, file_location, full_install);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

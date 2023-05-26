@@ -14,6 +14,7 @@ public class GameProfile {
     private boolean isLoaderSnapshot;
     private boolean isSelected;
     private boolean needsInstallations;
+    private boolean fullInstall;
 
     public String getProfileName() {
         return profileName;
@@ -93,6 +94,14 @@ public class GameProfile {
 
     public void setNeedsInstallations(boolean bool) {
         needsInstallations = bool;
+    }
+
+    public boolean isFullInstall() {
+        return fullInstall;
+    }
+
+    public void setFullInstall(boolean bool) {
+        fullInstall = bool;
     }
 
     public String toString() {
