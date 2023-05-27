@@ -94,7 +94,10 @@ public class ProfileEditor extends JFrame {
         // Action Listeners
         saveButton.addActionListener(e -> {
             if (is_new || !Objects.equals(versionComboBox.getSelectedItem().toString(), profile.getVersion())) {
-                // TODO Download the correct files
+                DownloadMCV2.downloadMojankJar(versionComboBox.getSelectedItem().toString(), pathTextField.getText() + "/versions/", "client.jar", true);
+                if (!Objects.equals(loaderComboBox.getSelectedItem().toString(), "Vanilla")) {
+                    DownloadLoaders.downloadLoader(loaderComboBox.getSelectedItem().toString(), loaderVersionComboBox.getSelectedItem().toString(), pathTextField.getText() + "/versions/", true);
+                }
             }
             save(profile, nameTextField, pathTextField, versionComboBox, mcSnapshotCheck, loaderComboBox, loaderVersionComboBox, loaderSnapshotCheck, javaProfileComboBox);
             dispose();
